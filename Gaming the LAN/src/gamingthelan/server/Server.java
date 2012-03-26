@@ -10,7 +10,21 @@ import java.util.List;
 public class Server implements IServer {
 
 	private List<IConnection> clients = new LinkedList<IConnection>();
-
+	private static Server instance;
+	
+	private Server(){
+		//TODO Auto-generated method stub
+	}
+	
+	public static Server getInstance() {
+		
+		if (instance == null) {
+			instance = new Server();
+		}
+		
+		return instance;
+	}
+	
 	@Override
 	public void addConnection(IConnection connessione) {
 		// TODO Auto-generated method stub
