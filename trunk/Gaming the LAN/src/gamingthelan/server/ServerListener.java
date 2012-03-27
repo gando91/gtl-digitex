@@ -9,7 +9,7 @@ import java.net.Socket;
 public class ServerListener implements IListener, Runnable {
 	
 	private IServer mediatore;
-	private int porta = 8080;
+	private int porta = 1521; 
 	private boolean listening;
 	
 	private ServerListener instance;
