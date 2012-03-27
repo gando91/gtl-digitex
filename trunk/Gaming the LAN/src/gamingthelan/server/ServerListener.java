@@ -1,15 +1,14 @@
 package gamingthelan.server;
 
 import java.io.IOException;
-import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 
 public class ServerListener implements IListener, Runnable {
 	
-	private IServer mediatore;
-	private int porta = 1521; 
+	private IServer mediator;
+	private int port = 1521; 
 	private boolean listening;
 	
 	private ServerListener instance;
@@ -28,20 +27,20 @@ public class ServerListener implements IListener, Runnable {
 	}
 	
 	
-	public int getPorta() {
-		return porta;
+	public int getPort() {
+		return port;
 	}
 
-	public void setPorta(int porta) {
-		this.porta = porta;
+	public void setPort(int port) {
+		this.port = port;
 	}
 
 	@Override
-	public void creaPartita(int porta) {
-		mediatore = Server.getInstance();
+	public void newGame(int port) {
+		mediator = Server.getInstance();
 
-		Thread ascoltatore = new Thread(this);
-		ascoltatore.start();
+		Thread listener = new Thread(this);
+		listener.start();
 		listening = true;
 	}
 
@@ -53,7 +52,7 @@ public class ServerListener implements IListener, Runnable {
 		
 		// Inizializzazione
 		try {
-			s = new ServerSocket(porta);
+			s = new ServerSocket(port);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

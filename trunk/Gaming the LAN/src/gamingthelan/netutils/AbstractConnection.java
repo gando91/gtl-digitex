@@ -4,7 +4,7 @@ import gamingthelan.server.IServer;
 
 public abstract class AbstractConnection implements IConnection, Runnable {
 
-	IServer mediatore;
+	IServer mediator;
 	
 	
 	@Override
