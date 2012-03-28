@@ -3,8 +3,8 @@ package gamingthelan.server;
 public interface IListener {
 	
 	/**
-	 * Crea una nuova partita
-	 * @param porta La porta su cui mettere in ascolto il server
+	 * Create a new Game
+	 * @param port the port on which the server will listen
 	 */
 	public void newGame(int port);
 	

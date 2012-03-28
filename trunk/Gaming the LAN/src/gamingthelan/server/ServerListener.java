@@ -11,13 +11,13 @@ public class ServerListener implements IListener, Runnable {
 	private int port = 1521; 
 	private boolean listening;
 	
-	private ServerListener instance;
+	private static ServerListener instance;
 	
 	private ServerListener() {
 
 	}
 	
-	public ServerListener getInstance() {
+	public static ServerListener getInstance() {
 		
 		if (instance == null) {
 			instance = new ServerListener();
