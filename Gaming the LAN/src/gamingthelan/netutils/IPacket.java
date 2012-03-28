@@ -5,5 +5,5 @@ package gamingthelan.netutils;
  * @author alessio
  */
 public interface IPacket {
-
+	
 }

@@ -12,4 +12,6 @@ public interface IServer {
 	public void broadcastMessage(IPacket pacchetto);
 	public void sendMessage(IPacket pacchetto, IConnection connessione);
 	
+	public void onReceivedPacket(IPacket packet);
+	
 }
