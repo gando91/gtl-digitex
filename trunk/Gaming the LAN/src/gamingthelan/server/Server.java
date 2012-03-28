@@ -48,5 +48,11 @@ public class Server implements IServer {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void onReceivedPacket(IPacket packet) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
