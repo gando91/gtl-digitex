@@ -28,6 +28,7 @@ public class Server implements IServer {
 	@Override
 	public void addConnection(IConnection connessione) {
 		// TODO Auto-generated method stub
+
 		
 	}
 
