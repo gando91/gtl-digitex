@@ -60,6 +60,10 @@ public class ServerListener implements IListener, Runnable {
 		
 		while (listening) {
 			
+			// nell'ottica di dare la possibilità all'utente di accettare/rifiutare la connessione, è necessario qui passare la connessione al programma che
+			// si interfaccia con l'utente, ed è quindi necessario all'interno della classe connection avere metodi per ottenere il qualche modo "chi" sia a
+			// volersi connettere, no?			
+			
 			try {
 				Socket socket = s.accept();
 			} catch (IOException e) {
