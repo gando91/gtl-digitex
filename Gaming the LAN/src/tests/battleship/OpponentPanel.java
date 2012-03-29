@@ -33,11 +33,7 @@ public class OpponentPanel extends JPanel{
 			
 			if(i!=0 && i<=10)
 				opponentcell[i].add(new JLabel(i.toString()));
-			
-		
-				
-		
-			
+						
 			
 			add(opponentcell[i]);
 			
