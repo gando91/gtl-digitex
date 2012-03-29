@@ -1,5 +1,6 @@
 package tests.battleship;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 
 import javax.swing.BorderFactory;
@@ -16,8 +17,10 @@ public class OpponentPanel extends JPanel{
 	
 	
 	public OpponentPanel(){
-		
-		setBorder(BorderFactory.createEtchedBorder());
+		Color c = new Color (0, 0, 0, 0);
+		setBackground(c); 
+		setOpaque(true);
+		//setBorder(BorderFactory.createEtchedBorder());
 		setLayout(new GridLayout(11, 11));
 		setVisible(true);
 		

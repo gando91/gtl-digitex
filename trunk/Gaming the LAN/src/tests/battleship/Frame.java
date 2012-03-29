@@ -9,7 +9,7 @@ public class Frame extends JFrame  {
 	public Frame(){
 		
 		setTitle("Battleship!");
-		setSize(1024,768);
+		setSize(780,780);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		
