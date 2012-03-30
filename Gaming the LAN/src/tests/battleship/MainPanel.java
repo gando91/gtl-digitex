@@ -11,7 +11,7 @@ public class MainPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private OpponentPanel opponentpanel=new OpponentPanel();
-	private Image sfondo=new ImageIcon().getImage();
+	private ImageIcon sfondo=new ImageIcon(getClass().getResource("sfondo.jpg"));
 	
 	public MainPanel(){
 		
@@ -20,7 +20,7 @@ public class MainPanel extends JPanel {
 		//setBorder(BorderFactory.createEtchedBorder());
 		setVisible(true);
 		
-		
+			
 		add(opponentpanel);
 		
 		//prova pannelli successivi
@@ -34,6 +34,6 @@ public class MainPanel extends JPanel {
 	protected void paintComponent(Graphics arg0) {
 		
 		super.paintComponent(arg0);
-		arg0.drawImage(sfondo,0,0,null);
+		arg0.drawImage(sfondo.getImage(),0,0,null);
 	}
 }
