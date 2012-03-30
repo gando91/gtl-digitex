@@ -3,6 +3,7 @@ package gamingthelan.server;
 import gamingthelan.netutils.IConnection;
 import gamingthelan.netutils.IPacket;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -26,21 +27,24 @@ public class Server implements IServer {
 	}
 	
 	@Override
-	public void addConnection(IConnection connessione) {
-		// TODO Auto-generated method stub
-
+	public void addConnection(IConnection connection) {
+		clients.add(connection);
 		
 	}
 
 	@Override
-	public void rmConnection(IConnection connessione) {
-		// TODO Auto-generated method stub
+	public void rmConnection(IConnection connection) {
+		//TODO : Migliorare
+		clients.remove(connection);
 		
 	}
 
 	@Override
-	public void broadcastMessage(IPacket pacchetto) {
-		// TODO Auto-generated method stub
+	public void broadcastMessage(IPacket packet) throws IOException {
+		
+		for (IConnection c : clients) {
+			c.sendPacket(packet);
+		}
 		
 	}
 
