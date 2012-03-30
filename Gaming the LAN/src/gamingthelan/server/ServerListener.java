@@ -1,5 +1,7 @@
 package gamingthelan.server;
 
+import gamingthelan.netutils.Connection;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -32,59 +34,61 @@ public class ServerListener implements IListener, Runnable {
 	}
 
 	public void setPort(int port) {
-		this.port = port;
+		if ( port > 80 && port < 99999)
+			this.port = port;
 	}
 
 	@Override
 	public void newGame(int port) {
 		mediator = Server.getInstance();
-
+		
+		setPort(port);
+		
 		Thread listener = new Thread(this);
-		listener.start();
 		listening = true;
+		listener.start();
+		
 	}
 
 	@Override
 	public void run() {
 		
-		//FIXME : Istanziare una classe abstract (non zi pote, come fare per farlo fare al programmatore ?)
 		ServerSocket s = null;
 		
 		// Inizializzazione
 		try {
 			s = new ServerSocket(port);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			// TODO Gestire eccezione apertura porta
 			e.printStackTrace();
 		}
 		
 		while (listening) {
 			
-			// nell'ottica di dare la possibilità all'utente di accettare/rifiutare la connessione, è necessario qui passare la connessione al programma che
-			// si interfaccia con l'utente, ed è quindi necessario all'interno della classe connection avere metodi per ottenere il qualche modo "chi" sia a
-			// volersi connettere, no?
-			// senza contare che non essendo il Socket un attributo della Connection, non vi è possibilità di ottenere tale informazione direttamente da esso
+			
+			/*
+			 * Bisogna progettare qualcosa per lasciare al programmatore
+			 * la possibilità di ottenere informazioni sulla connessione in arrivo
+			 */
 			
 			try {
+				
+				//TODO : Dare la possibilità al programmatore di decidere cosa fare della richiesta
 				Socket socket = s.accept();
+				
+				Connection c = new  Connection(socket);
+				
+				Thread t = new Thread(c);
+				mediator.addConnection(c);
+				t.start();
+				
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				// TODO Gestione eccezione in ascolto
 				e.printStackTrace();
 			}
 
-			/*
-			 * Bisogna creare un nuovo oggetto di tipo IConnection
-			 * e avviarlo in un nuovo thread
-			 * poi bisogna aggiunegere la nuova connessione al server
-			 * 
-			 * Il problema è che la nostra connessione è astratta... chi mi da una mano ragazzi ?
-			 * 
-			Client c = new  Client(socket, count, mediator);
-			Thread t = new Thread(c);
-			mediatore.addClient(c);
-			
-			t.start();
-			*/
+
+
 
 		}
 		

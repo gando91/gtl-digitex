@@ -15,10 +15,10 @@ public class Connection implements IConnection, Runnable {
     
     private boolean connected = true;
     
-	IServer mediator = Server.getInstance();
+	IServer mediator;
 	
 	public Connection(Socket socket) {
-		
+		mediator = Server.getInstance();
 		//TODO : Convertire tutto in I/O bufferizzato *se possibile*
 		try {
             
