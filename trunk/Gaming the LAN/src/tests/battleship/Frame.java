@@ -2,10 +2,20 @@ package tests.battleship;
 
 import javax.swing.JFrame;
 
+/**
+ * 
+ * This is the class application that  launches
+ * the battleship test game
+ * 
+ */
 public class Frame extends JFrame  {
 	
 	private static final long serialVersionUID = 1L;
 
+	
+	/** create the frame 
+	 * 
+	 */
 	public Frame(){
 		
 		setTitle("Battleship!");
