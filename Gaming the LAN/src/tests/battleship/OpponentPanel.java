@@ -8,6 +8,13 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/**
+ * 
+ * this class describe the opponent panel
+ * with the sub panel of hit situation
+ *
+ */
+
 public class OpponentPanel extends JPanel{
 	
 	private static final long serialVersionUID = 1L;

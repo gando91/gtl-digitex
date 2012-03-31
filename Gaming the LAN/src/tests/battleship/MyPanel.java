@@ -4,6 +4,13 @@ import java.awt.Color;
 
 import javax.swing.JPanel;
 
+/**
+ * 
+ * this class describe the panel of palyer 
+ * with the sub panel of situation and
+ * the sub panel of status of player's ship
+ *
+ */
 public class MyPanel extends JPanel {
 	 public MyPanel() {
 	        initComponents();
