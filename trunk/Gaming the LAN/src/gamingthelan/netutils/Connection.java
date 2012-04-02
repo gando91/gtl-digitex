@@ -13,12 +13,16 @@ public class Connection implements IConnection, Runnable {
 	private ObjectInputStream inStream;
     private ObjectOutputStream outStream;
     
+    private ConnectionHandler handler;
+    
     private boolean connected = true;
     
 	IServer mediator;
 	
-	public Connection(Socket socket) {
+	public Connection(Socket socket, ConnectionHandler handler) {
+		
 		mediator = Server.getInstance();
+		
 		//TODO : Convertire tutto in I/O bufferizzato *se possibile*
 		try {
             
@@ -28,7 +32,8 @@ public class Connection implements IConnection, Runnable {
 		} catch (IOException e) {
             System.err.println("Errore durante la creazione degli stream di connessione");
 		}
-
+		
+		this.handler = handler;
 		
 	}
 	
@@ -55,7 +60,7 @@ public class Connection implements IConnection, Runnable {
 			try {
 				
 				received = (IPacket) inStream.readObject();
-				mediator.onReceivedPacket(received);
+				handler.onReceivedPacket(received);
 				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
