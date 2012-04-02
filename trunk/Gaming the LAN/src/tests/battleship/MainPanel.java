@@ -29,6 +29,7 @@ public class MainPanel extends JPanel {
 		
 			
 		add(opponentpanel);
+		opponentpanel.addMouseListener(opponentpanel);
 		
 		//prova pannelli successivi
 		add(new JLabel("blocco 2"));
