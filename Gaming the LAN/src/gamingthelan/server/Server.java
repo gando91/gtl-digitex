@@ -26,6 +26,11 @@ public class Server implements IServer {
 		return instance;
 	}
 	
+	
+	public List<IConnection> getClients() {
+		return clients;
+	}
+
 	@Override
 	public void addConnection(IConnection connection) {
 		clients.add(connection);
