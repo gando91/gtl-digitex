@@ -1,6 +1,7 @@
 package gamingthelan.server;
 
 import gamingthelan.netutils.Connection;
+import gamingthelan.netutils.ConnectionHandler;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -12,6 +13,8 @@ public class ServerListener implements IListener, Runnable {
 	private IServer mediator;
 	private int port = 1521; 
 	private boolean listening;
+	
+	private ConnectionHandler handler;
 	
 	private static ServerListener instance;
 	
@@ -39,9 +42,10 @@ public class ServerListener implements IListener, Runnable {
 	}
 
 	@Override
-	public void newGame(int port) {
+	public void newGame(int port, ConnectionHandler handler) {
 		mediator = Server.getInstance();
 		
+		this.handler = handler;
 		setPort(port);
 		
 		Thread listener = new Thread(this);
@@ -76,7 +80,7 @@ public class ServerListener implements IListener, Runnable {
 				//TODO : Dare la possibilità al programmatore di decidere cosa fare della richiesta
 				Socket socket = s.accept();
 				
-				Connection c = new  Connection(socket);
+				Connection c = new  Connection(socket, handler);
 				
 				Thread t = new Thread(c);
 				mediator.addConnection(c);

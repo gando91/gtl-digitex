@@ -14,6 +14,5 @@ public interface IServer {
 	public void broadcastMessage(IPacket pacchetto) throws IOException;
 	public void sendMessage(IPacket pacchetto, IConnection connessione);
 	
-	public void onReceivedPacket(IPacket packet);
 	
 }
