@@ -20,6 +20,8 @@ public class OpponentPanel extends JPanel implements MouseListener{
 	private static int rows=11;
 	private static int cols=11;
 	private int ncol,nrow;
+	private static String lett[];
+	
 	
 	 OpponentPanel(){
 		Color c = new Color (0, 0, 0, 0);
@@ -35,12 +37,18 @@ public class OpponentPanel extends JPanel implements MouseListener{
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-		for (int i = 0; i < rows; i++) {
-			for (int j = 0; j < cols; j++) {
+		for (Integer i = 0; i < rows; i++) {
+			for (Integer j = 0; j < cols; j++) {
 				g.setColor(Color.BLUE);
 				g.fillRect((780/22)*j, (750/22)*i, (780/22), (750/22));
 				g.setColor(Color.WHITE);
 				g.drawRect((780/22)*j, (750/22)*i, (780/22), (750/22));
+				
+				if(j==0 && i!=0)
+					g.drawString(i.toString(),(780/44)-5, (i*(750/22))+(750/22)-9);
+				
+				drawLetters(g, i, j);
+				
 			}
 		}
 	}
@@ -49,12 +57,8 @@ public class OpponentPanel extends JPanel implements MouseListener{
 		
 		if(x!=0 && y!=0){
 	
-			System.out.println("provo");
 				g.setColor(Color.RED);
 				g.fillRect((780/22)*y, (750/22)*x, (780/22),(750/22));
-			
-				System.out.println("Ho colorato");
-				//repaint();
 			
 		}
 	}
@@ -73,14 +77,33 @@ public class OpponentPanel extends JPanel implements MouseListener{
 		this.nrow = nrow;
 	}
 	
+	private void drawLetters(Graphics g,int i,int j){
+		
+		lett=new String[10];
+		
+		lett[0]="A";
+		lett[1]="B";
+		lett[2]="C";
+		lett[3]="D";
+		lett[4]="E";
+		lett[5]="F";
+		lett[6]="G";
+		lett[7]="H";
+		lett[8]="I";
+		lett[9]="L";
+		
+		if(i==0 && j!=0)
+			g.drawString(lett[j-1], j*(780/22)+(780/22)-20,(750/44)+5);
+		
+		
+	}
+	
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		
 		int posx=e.getX();
 		int posy=e.getY();
-		
-		System.out.println("Ho cliccato!");
 		
 		setNcol(posx/(780/22));
 		setNrow(posy/(750/22));
