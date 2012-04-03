@@ -10,6 +10,8 @@ import gamingthelan.server.Server;
 
 public class Connection implements IConnection, Runnable {
 
+	private Socket socket;
+	
 	private ObjectInputStream inStream;
     private ObjectOutputStream outStream;
     
@@ -22,13 +24,12 @@ public class Connection implements IConnection, Runnable {
 	public Connection(Socket socket, ConnectionHandler handler) {
 		
 		mediator = Server.getInstance();
-		
+		this.socket = socket;
 		//TODO : Convertire tutto in I/O bufferizzato *se possibile*
 		try {
             
             inStream = new ObjectInputStream(socket.getInputStream());
             outStream = new ObjectOutputStream(socket.getOutputStream());
-            
 		} catch (IOException e) {
             System.err.println("Errore durante la creazione degli stream di connessione");
 		}
@@ -37,6 +38,10 @@ public class Connection implements IConnection, Runnable {
 		
 	}
 	
+	public Socket getSocket() {
+		return socket;
+	}
+
 	@Override
 	public void sendPacket(IPacket packet) throws IOException {
 		
