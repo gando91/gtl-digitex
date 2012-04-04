@@ -4,21 +4,24 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Observable;
 import java.util.Observer;
+
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
-public class MatrixView extends JPanel implements Observer{
+public class MyView extends JPanel implements Observer{
 
 	private static final long serialVersionUID = 1L;
 	private static String lett[];
 	private MatrixModel model;
 	
-	public MatrixView(MatrixModel model){
+	public MyView(MatrixModel model){
 		this.model = model;
 		model.addObserver(this);
 		Color c = new Color (0, 0, 0, 0);
 		setBackground(c); 
 		setOpaque(true);
+		setLayout(null);
 		
 	}
 private void drawLetters(Graphics g,int i,int j){
@@ -37,7 +40,7 @@ private void drawLetters(Graphics g,int i,int j){
 		lett[9]="L";
 		
 		if(i==0 && j!=0)
-			g.drawString(lett[j-1], j*(780/22)+(780/22)-20,(750/44)+5);
+			g.drawString(lett[j-1], j*(420/22)+(420/22)+6,(405/44)+25);
 		
 		
 	}
@@ -70,13 +73,13 @@ private void drawLetters(Graphics g,int i,int j){
 				}
 				
 				
-				g.fillRect((780/22)*j, (750/22)*i, (780/22), (750/22));
+				g.fillRect(((420/22)*j)+20, ((405/22)*i)+20, (420/22), (405/22));
 				
 				g.setColor(Color.WHITE);
-				g.drawRect((780/22)*j, (750/22)*i, (780/22), (750/22));
+				g.drawRect(((420/22)*j)+20, ((405/22)*i)+20, (420/22), (405/22));
 				
 				if(j==0 && i!=0)
-					g.drawString(i.toString(),(780/44)-5, (i*(750/22))+(750/22)-9);
+					g.drawString(i.toString(),(420/44)+15, (i*(405/22))+(405/22)+14);
 				
 				drawLetters(g, i, j);
 				
