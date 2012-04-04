@@ -1,6 +1,5 @@
 package gamingthelan.server;
 
-import gamingthelan.netutils.Connection;
 import gamingthelan.netutils.ConnectionHandler;
 
 import java.io.IOException;
@@ -80,11 +79,7 @@ public class ServerListener implements IListener, Runnable {
 				//TODO : Dare la possibilità al programmatore di decidere cosa fare della richiesta
 				Socket socket = s.accept();
 				
-				Connection c = new  Connection(socket, handler);
-				
-				Thread t = new Thread(c);
-				mediator.addConnection(c);
-				t.start();
+				mediator.createConnection(socket, handler);				
 				
 			} catch (IOException e) {
 				// TODO Gestione eccezione in ascolto
