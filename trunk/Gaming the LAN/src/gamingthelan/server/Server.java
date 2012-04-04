@@ -1,10 +1,12 @@
 package gamingthelan.server;
 
+import gamingthelan.netutils.ConnectionHandler;
 import gamingthelan.netutils.IConnection;
 import gamingthelan.netutils.IPacket;
 
 import java.io.IOException;
 import java.net.InetAddress;
+import java.net.Socket;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,7 +18,7 @@ public class Server implements IServer {
 	private static Server instance;
 	
 	private Server(){
-		//TODO Auto-generated method stub
+		
 	}
 	
 	public static Server getInstance() {
@@ -60,7 +62,7 @@ public class Server implements IServer {
 
 	@Override
 	public void sendMessage(IPacket pacchetto, IConnection connessione) {
-		// TODO Auto-generated method stub
+		// TODO Mandare messaggi
 		
 	}
 
@@ -78,6 +80,12 @@ public class Server implements IServer {
 	public boolean unban(InetAddress address) {
 		banlist.remove(address);
 		return true;
+	}
+
+	@Override
+	public void createConnection(Socket socket, ConnectionHandler handler) {
+		addConnection(ConnectionCreator.getInstance().createConnection(socket, handler));
+		
 	}
 	
 }
