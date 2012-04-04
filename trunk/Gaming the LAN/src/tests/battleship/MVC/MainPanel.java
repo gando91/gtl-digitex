@@ -16,11 +16,12 @@ public class MainPanel extends JPanel {
 
 	
 	private static final long serialVersionUID = 1L;
-	private MatrixView view;
+	private OpponentView view;
+	private MyView myview;
 	private ImageIcon sfondo=new ImageIcon(getClass().getResource("sfondo.jpg"));
 	
 	
-	public MainPanel(MatrixView view){
+	public MainPanel(OpponentView view,MyView myview){
 		
 		
 		setLayout(new GridLayout(2, 2));	
@@ -32,7 +33,7 @@ public class MainPanel extends JPanel {
 		
 		//prova pannelli successivi
 		add(new JLabel("blocco 2"));
-		add(new JLabel("blocco 3"));
+		add(myview);
 		add(new JLabel("blocco 4"));
 		
 		

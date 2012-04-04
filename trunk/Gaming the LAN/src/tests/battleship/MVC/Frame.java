@@ -18,11 +18,15 @@ public class Frame extends JFrame{
 	
 	public static void main(String[] args) {
 		
-		MatrixModel model=new MatrixModel();
-		MatrixView view=new MatrixView(model);
-		MatrixController controller=new MatrixController(model);
+		MatrixModel opponentModel=new MatrixModel();
+		MatrixModel myModel=new MatrixModel();
+		
+		OpponentView view=new OpponentView(opponentModel);
+		MyView myview =new MyView(myModel);
+		
+		MatrixController controller=new MatrixController(opponentModel);
 		view.addMouseListener(controller);
-		MainPanel main=new MainPanel(view);
+		MainPanel main=new MainPanel(view,myview);
 		
 		Frame frame = new Frame(main);
 	}
