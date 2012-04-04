@@ -4,7 +4,8 @@ public enum Status {
 	
 	VIRGIN (0),
 	HIT(1),
-	MISSED(2);
+	MISSED(2),
+	SHIP(3);
 	
 	private int value;
 	
