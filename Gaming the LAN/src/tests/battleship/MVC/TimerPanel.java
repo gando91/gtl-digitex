@@ -31,7 +31,7 @@ public class TimerPanel extends JPanel implements Observer{
 		//Questo sembra risolvere il problema su windows. Da testare su altri OS
 		this.paintComponent(getGraphics());
 		
-		//Dovrebbe essere repaint(); indagare con martinelli sul perchè
+		//Dovrebbe essere repaint();
 	}
 	
 	@Override
