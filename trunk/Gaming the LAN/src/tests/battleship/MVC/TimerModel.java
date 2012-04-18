@@ -15,7 +15,7 @@ import javax.swing.Timer;
 public class TimerModel extends Observable implements ActionListener{
 
 	//Costante limite di tempo
-	private static final int timeLimit = 20;
+	private static final int timeLimit = 30;
 	
 	private Integer timerCount;
 	private Timer myTimer;
