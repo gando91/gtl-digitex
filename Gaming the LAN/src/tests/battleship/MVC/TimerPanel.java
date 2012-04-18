@@ -5,8 +5,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.util.Observable;
 import java.util.Observer;
-
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class TimerPanel extends JPanel implements Observer{
@@ -36,9 +34,9 @@ public class TimerPanel extends JPanel implements Observer{
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.setFont(new Font("Impact", 0, 70));
+		g.setFont(new Font("Homoarakhn", 0, 70));
 		g.setColor(Color.BLACK);
-		g.fillRect(165, 105, 100, 100);
+		g.fillRect(165, 105, 175, 105);
 		g.setColor(Color.GREEN);
 		g.drawString(timermodel.toString(), 180, 180);
 		
