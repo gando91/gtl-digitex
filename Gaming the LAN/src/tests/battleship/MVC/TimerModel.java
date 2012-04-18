@@ -44,6 +44,14 @@ public class TimerModel extends Observable implements ActionListener{
 		myTimer.stop();
 	}
 	
+	
+	/**
+	 * @return the timerCount
+	 */
+	public int getTimerCount() {
+		return timerCount;
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
