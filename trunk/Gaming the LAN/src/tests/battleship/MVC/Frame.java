@@ -24,7 +24,9 @@ public class Frame extends JFrame{
 		OpponentView view=new OpponentView(opponentModel);
 		MyView myview =new MyView(myModel);
 		
-		TimerPanel timerpanel=new TimerPanel();
+		TimerModel timermodel=new TimerModel();
+		TimerPanel timerpanel=new TimerPanel(timermodel);
+		timermodel.addObserver(timerpanel);
 		
 		MatrixController controller=new MatrixController(opponentModel);
 		view.addMouseListener(controller);
