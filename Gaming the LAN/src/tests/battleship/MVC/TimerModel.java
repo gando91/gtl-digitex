@@ -17,7 +17,7 @@ public class TimerModel extends Observable implements ActionListener{
 	//Costante limite di tempo
 	private static final int timeLimit = 40;
 	
-	private int timerCount;
+	private Integer timerCount;
 	private Timer myTimer;
 	
 	public TimerModel() {
@@ -48,7 +48,7 @@ public class TimerModel extends Observable implements ActionListener{
 	/**
 	 * @return the timerCount
 	 */
-	public int getTimerCount() {
+	public Integer getTimerCount() {
 		return timerCount;
 	}
 
@@ -64,6 +64,10 @@ public class TimerModel extends Observable implements ActionListener{
 		
 		this.setChanged();
 		this.notifyObservers();
+	}
+	@Override
+	public String toString() {
+		return timerCount.toString();
 	}
 	
 }

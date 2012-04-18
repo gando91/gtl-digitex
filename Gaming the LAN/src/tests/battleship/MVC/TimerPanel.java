@@ -2,6 +2,7 @@ package tests.battleship.MVC;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Graphics;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -11,22 +12,17 @@ import javax.swing.JPanel;
 public class TimerPanel extends JPanel implements Observer{
 
 	private static final long serialVersionUID = 1L;
+	private TimerModel timermodel;
 	
-	public TimerPanel(){
-		
+	public TimerPanel(TimerModel timermodel){
+		this.timermodel=timermodel;
 		
 		Color c = new Color (0, 0, 0, 0);
 		setBackground(c); 
 		setOpaque(true);
 		//setLayout(null);
 		
-		
-		JLabel labeltimer = new JLabel("TIMER");
-		labeltimer.setBackground(Color.WHITE);
-		labeltimer.setOpaque(true);
-		labeltimer.setLocation(0, 0);
-		labeltimer.setFont(new Font("Comic Sans MS", 0, 30));
-		add(labeltimer);
+		timermodel.startTimer();
 		
 		setVisible(true);
 	}
@@ -34,7 +30,17 @@ public class TimerPanel extends JPanel implements Observer{
 	
 	@Override
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
+		repaint();
+		
+	}
+	@Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.setFont(new Font("Impact", 0, 70));
+		g.setColor(Color.BLACK);
+		g.fillRect(165, 105, 100, 100);
+		g.setColor(Color.GREEN);
+		g.drawString(timermodel.toString(), 180, 180);
 		
 	}
 
