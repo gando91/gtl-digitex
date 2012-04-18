@@ -11,9 +11,9 @@ public class Frame extends JFrame{
 		setResizable(false);
 		setSize(780, 780);
 		setTitle("Battleship!");
-		setVisible(true);
 		
 		add(main);
+		setVisible(true);
 	}
 	
 	public static void main(String[] args) {
