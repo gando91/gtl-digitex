@@ -21,7 +21,7 @@ public class MainPanel extends JPanel {
 	private ImageIcon sfondo=new ImageIcon(getClass().getResource("sfondo.jpg"));
 	
 	
-	public MainPanel(OpponentView view,MyView myview){
+	public MainPanel(OpponentView view,MyView myview, TimerPanel timerpanel){
 		
 		
 		setLayout(new GridLayout(2, 2));	
@@ -34,7 +34,7 @@ public class MainPanel extends JPanel {
 		//prova pannelli successivi
 		add(new JLabel("blocco 2"));
 		add(myview);
-		add(new JLabel("blocco 4"));
+		add(timerpanel);
 		
 		
 	}
