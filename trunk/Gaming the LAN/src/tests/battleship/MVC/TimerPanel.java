@@ -21,22 +21,23 @@ public class TimerPanel extends JPanel implements Observer{
 		Color c = new Color (0, 0, 0, 0);
 		setBackground(c); 
 		setOpaque(true);
-		//setLayout(null);
 		
 		timermodel.startTimer();
-		
-		setVisible(true);
 	}
 	
 	
 	@Override
 	public void update(Observable o, Object arg) {
-		repaint();
+		//Questo sembra risolvere il problema su windows. Da testare su altri OS
+		this.paintComponent(getGraphics());
 		
+		//Dovrebbe essere repaint(); indagare con martinelli sul perchè
 	}
+	
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
+		
 		g.drawImage(crono.getImage(),50,30,null);
 		
 		g.setFont(new Font("Homoarakhn", 0, 70));
