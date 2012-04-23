@@ -1,4 +1,4 @@
-package tests.battleship.MVC;
+package tests.game;
 
 public enum Status {
 	

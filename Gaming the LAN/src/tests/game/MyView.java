@@ -1,4 +1,4 @@
-package tests.battleship.MVC;
+package tests.game;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -66,10 +66,13 @@ private void drawLetters(Graphics g,int i,int j){
 					g.setColor(Color.BLUE);
 				}
 				if(statusmatrix[i][j]==Status.HIT){
-					g.setColor(Color.DARK_GRAY);
+					g.setColor(Color.RED);
 				}
 				if(statusmatrix[i][j]==Status.MISSED){
 					g.setColor(Color.CYAN);
+				}
+				if(statusmatrix[i][j]==Status.SHIP){
+					g.setColor(Color.DARK_GRAY);
 				}
 				
 				

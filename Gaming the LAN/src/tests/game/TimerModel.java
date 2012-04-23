@@ -1,4 +1,4 @@
-package tests.battleship.MVC;
+package tests.game;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

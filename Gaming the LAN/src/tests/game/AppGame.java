@@ -1,12 +1,12 @@
-package tests.battleship.MVC;
+package tests.game;
 
 import javax.swing.JFrame;
 
-public class Frame extends JFrame{
+public class AppGame extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	
-	public Frame(MainPanel main){
+	public AppGame(MainPanel main){
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
 		setSize(780, 780);
@@ -34,7 +34,7 @@ public class Frame extends JFrame{
 		
 		
 		
-		Frame frame = new Frame(main);
+		AppGame frame = new AppGame(main);
 	}
 	
 }
