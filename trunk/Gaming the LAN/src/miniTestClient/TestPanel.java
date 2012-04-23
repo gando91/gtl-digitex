@@ -2,14 +2,15 @@ package miniTestClient;
 
 import gamingthelan.netutils.Connection;
 import gamingthelan.netutils.IConnection;
-import gamingthelan.netutils.Packet;
 import gamingthelan.server.ConnectionCreator;
 
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.SocketAddress;
 import java.net.UnknownHostException;
 import java.util.LinkedList;
 import java.util.List;
@@ -20,7 +21,11 @@ import javax.swing.JTextField;
 
 public class TestPanel extends JPanel{
 	
-	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public TestPanel(){
 		
 		final JTextField ipServer = new JTextField();
@@ -57,20 +62,25 @@ public class TestPanel extends JPanel{
 			public void mouseClicked(MouseEvent arg0) {
 				try {
 					
-					Socket s = new Socket(ipServer.getText(),8080);
-					TestHandler h = new TestHandler();
-					System.out.println("Pacchetto mandato");
-					Connection c = (Connection) ConnectionCreator.getInstance().createConnection(s, h);
+					Socket s = new Socket();
 					
+					//Il socket va collegato però, altrimenti come si fa a mandare il pacchetto ?
+					SocketAddress sockaddr = new InetSocketAddress(ipServer.getText(),8080);
+					s.connect(sockaddr, 2000);
+					
+					System.out.println("Connesso");
+					
+					TestHandler h = new TestHandler();
+					Connection c = (Connection) ConnectionCreator.getInstance().createConnection(s, h);
+					System.out.println("Connessione creata");
 					
 					List<IConnection> list = new LinkedList<IConnection>();
 					list.add(c);
 					MyPacket packet = new MyPacket(c, list, "Gandini Culo");
-					Thread t = new Thread(c);
-					t.start();
+					System.out.println("Pacchetto creato");
 					
 					c.sendPacket(packet);
-					
+					System.out.println("Pacchetto spedito");
 					
 					
 				} catch (UnknownHostException e) {
