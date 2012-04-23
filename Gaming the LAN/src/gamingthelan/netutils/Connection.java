@@ -27,12 +27,13 @@ public class Connection implements IConnection, Runnable {
 		
 		mediator = Server.getInstance();
 		this.socket = socket;
-		//TODO : Convertire tutto in I/O bufferizzato *se possibile*
+		
 		try {
-			System.out.println("test2");
+			
             inStream = new ObjectInputStream(socket.getInputStream());
-    		System.out.println("test3");
             outStream = new ObjectOutputStream(socket.getOutputStream());
+            System.out.println("Connessione : Stream creati");
+            
 		} catch (IOException e) {
             System.err.println("Errore durante la creazione degli stream di connessione");
 		}
@@ -47,9 +48,10 @@ public class Connection implements IConnection, Runnable {
 
 	@Override
 	public void sendPacket(IPacket packet) throws IOException {
-		
+		System.out.println("Connessione : inizio invio pacchetto");
 		outStream.writeObject(packet);
-		
+		outStream.flush();
+		System.out.println("Connessione : Pacchetto spedito");
 	}
 
 	/*
@@ -66,8 +68,9 @@ public class Connection implements IConnection, Runnable {
 		while (connected) {
 			
 			try {
+				
+				received = (IPacket) inStream.readUnshared();
 				System.out.println("Pacchetto ricevuto");
-				received = (IPacket) inStream.readObject();
 				
 				handler.onReceivedPacket(received);
 				
