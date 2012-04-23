@@ -2,6 +2,8 @@ package tests.connection;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -20,6 +22,16 @@ public class ConnectionPanel extends JPanel{
 		
 		JButton connetti=new JButton("CONNECT");
 		JButton esci=new JButton("EXIT");
+		
+		esci.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.exit(1);
+			}
+		});
+		
+		
 		
 		port.setSize(10, 10);
 		
@@ -45,6 +57,8 @@ public class ConnectionPanel extends JPanel{
 		
 		add(connetti);
 		add(esci);
+		
+		
 		
 		
 		
