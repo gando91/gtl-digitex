@@ -79,7 +79,9 @@ public class ServerListener implements IListener, Runnable {
 				//TODO : Dare la possibilità al programmatore di decidere cosa fare della richiesta
 				Socket socket = s.accept();
 				
-				mediator.createConnection(socket, handler);				
+				
+				mediator.createConnection(socket, handler);			
+				System.out.println("Siamo arrivati qui");
 				
 			} catch (IOException e) {
 				// TODO Gestione eccezione in ascolto

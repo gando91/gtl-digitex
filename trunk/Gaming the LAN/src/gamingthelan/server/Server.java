@@ -39,6 +39,7 @@ public class Server implements IServer {
 	public void addConnection(IConnection connection) {
 		if(banlist.contains(connection.getSocket().getInetAddress()))
 			return;
+	
 		clients.add(connection);
 		
 		
@@ -88,7 +89,9 @@ public class Server implements IServer {
 
 	@Override
 	public void createConnection(Socket socket, ConnectionHandler handler) {
+		
 		addConnection(ConnectionCreator.getInstance().createConnection(socket, handler));
+
 		
 	}
 	

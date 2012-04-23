@@ -13,5 +13,5 @@ public interface IPacket {
 	
 	public void setSender(IConnection sender);
 	
-
+	public Object getContent();
 }
