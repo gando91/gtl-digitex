@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 public class TimerPanel extends JPanel implements Observer{
 
 	private static final long serialVersionUID = 1L;
+	
 	private TimerModel timermodel;
 	private ImageIcon crono=new ImageIcon(getClass().getResource("cronometro.png"));
 	

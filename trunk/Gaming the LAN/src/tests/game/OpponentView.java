@@ -69,7 +69,7 @@ private void drawLetters(Graphics g,int i,int j){
 					g.setColor(Color.CYAN);
 				}
 				
-				
+				//FIXME : Eric, numeri magici da sistemare !
 				g.fillRect((780/22)*j, (750/22)*i, (780/22), (750/22));
 				
 				g.setColor(Color.WHITE);
