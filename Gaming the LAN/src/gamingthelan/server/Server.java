@@ -46,7 +46,7 @@ public class Server implements IServer {
 
 	@Override
 	public void rmConnection(IConnection connection) {
-		//TODO : Migliorare
+		//TODO : Bisognerebbe fare dei controlli e terminare la connessione se necessario
 		clients.remove(connection);
 		
 	}
@@ -62,7 +62,11 @@ public class Server implements IServer {
 
 	@Override
 	public void sendMessage(IPacket pacchetto, IConnection connessione) {
-		// TODO Mandare messaggi
+		try {
+			connessione.sendPacket(pacchetto);
+		} catch (IOException e) {
+			System.err.println("Errore di I/O su " + connessione.toString());
+		}
 		
 	}
 

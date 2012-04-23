@@ -63,7 +63,7 @@ public class ServerListener implements IListener, Runnable {
 			s = new ServerSocket(port);
 		} catch (IOException e) {
 			// TODO Gestire eccezione apertura porta
-			e.printStackTrace();
+			System.err.println("Errore durante l'apertura della porta");
 		}
 		
 		while (listening) {
@@ -83,7 +83,7 @@ public class ServerListener implements IListener, Runnable {
 				
 			} catch (IOException e) {
 				// TODO Gestione eccezione in ascolto
-				e.printStackTrace();
+				System.err.println("Errore durante la creazione della connessione per il client");
 			}
 
 
