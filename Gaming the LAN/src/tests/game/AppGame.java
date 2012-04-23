@@ -4,12 +4,13 @@ import javax.swing.JFrame;
 
 public class AppGame extends JFrame{
 
+	private static final int DEFAULT_SIZE = 780;
 	private static final long serialVersionUID = 1L;
 	
 	public AppGame(MainPanel main){
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
-		setSize(780, 780);
+		setSize(DEFAULT_SIZE, DEFAULT_SIZE);
 		setTitle("Battleship!");
 		
 		add(main);
@@ -33,8 +34,11 @@ public class AppGame extends JFrame{
 		MainPanel main=new MainPanel(view,myview,timerpanel);
 		
 		
-		
+		/* fino a che non ci serve l'oggetto, basta invocare new
 		AppGame frame = new AppGame(main);
+		*/
+		
+		new AppGame(main);
 	}
 	
 }

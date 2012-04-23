@@ -5,13 +5,13 @@ import java.awt.Graphics;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
 public class MyView extends JPanel implements Observer{
 
 	private static final long serialVersionUID = 1L;
+	
 	private static String lett[];
 	private MatrixModel model;
 	
@@ -75,7 +75,7 @@ private void drawLetters(Graphics g,int i,int j){
 					g.setColor(Color.DARK_GRAY);
 				}
 				
-				
+				//FIXME : Convertire tutti i numeri magici in costanti. Eric tu dovresti sapre cosa sono questi numeri. Help !
 				g.fillRect(((420/22)*j)+20, ((405/22)*i)+20, (420/22), (405/22));
 				
 				g.setColor(Color.WHITE);

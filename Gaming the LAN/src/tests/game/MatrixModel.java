@@ -4,17 +4,18 @@ import java.util.Observable;
 
 public class MatrixModel extends Observable{
 	
-	private static final int rows=11;
-	private static final int cols=11;
+	private static final int ROWS=11;
+	private static final int COLS=11;
+	
 	private Status statusmatrix[][];
 	
 	public MatrixModel(){
 		
-		statusmatrix= new Status[rows][cols];
+		statusmatrix= new Status[ROWS][COLS];
 		
 		//inizializzo matrice
-		for (int i = 0; i < rows; i++) {
-			for (int j = 0; j < cols; j++) {
+		for (int i = 0; i < ROWS; i++) {
+			for (int j = 0; j < COLS; j++) {
 				statusmatrix[i][j]=Status.VIRGIN;				
 			}			
 		}
