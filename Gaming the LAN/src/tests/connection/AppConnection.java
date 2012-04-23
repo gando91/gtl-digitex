@@ -8,25 +8,27 @@ public class AppConnection extends JFrame {
 	
 	
 	
-	public AppConnection(){
+	public AppConnection(ConnectionPanel cp){
 		
-		settings();
+		setSize(400, 200);
+		setTitle("CONNESSIONE");
+		setResizable(false);
+		add(cp);
+		setVisible(true);
 	}
 
 
 
 	private void settings() {
-		setSize(780, 780);
-		setTitle("CONNESSIONE");
-		setLayout(null);
 		
-		setResizable(false);
-		setVisible(true);
+		
+		
 	}
 	
 	public static void main(String[] args) {
 		
-		AppConnection ac=new AppConnection();
+		ConnectionPanel cp=new ConnectionPanel();
+		AppConnection ac=new AppConnection(cp);
 		
 		
 	}
