@@ -6,10 +6,12 @@ public abstract class Packet implements IPacket{
 	
 	private IConnection sender;
 	private List<IConnection> receiver;
+	private Object content;
 	
-	public Packet(IConnection sender, List<IConnection> receiver){
+	public Packet(IConnection sender, List<IConnection> receiver, Object content){
 		this.sender = sender;
 		this.receiver = receiver;
+		this.content = content;
 		
 	}
 	
@@ -23,6 +25,11 @@ public abstract class Packet implements IPacket{
 	
 	public void setSender(IConnection sender) {
 		this.sender = sender;
+	}
+	
+	public Object getContent(){
+		return content;
+		
 	}
 	
 
