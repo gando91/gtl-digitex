@@ -76,7 +76,10 @@ public class TestPanel extends JPanel{
 					
 					List<IConnection> list = new LinkedList<IConnection>();
 					list.add(c);
-					MyPacket packet = new MyPacket(c, list, "Gandini Culo");
+					
+					MyPacket packet = new MyPacket();
+					packet.setTesto("Marco culo",124578);
+					
 					System.out.println("Pacchetto creato");
 					
 					c.sendPacket(packet);

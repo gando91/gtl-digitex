@@ -1,16 +1,19 @@
 package gamingthelan.netutils;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.net.Socket;
 
 import gamingthelan.server.IServer;
 import gamingthelan.server.Server;
 
 public class Connection implements IConnection, Runnable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7609843393259243743L;
 
 	private Socket socket;
 	
@@ -29,9 +32,10 @@ public class Connection implements IConnection, Runnable {
 		this.socket = socket;
 		
 		try {
-			
+			outStream = new ObjectOutputStream(socket.getOutputStream());
+			outStream.flush();
             inStream = new ObjectInputStream(socket.getInputStream());
-            outStream = new ObjectOutputStream(socket.getOutputStream());
+            
             System.out.println("Connessione : Stream creati");
             
 		} catch (IOException e) {
@@ -69,7 +73,7 @@ public class Connection implements IConnection, Runnable {
 			
 			try {
 				
-				received = (IPacket) inStream.readUnshared();
+				received = (IPacket) inStream.readObject();
 				System.out.println("Pacchetto ricevuto");
 				
 				handler.onReceivedPacket(received);

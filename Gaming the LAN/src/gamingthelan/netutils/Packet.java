@@ -1,9 +1,8 @@
 package gamingthelan.netutils;
 
-import java.io.Serializable;
 import java.util.List;
 
-public abstract class Packet implements IPacket, Serializable{
+public abstract class Packet implements IPacket {
 	
 	
 	/**
@@ -13,12 +12,10 @@ public abstract class Packet implements IPacket, Serializable{
 	
 	private IConnection sender;
 	private List<IConnection> receiver;
-	private Object content;
 	
-	public Packet(IConnection sender, List<IConnection> receiver, Object content){
+	public Packet(IConnection sender, List<IConnection> receiver){
 		this.sender = sender;
 		this.receiver = receiver;
-		this.content = content;
 		
 	}
 	
@@ -32,11 +29,6 @@ public abstract class Packet implements IPacket, Serializable{
 	
 	public void setSender(IConnection sender) {
 		this.sender = sender;
-	}
-	
-	public Object getContent(){
-		return content;
-		
 	}
 	
 
