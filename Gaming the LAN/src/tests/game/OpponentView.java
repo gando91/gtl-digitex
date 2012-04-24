@@ -12,6 +12,11 @@ public class OpponentView extends JPanel implements Observer{
 	private static final long serialVersionUID = 1L;
 	private static String lett[];
 	private MatrixModel model;
+	private int pixel_dimension=22;
+	private int height=750;
+	
+
+	private int width=780;
 	
 	public OpponentView(MatrixModel model){
 		this.model = model;
@@ -70,18 +75,24 @@ private void drawLetters(Graphics g,int i,int j){
 				}
 				
 				//FIXME : Eric, numeri magici da sistemare !
-				g.fillRect((780/22)*j, (750/22)*i, (780/22), (750/22));
+				g.fillRect((width/pixel_dimension)*j, (height/pixel_dimension)*i, (width/pixel_dimension), (height/pixel_dimension));
 				
 				g.setColor(Color.WHITE);
-				g.drawRect((780/22)*j, (750/22)*i, (780/22), (750/22));
+				g.drawRect((width/pixel_dimension)*j, (height/pixel_dimension)*i, (width/pixel_dimension), (height/pixel_dimension));
 				
 				if(j==0 && i!=0)
-					g.drawString(i.toString(),(780/44)-5, (i*(750/22))+(750/22)-9);
+					g.drawString(i.toString(),(width/(pixel_dimension*2))-5, (i*(height/pixel_dimension))+(height/pixel_dimension)-9);
 				
 				drawLetters(g, i, j);
 				
 			}
 		}
+	}
+	public void setHeight(int height) {
+		this.height = height;
+	}
+	public void setWidth(int width) {
+		this.width = width;
 	}
 
 }
