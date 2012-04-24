@@ -2,7 +2,7 @@ package gamingthelan.netutils;
 
 import java.util.List;
 
-public abstract class Packet implements IPacket {
+public class Packet implements IPacket {
 	
 	
 	/**
@@ -10,26 +10,37 @@ public abstract class Packet implements IPacket {
 	 */
 	private static final long serialVersionUID = -3646976227473707241L;
 	
-	private IConnection sender;
-	private List<IConnection> receiver;
+	private String sender;
+	private List<String> receiver;
 	
-	public Packet(IConnection sender, List<IConnection> receiver){
-		this.sender = sender;
+	private Object content;
+	
+	public Packet(IConnection sender, List<String> receiver){
+		this.sender = sender.toString();
+		
+		System.out.println("Costruttore Paccetto : " + sender);
 		this.receiver = receiver;
 		
 	}
-	
-	public List<IConnection> getReceiver(){
+
+	@Override
+	public List<String> getReceiver() {
 		return receiver;
 	}
-	
-	public IConnection getSender() {
+
+	@Override
+	public String getSender() {
 		return sender;
 	}
-	
-	public void setSender(IConnection sender) {
-		this.sender = sender;
-	}
-	
 
+	public Object getContent() {
+		return content;
+	}
+
+	public void setContent(Object content) {
+		this.content = content;
+	}
+
+	
+	
 }
