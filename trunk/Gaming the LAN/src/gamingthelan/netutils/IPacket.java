@@ -1,11 +1,12 @@
 package gamingthelan.netutils;
 
+import java.io.Serializable;
 import java.util.List;
 
 /*
  * Interfaccia che identifica un oggetto di tipo pacchetto
  */
-public interface IPacket {
+public interface IPacket extends Serializable {
 	
 	public List<IConnection> getReceiver();
 	
@@ -13,5 +14,4 @@ public interface IPacket {
 	
 	public void setSender(IConnection sender);
 	
-	public Object getContent();
 }
