@@ -2,6 +2,7 @@ package miniTestClient;
 
 import gamingthelan.netutils.Connection;
 import gamingthelan.netutils.IConnection;
+import gamingthelan.netutils.Packet;
 import gamingthelan.server.ConnectionCreator;
 
 import java.awt.GridLayout;
@@ -74,11 +75,8 @@ public class TestPanel extends JPanel{
 					Connection c = (Connection) ConnectionCreator.getInstance().createConnection(s, h);
 					System.out.println("Connessione creata");
 					
-					List<IConnection> list = new LinkedList<IConnection>();
-					list.add(c);
-					
-					MyPacket packet = new MyPacket();
-					packet.setTesto("Marco culo",124578);
+					Packet packet = new Packet(c, new LinkedList<String>());
+					packet.setContent("Testo del pacchetto"); 
 					
 					System.out.println("Pacchetto creato");
 					

@@ -8,10 +8,8 @@ import java.util.List;
  */
 public interface IPacket extends Serializable {
 	
-	public List<IConnection> getReceiver();
+	public List<String> getReceiver();
+	public String getSender();
 	
-	public IConnection getSender();
-	
-	public void setSender(IConnection sender);
 	
 }

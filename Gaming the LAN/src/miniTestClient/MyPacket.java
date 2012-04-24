@@ -16,23 +16,6 @@ public class MyPacket implements IPacket{
 	private String testo;
 	private Integer a;
 	
-	@Override
-	public List<IConnection> getReceiver() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public IConnection getSender() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setSender(IConnection sender) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	public void setTesto(String testo, Integer a)
 	{
@@ -42,5 +25,17 @@ public class MyPacket implements IPacket{
 	
 	public String getContent() {
 		return testo+a;
+	}
+
+	@Override
+	public List<String> getReceiver() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getSender() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
