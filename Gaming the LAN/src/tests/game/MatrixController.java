@@ -2,13 +2,13 @@ package tests.game;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 public class MatrixController implements MouseListener{
 	
 	private static final int CELL_DIMENSION = 22;
 	private static final int DEFAULT_HEIGHT = 750;
 	private static final int DEFAULT_WIDTH = 780;
-	
 	private MatrixModel model;
 	
 	public MatrixController(MatrixModel model){
