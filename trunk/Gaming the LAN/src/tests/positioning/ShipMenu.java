@@ -21,8 +21,10 @@ public class ShipMenu extends JMenu{
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				ShipMenu.this.proxyship.setShip(null);  //TODO aircraft carrier class
 				
+				AircraftCarrier ac=new AircraftCarrier();
+				ShipMenu.this.proxyship.setShip(ac);  
+				System.out.println(ac.getShipLength());
 			}
 		});
 		add(aircraft_carrier);
@@ -33,7 +35,10 @@ public class ShipMenu extends JMenu{
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				ShipMenu.this.proxyship.setShip(null);  //TODO cruiser class
+				
+				Cruiser c=new Cruiser(); 
+				ShipMenu.this.proxyship.setShip(c);
+				System.out.println(c.getShipLength());  
 				
 			}
 		});
@@ -45,7 +50,10 @@ public class ShipMenu extends JMenu{
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				ShipMenu.this.proxyship.setShip(null);  //TODO torpedo boat class
+				
+				TorpedoBoat tb=new TorpedoBoat(); 
+				ShipMenu.this.proxyship.setShip(tb);
+				System.out.println(tb.getShipLength());
 				
 			}
 		});
@@ -57,7 +65,10 @@ public class ShipMenu extends JMenu{
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				ShipMenu.this.proxyship.setShip(null);  //TODO aircraft carrier class
+				
+				Submarine sm=new Submarine(); 
+				ShipMenu.this.proxyship.setShip(sm);
+				System.out.println(sm.getShipLength());
 				
 			}
 		});
