@@ -42,7 +42,7 @@ private void drawLetters(Graphics g,int i,int j){
 		lett[9]="L";
 		
 		if(i==0 && j!=0)
-			g.drawString(lett[j-1], j*(780/22)+(780/22)-20,(750/44)+5);
+			g.drawString(lett[j-1], j*(width/pixel_dimension)+(width/pixel_dimension)-20,(height/(pixel_dimension*2))+5);
 		
 		
 	}
@@ -74,7 +74,7 @@ private void drawLetters(Graphics g,int i,int j){
 					g.setColor(Color.CYAN);
 				}
 				
-				//FIXME : Eric, numeri magici da sistemare !
+				
 				g.fillRect((width/pixel_dimension)*j, (height/pixel_dimension)*i, (width/pixel_dimension), (height/pixel_dimension));
 				
 				g.setColor(Color.WHITE);

@@ -1,8 +1,9 @@
 package tests.positioning;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
+
+import tests.game.MatrixModel;
 
 public class AppPositioning extends JFrame{
 
@@ -10,30 +11,36 @@ public class AppPositioning extends JFrame{
 	private static final int DEFAULT_HEIGHT = 727;
 	private static final int DEFAULT_WIDTH=696;
 	
+	
+	public static void main(String[] args) {
+		
+		ProxyShip ps = new ProxyShip(new AircraftCarrier());
+		MainPanel mp = new MainPanel(ps);
+		AppPositioning ap = new AppPositioning(mp);
+		
+		
+		JMenuBar bar = new JMenuBar();
+		bar.add(new ShipMenu(ps));
+		ap.setJMenuBar(bar);
+		
+		
+		
+		ap.setVisible(true);
+		
+	}
 	public AppPositioning(MainPanel mp){
 		
 		setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 		setTitle("Ship Positioning");
 		setResizable(false);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
-		add(mp);
 		
-		
-		setVisible(true);
+		add(mp);	
 		
 		
 	}
 	
-	public static void main(String[] args) {
-		
-		MainPanel mp = new MainPanel();
-		AppPositioning ap = new AppPositioning(mp);
-		
-		ProxyShip ps = new ProxyShip(null); //TODO
-		
-		JMenuBar bar = new JMenuBar();
-		bar.add(new ShipMenu(ps));
-		ap.setJMenuBar(bar);
-	}
+	
 
 }

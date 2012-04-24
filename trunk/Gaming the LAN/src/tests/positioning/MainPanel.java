@@ -2,16 +2,15 @@ package tests.positioning;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
-
-import tests.game.MatrixController;
 import tests.game.MatrixModel;
 import tests.game.OpponentView;
 
-public class MainPanel extends JPanel{
+public class MainPanel extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -19,22 +18,28 @@ public class MainPanel extends JPanel{
 	private OpponentView grid=new OpponentView(model);
 	
 	
-	public MainPanel(){
+	public MainPanel(ProxyShip ps){
 		setBackground(Color.BLUE);
 		setLayout(new BorderLayout());
 		
 		grid.setWidth(1400);
 		grid.setHeight(1300);
-		
+		model.addObserver(grid);
 		this.add(grid);
-		
-		JButton pippo=new JButton("invia navi");
-	
-		
-		add(pippo,BorderLayout.SOUTH);
-		
+		grid.addMouseMotionListener(new ShipController(model, ps ));
+		JButton ready=new JButton("READY");
+		add(ready,BorderLayout.SOUTH);
+		setVisible(true);
 		
 		
 	}
+
+
+	public MatrixModel getModel() {
+		return model;
+	}
+
+
+	
 
 }
