@@ -74,6 +74,9 @@ private void drawLetters(Graphics g,int i,int j){
 					g.setColor(Color.CYAN);
 				}
 				
+				if(statusmatrix[i][j]==Status.SHIP){
+					g.setColor(Color.ORANGE);
+				}
 				
 				g.fillRect((width/pixel_dimension)*j, (height/pixel_dimension)*i, (width/pixel_dimension), (height/pixel_dimension));
 				

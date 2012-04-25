@@ -11,8 +11,14 @@ public class ShipMenu extends JMenu{
 	private static final long serialVersionUID = 1L;
 	private ProxyShip proxyship;
 	
+	private static AircraftCarrier aircraftcarrier=new AircraftCarrier();
+	private static Cruiser Cruiser=new Cruiser();
+	private static TorpedoBoat torpedoboat=new TorpedoBoat();
+	private static Submarine Submarine=new Submarine();
+	
 	public ShipMenu(ProxyShip proxyship){
 		super("Ships available");
+		
 		this.proxyship=proxyship;
 		
 		JMenuItem aircraft_carrier=new JMenuItem("aircraft_carrier");
@@ -22,9 +28,8 @@ public class ShipMenu extends JMenu{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				AircraftCarrier ac=new AircraftCarrier();
-				ShipMenu.this.proxyship.setShip(ac);  
-				System.out.println(ac.getShipLength());
+				ShipMenu.this.proxyship.setShip(ShipMenu.aircraftcarrier);  
+				System.out.println(ShipMenu.aircraftcarrier.getShipLength());
 			}
 		});
 		add(aircraft_carrier);
@@ -36,9 +41,8 @@ public class ShipMenu extends JMenu{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				Cruiser c=new Cruiser(); 
-				ShipMenu.this.proxyship.setShip(c);
-				System.out.println(c.getShipLength());  
+				ShipMenu.this.proxyship.setShip(Cruiser);
+				System.out.println(Cruiser.getShipLength());  
 				
 			}
 		});
@@ -51,9 +55,8 @@ public class ShipMenu extends JMenu{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				TorpedoBoat tb=new TorpedoBoat(); 
-				ShipMenu.this.proxyship.setShip(tb);
-				System.out.println(tb.getShipLength());
+				ShipMenu.this.proxyship.setShip(torpedoboat);
+				System.out.println(torpedoboat.getShipLength());
 				
 			}
 		});
@@ -66,13 +69,28 @@ public class ShipMenu extends JMenu{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				Submarine sm=new Submarine(); 
-				ShipMenu.this.proxyship.setShip(sm);
-				System.out.println(sm.getShipLength());
+				ShipMenu.this.proxyship.setShip(Submarine);
+				System.out.println(Submarine.getShipLength());
 				
 			}
 		});
 		add(submarine);
+	}
+
+	public static AircraftCarrier getAircraftcarrier() {
+		return aircraftcarrier;
+	}
+
+	public static Cruiser getCruiser() {
+		return Cruiser;
+	}
+
+	public static TorpedoBoat getTorpedoboat() {
+		return torpedoboat;
+	}
+
+	public static Submarine getSubmarine() {
+		return Submarine;
 	}
 
 	public void setProxyship(ProxyShip proxyship) {

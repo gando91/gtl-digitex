@@ -16,9 +16,13 @@ public class MainPanel extends JPanel {
 	
 	private MatrixModel model=new MatrixModel();
 	private OpponentView grid=new OpponentView(model);
+	private ProxyShip proxyship;
 	
 	
-	public MainPanel(ProxyShip ps){
+	public MainPanel(ProxyShip proxyship){
+		
+		this.proxyship=proxyship;
+		
 		setBackground(Color.BLUE);
 		setLayout(new BorderLayout());
 		
@@ -26,7 +30,7 @@ public class MainPanel extends JPanel {
 		grid.setHeight(1300);
 		model.addObserver(grid);
 		this.add(grid);
-		grid.addMouseMotionListener(new ShipController(model, ps ));
+		grid.addMouseMotionListener(new ShipController(model, proxyship ));
 		JButton ready=new JButton("READY");
 		add(ready,BorderLayout.SOUTH);
 		setVisible(true);
