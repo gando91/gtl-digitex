@@ -7,24 +7,29 @@ import java.util.Observer;
 
 import javax.swing.JPanel;
 
+import view.GenericView;
 
-public class MyView extends JPanel implements Observer{
+
+public class MyView extends GenericView {
 
 	private static final long serialVersionUID = 1L;
 	
-	private static String lett[];
-	private MatrixModel model;
+	private static final int CELL_WIDTH = 420/22;
+	private static final int CELL_HEIGHT = 405/22;
 	
-	public MyView(MatrixModel model){
-		this.model = model;
-		model.addObserver(this);
+	private static String lett[];
+	
+	public MyView(MatrixModel mm){
+		
+		setModel(mm);
+		getModel().addObserver(this);
 		Color c = new Color (0, 0, 0, 0);
 		setBackground(c); 
 		setOpaque(true);
-		setLayout(null);
-		
+		setLayout(null);		
 	}
-private void drawLetters(Graphics g,int i,int j){
+	
+	private void drawLetters(Graphics g,int i,int j){
 		
 		lett=new String[10];
 		
@@ -42,52 +47,27 @@ private void drawLetters(Graphics g,int i,int j){
 		if(i==0 && j!=0)
 			g.drawString(lett[j-1], j*(420/22)+(420/22)+6,(405/44)+25);
 		
-		
-	}
-
-	@Override
-	public void update(Observable arg0, Object arg1) {
-		repaint();
-		
 	}
 	
 	@Override
 	public void paint(Graphics g) {
-		super.paint(g);
+		super.paint(g);						
+	}
+	
+	@Override
+	public void drawGrid(Integer i, Integer j, Graphics g) {
 		
-		Status statusmatrix[][] = model.getStatusmatrix();
+		//FIXME : Convertire tutti i numeri magici in costanti. Eric tu dovresti sapre cosa sono questi numeri. Help !
+		g.fillRect(((CELL_WIDTH)*j)+20, ((CELL_HEIGHT)*i)+20, (CELL_WIDTH), (CELL_HEIGHT));
 		
-		//creo griglia
-		for (Integer i = 0; i < 11; i++) {
-			for (Integer j = 0; j < 11; j++) {
-				
-				
-				if(statusmatrix[i][j]==Status.VIRGIN){
-					g.setColor(Color.BLUE);
-				}
-				if(statusmatrix[i][j]==Status.HIT){
-					g.setColor(Color.RED);
-				}
-				if(statusmatrix[i][j]==Status.MISSED){
-					g.setColor(Color.CYAN);
-				}
-				if(statusmatrix[i][j]==Status.SHIP){
-					g.setColor(Color.DARK_GRAY);
-				}
-				
-				//FIXME : Convertire tutti i numeri magici in costanti. Eric tu dovresti sapre cosa sono questi numeri. Help !
-				g.fillRect(((420/22)*j)+20, ((405/22)*i)+20, (420/22), (405/22));
-				
-				g.setColor(Color.WHITE);
-				g.drawRect(((420/22)*j)+20, ((405/22)*i)+20, (420/22), (405/22));
-				
-				if(j==0 && i!=0)
-					g.drawString(i.toString(),(420/44)+15, (i*(405/22))+(405/22)+14);
-				
-				drawLetters(g, i, j);
-				
-			}
-		}
+		g.setColor(Color.WHITE);
+		
+		g.drawRect(((CELL_WIDTH)*j)+20, ((CELL_HEIGHT)*i)+20, (CELL_WIDTH), (CELL_HEIGHT));
+		
+		if(j==0 && i!=0)
+			g.drawString(i.toString(),(CELL_WIDTH/2)+15, (i*(CELL_HEIGHT))+(CELL_HEIGHT)+14);
+		
+		drawLetters(g, i, j);		
 	}
 
 }

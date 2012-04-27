@@ -15,7 +15,7 @@ public class AppPositioning extends JFrame{
 	public static void main(String[] args) {
 		
 		ProxyShip ps = new ProxyShip(new AircraftCarrier());
-		MainPanel mp = new MainPanel(ps);
+		SettingsView mp = new SettingsView(ps, new MatrixModel());//FIXME devo usare sempre lo stesso modello
 		AppPositioning ap = new AppPositioning(mp);
 		
 		
@@ -28,7 +28,7 @@ public class AppPositioning extends JFrame{
 		ap.setVisible(true);
 		
 	}
-	public AppPositioning(MainPanel mp){
+	public AppPositioning(SettingsView mp){
 		
 		setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 		setTitle("Ship Positioning");
