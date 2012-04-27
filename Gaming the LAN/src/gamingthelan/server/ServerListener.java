@@ -80,8 +80,7 @@ public class ServerListener implements IListener, Runnable {
 				Socket socket = s.accept();
 				
 				
-				mediator.createConnection(socket, handler);			
-				System.out.println("Siamo arrivati qui");
+				mediator.createConnection(socket, handler);
 				
 			} catch (IOException e) {
 				// TODO Gestione eccezione in ascolto
