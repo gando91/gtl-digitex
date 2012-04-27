@@ -2,7 +2,14 @@ package gamingthelan.netutils;
 
 import java.util.List;
 
-public class Packet implements IPacket {
+/**
+ * A general purpose concrete implementation of IPacket.
+ * This class will allow you to send a packet with a Java object attached.
+ * The attached object MUST implements Serializable interface.
+ * @author Alessio
+ *
+ */
+public class GenericObjectPacket implements IPacket {
 	
 	
 	/**
@@ -15,10 +22,8 @@ public class Packet implements IPacket {
 	
 	private Object content;
 	
-	public Packet(IConnection sender, List<String> receiver){
+	public GenericObjectPacket(IConnection sender, List<String> receiver){
 		this.sender = sender.toString();
-		
-		System.out.println("Costruttore Paccetto : " + sender);
 		this.receiver = receiver;
 		
 	}
