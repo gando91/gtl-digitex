@@ -6,27 +6,27 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JPanel;
 
+import view.GenericView;
 
-public class OpponentView extends JPanel implements Observer{
+
+public class OpponentView extends GenericView {
 
 	private static final long serialVersionUID = 1L;
 	private static String lett[];
-	private MatrixModel model;
-	private int pixel_dimension=22;
-	private int height=750;
 	
-
-	private int width=780;
+	private static final int CELL_WIDTH = 780/22;
+	private static final int CELL_HEIGHT = 745/22;
 	
-	public OpponentView(MatrixModel model){
-		this.model = model;
-		model.addObserver(this);
+	public OpponentView(MatrixModel mm){
+		
+		setModel(mm);
+		getModel().addObserver(this);
 		Color c = new Color (0, 0, 0, 0);
 		setBackground(c); 
-		setOpaque(true);
-		
+		setOpaque(true);		
 	}
-private void drawLetters(Graphics g,int i,int j){
+	
+	private void drawLetters(Graphics g,int i,int j){
 		
 		lett=new String[10];
 		
@@ -42,60 +42,26 @@ private void drawLetters(Graphics g,int i,int j){
 		lett[9]="L";
 		
 		if(i==0 && j!=0)
-			g.drawString(lett[j-1], j*(width/pixel_dimension)+(width/pixel_dimension)-20,(height/(pixel_dimension*2))+5);
-		
-		
-	}
-
-	@Override
-	public void update(Observable arg0, Object arg1) {
-		repaint();
-		
+			g.drawString(lett[j-1], j*(CELL_WIDTH)+(CELL_WIDTH)-20,(CELL_HEIGHT/2)+5);		
 	}
 	
 	@Override
 	public void paint(Graphics g) {
-		super.paint(g);
-		
-		Status statusmatrix[][] = model.getStatusmatrix();
-		
-		//creo griglia
-		for (Integer i = 0; i < 11; i++) {
-			for (Integer j = 0; j < 11; j++) {
-				
-				
-				if(statusmatrix[i][j]==Status.VIRGIN){
-					g.setColor(Color.BLUE);
-				}
-				if(statusmatrix[i][j]==Status.HIT){
-					g.setColor(Color.DARK_GRAY);
-				}
-				if(statusmatrix[i][j]==Status.MISSED){
-					g.setColor(Color.CYAN);
-				}
-				
-				if(statusmatrix[i][j]==Status.SHIP){
-					g.setColor(Color.ORANGE);
-				}
-				
-				g.fillRect((width/pixel_dimension)*j, (height/pixel_dimension)*i, (width/pixel_dimension), (height/pixel_dimension));
-				
-				g.setColor(Color.WHITE);
-				g.drawRect((width/pixel_dimension)*j, (height/pixel_dimension)*i, (width/pixel_dimension), (height/pixel_dimension));
-				
-				if(j==0 && i!=0)
-					g.drawString(i.toString(),(width/(pixel_dimension*2))-5, (i*(height/pixel_dimension))+(height/pixel_dimension)-9);
-				
-				drawLetters(g, i, j);
-				
-			}
-		}
+		super.paint(g);	
 	}
-	public void setHeight(int height) {
-		this.height = height;
-	}
-	public void setWidth(int width) {
-		this.width = width;
-	}
+	
+	@Override
+	public void drawGrid(Integer i, Integer j,Graphics g) {
 
+		g.fillRect(CELL_WIDTH*j, CELL_HEIGHT*i, CELL_WIDTH, CELL_HEIGHT);
+		
+		g.setColor(Color.WHITE);
+		
+		g.drawRect(CELL_WIDTH*j, CELL_HEIGHT*i, CELL_WIDTH, CELL_HEIGHT);
+		
+		if(j==0 && i!=0)
+			g.drawString(i.toString(),(CELL_WIDTH/2)-5, (i*CELL_HEIGHT)+CELL_HEIGHT-9);
+		
+		drawLetters(g, i, j);		
+	}
 }
