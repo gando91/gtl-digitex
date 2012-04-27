@@ -36,8 +36,6 @@ public class Connection implements IConnection, Runnable {
 			outStream.flush();
             inStream = new ObjectInputStream(socket.getInputStream());
             
-            System.out.println("Connessione : Stream creati");
-            
 		} catch (IOException e) {
             System.err.println("Errore durante la creazione degli stream di connessione");
 		}

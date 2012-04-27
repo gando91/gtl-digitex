@@ -18,9 +18,6 @@ public class TestHandler extends ClientConnectionHandler {
 		String s = (String)p.getContent();
 		System.out.println("Ricevuto pacchetto " + s);
 		
-		p.setContent("Risposta");
-		sendPacket(p);
-		
 	}
 
 }

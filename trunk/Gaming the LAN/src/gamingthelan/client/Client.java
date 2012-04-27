@@ -19,16 +19,31 @@ public class Client implements IClient{
 	private Connection myConnection;
 	private ConnectionHandler handler;
 	
+	/* ALCUNI COSTRUTTORI, VEDEREMO SE TENERLI TUTTI I SE RIMUOVERNE QUALCUNO */
 	
 	public Client(String serverAddress, int porta, int connectionTimeOut, ConnectionHandler handler) {
 		this.serverAddress = serverAddress;
+		this.handler = handler;
 		this.connectionTimeOut = connectionTimeOut;
 		this.porta = porta;
 	}
 	
 	public Client(String serverAddress, ConnectionHandler handler) {
 		this.serverAddress = serverAddress;
+		this.handler = handler;
 	}
+	
+	public Client(String serverAddress) {
+		this.serverAddress = serverAddress;
+	}
+	
+	public Client(String serverAddress,  int porta, int connectionTimeOut) {
+		this.serverAddress = serverAddress;
+		this.connectionTimeOut = connectionTimeOut;
+		this.porta = porta;
+	}
+	
+	/* ---------------------------- */
 	
 	public void Connect()
 	{
@@ -63,5 +78,15 @@ public class Client implements IClient{
 	public IConnection getConnection() {
 		return myConnection;
 	}
+
+	public ConnectionHandler getHandler() {
+		return handler;
+	}
+
+	public void setHandler(ConnectionHandler handler) {
+		this.handler = handler;
+	}
+	
+	
 	
 }
