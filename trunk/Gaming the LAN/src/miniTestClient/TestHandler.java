@@ -1,17 +1,25 @@
 package miniTestClient;
 
-import gamingthelan.netutils.ConnectionHandler;
+import gamingthelan.client.ClientConnectionHandler;
+import gamingthelan.client.IClient;
 import gamingthelan.netutils.IPacket;
-import gamingthelan.netutils.Packet;
+import gamingthelan.netutils.GenericObjectPacket;
 
-public class TestHandler implements ConnectionHandler{
+public class TestHandler extends ClientConnectionHandler {
+
+	public TestHandler(IClient client) {
+		super(client);
+	}
 
 	@Override
 	public void onReceivedPacket(IPacket packet) {
-		Packet p  = (Packet)packet;
+		GenericObjectPacket p  = (GenericObjectPacket)packet;
 		
 		String s = (String)p.getContent();
 		System.out.println("Ricevuto pacchetto " + s);
+		
+		p.setContent("Risposta");
+		sendPacket(p);
 		
 	}
 

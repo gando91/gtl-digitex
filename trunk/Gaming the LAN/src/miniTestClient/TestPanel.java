@@ -1,8 +1,9 @@
 package miniTestClient;
 
+import gamingthelan.client.Client;
 import gamingthelan.netutils.Connection;
 import gamingthelan.netutils.IConnection;
-import gamingthelan.netutils.Packet;
+import gamingthelan.netutils.GenericObjectPacket;
 import gamingthelan.server.ConnectionCreator;
 
 import java.awt.GridLayout;
@@ -61,36 +62,17 @@ public class TestPanel extends JPanel{
 			
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				try {
-					
-					Socket s = new Socket();
-					
-					//Il socket va collegato però, altrimenti come si fa a mandare il pacchetto ?
-					SocketAddress sockaddr = new InetSocketAddress(ipServer.getText(),8080);
-					s.connect(sockaddr, 2000);
-					
-					System.out.println("Connesso");
-					
-					TestHandler h = new TestHandler();
-					Connection c = (Connection) ConnectionCreator.getInstance().createConnection(s, h);
-					System.out.println("Connessione creata");
-					
-					Packet packet = new Packet(c, new LinkedList<String>());
-					packet.setContent("Testo del pacchetto"); 
-					
-					System.out.println("Pacchetto creato");
-					
-					c.sendPacket(packet);
-					System.out.println("Pacchetto spedito");
-					
-					
-				} catch (UnknownHostException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				Client myClient = null;
+				
+				TestHandler h = new TestHandler(myClient);
+				myClient = new Client(ipServer.getText(), 8080, 200, h);
+
+				
+				GenericObjectPacket packet = new GenericObjectPacket(myClient.getConnection(), new LinkedList<String>());
+				packet.setContent("Testo del pacchetto"); 
+				
+				
+				myClient.sendPacket(packet);
 				
 				
 			}

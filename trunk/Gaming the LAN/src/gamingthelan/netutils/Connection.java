@@ -52,10 +52,8 @@ public class Connection implements IConnection, Runnable {
 
 	@Override
 	public void sendPacket(IPacket packet) throws IOException {
-		System.out.println("Connessione : inizio invio pacchetto");
 		outStream.writeObject(packet);
 		outStream.flush();
-		System.out.println("Connessione : Pacchetto spedito");
 	}
 
 	/*
@@ -74,8 +72,6 @@ public class Connection implements IConnection, Runnable {
 			try {
 				
 				received = (IPacket) inStream.readObject();
-				System.out.println("Pacchetto ricevuto");
-				
 				handler.onReceivedPacket(received);
 				
 			} catch (IOException e) {
@@ -92,6 +88,18 @@ public class Connection implements IConnection, Runnable {
 			
 		}
 		
+		
+	}
+
+	@Override
+	public void addToPacketQueue(IPacket packet) throws IOException {
+		outStream.writeObject(packet);
+		
+	}
+
+	@Override
+	public void sendQueue() throws IOException {
+		outStream.flush();
 		
 	}
 

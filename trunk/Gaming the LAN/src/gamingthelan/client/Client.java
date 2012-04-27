@@ -7,6 +7,7 @@ import java.net.SocketAddress;
 
 import gamingthelan.netutils.Connection;
 import gamingthelan.netutils.ConnectionHandler;
+import gamingthelan.netutils.IConnection;
 import gamingthelan.netutils.IPacket;
 
 public class Client implements IClient{
@@ -56,6 +57,11 @@ public class Client implements IClient{
 			// TODO Gestire eccezioni lato client
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public IConnection getConnection() {
+		return myConnection;
 	}
 	
 }
