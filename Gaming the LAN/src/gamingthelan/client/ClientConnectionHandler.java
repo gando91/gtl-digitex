@@ -1,5 +1,7 @@
 package gamingthelan.client;
 
+import java.io.IOException;
+
 import gamingthelan.netutils.ConnectionHandler;
 import gamingthelan.netutils.IPacket;
 
@@ -11,7 +13,7 @@ public abstract class ClientConnectionHandler implements ConnectionHandler {
 		this.client = client;
 	}
 	
-	protected void sendPacket(IPacket packet) {
+	protected void sendPacket(IPacket packet) throws IOException {
 		client.sendPacket(packet);
 	}
 	

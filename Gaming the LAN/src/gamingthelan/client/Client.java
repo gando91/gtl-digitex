@@ -45,19 +45,14 @@ public class Client implements IClient{
 	
 	/* ---------------------------- */
 	
-	public void Connect()
+	public void Connect() throws IOException
 	{
 		
 		Socket mySocket = new Socket();
 		SocketAddress socketAddress = new InetSocketAddress(serverAddress,porta);
 		
-		try {
-			mySocket.connect(socketAddress, connectionTimeOut);
-		} catch (IOException e) {
-			// TODO Gestire le eccezzioni lato client
-			e.printStackTrace();
-		}
-		
+		mySocket.connect(socketAddress, connectionTimeOut);
+
 		myConnection = new Connection(mySocket, handler);
 		
 		Thread connectionThread = new Thread(myConnection);
@@ -65,13 +60,8 @@ public class Client implements IClient{
 	}
 
 	@Override
-	public void sendPacket(IPacket packet) {
-		try {
+	public void sendPacket(IPacket packet) throws IOException {
 			myConnection.sendPacket(packet);
-		} catch (IOException e) {
-			// TODO Gestire eccezioni lato client
-			e.printStackTrace();
-		}
 	}
 
 	@Override

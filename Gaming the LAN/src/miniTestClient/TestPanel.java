@@ -6,9 +6,11 @@ import gamingthelan.netutils.GenericObjectPacket;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.util.LinkedList;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -59,12 +61,22 @@ public class TestPanel extends JPanel{
 				TestHandler h = new TestHandler(myClient);
 				myClient.setHandler(h);
 				
-				myClient.Connect();
+				try {
+					
+					myClient.Connect();
+			
+				} catch (IOException e) {
+					JOptionPane.showMessageDialog(null, "Errore di connessione \n" + e.getLocalizedMessage());
+				}
 				
 				GenericObjectPacket packet = new GenericObjectPacket(myClient.getConnection(), new LinkedList<String>());
 				packet.setContent("Testo del pacchetto"); 
 				
-				myClient.sendPacket(packet);
+				try {
+					myClient.sendPacket(packet);
+				} catch (IOException e) {
+					JOptionPane.showMessageDialog(null, "Impossibile mandare il pacchhetto \n" + e.getLocalizedMessage());
+				}
 				
 				
 			}
