@@ -1,7 +1,7 @@
 package miniTestClient;
 
 import gamingthelan.client.Client;
-import gamingthelan.netutils.GenericObjectPacket;
+import gamingthelan.netutils.ObjectPacket;
 
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
@@ -69,7 +69,7 @@ public class TestPanel extends JPanel{
 					JOptionPane.showMessageDialog(null, "Errore di connessione \n" + e.getLocalizedMessage());
 				}
 				
-				GenericObjectPacket packet = new GenericObjectPacket(myClient.getConnection(), new LinkedList<String>());
+				ObjectPacket packet = new ObjectPacket(myClient.getConnection(), new LinkedList<String>());
 				packet.setContent("Testo del pacchetto"); 
 				
 				try {
