@@ -9,7 +9,7 @@ import java.util.List;
  * @author Alessio
  *
  */
-public class GenericObjectPacket implements IPacket {
+public class ObjectPacket implements IPacket {
 	
 	
 	/**
@@ -22,7 +22,7 @@ public class GenericObjectPacket implements IPacket {
 	
 	private Object content;
 	
-	public GenericObjectPacket(IConnection sender, List<String> receiver){
+	public ObjectPacket(IConnection sender, List<String> receiver){
 		this.sender = sender.toString();
 		this.receiver = receiver;
 		
