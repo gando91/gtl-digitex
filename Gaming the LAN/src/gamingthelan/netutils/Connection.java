@@ -10,9 +10,6 @@ import gamingthelan.server.Server;
 
 public class Connection implements IConnection, Runnable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -7609843393259243743L;
 
 	private Socket socket;
@@ -84,6 +81,18 @@ public class Connection implements IConnection, Runnable {
 			}
 			
 			
+			try {
+				
+				outStream.close();
+				inStream.close();
+				socket.close();
+				
+			} catch (IOException e) {
+				//TODO : E' poco carino sopprimere un'eccezione. Tuttavia, quando arrivo quì può essere successo di tutto. La connessione è persa. Forse non importa a nessuno di raccogliere questa eccezione.
+			}
+			
+			
+			
 		}
 		
 		
@@ -101,4 +110,14 @@ public class Connection implements IConnection, Runnable {
 		
 	}
 
+	@Override
+	public boolean isAlive() {
+		return connected;
+	}
+	
+	@Override
+	public void disconnect() {
+		this.connected = false;
+		
+	}
 }

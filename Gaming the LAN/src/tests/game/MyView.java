@@ -2,10 +2,6 @@ package tests.game;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.Observable;
-import java.util.Observer;
-
-import javax.swing.JPanel;
 
 import view.GenericView;
 
@@ -57,7 +53,6 @@ public class MyView extends GenericView {
 	@Override
 	public void drawGrid(Integer i, Integer j, Graphics g) {
 		
-		//FIXME : Convertire tutti i numeri magici in costanti. Eric tu dovresti sapre cosa sono questi numeri. Help !
 		g.fillRect(((CELL_WIDTH)*j)+20, ((CELL_HEIGHT)*i)+20, (CELL_WIDTH), (CELL_HEIGHT));
 		
 		g.setColor(Color.WHITE);

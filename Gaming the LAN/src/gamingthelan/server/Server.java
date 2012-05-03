@@ -47,7 +47,10 @@ public class Server implements IServer {
 
 	@Override
 	public void rmConnection(IConnection connection) {
-		//TODO : Bisognerebbe fare dei controlli e terminare la connessione se necessario
+
+		if (connection.isAlive())
+			connection.disconnect();
+		
 		clients.remove(connection);
 		
 	}

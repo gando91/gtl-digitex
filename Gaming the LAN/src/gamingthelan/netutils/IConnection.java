@@ -27,4 +27,8 @@ public interface IConnection extends Serializable{
 	public void sendQueue() throws IOException;
 	
 	public Socket getSocket();
+	
+	public boolean isAlive();
+	
+	public void disconnect();
 }

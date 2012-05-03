@@ -13,7 +13,6 @@ public class MatrixController implements MouseListener{
 	
 	public MatrixController(MatrixModel model){
 		this.model = model;
-		//TODO : Da definire meglio ?
 	}
 
 	@Override
