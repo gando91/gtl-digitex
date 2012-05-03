@@ -3,14 +3,11 @@ package tests.positioning;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.Observable;
-import java.util.Observer;
 
 import javax.swing.JButton;
-import javax.swing.JPanel;
 import tests.game.MatrixModel;
 import tests.game.OpponentView;
-import view.GenericView;
+
 
 public class SettingsView extends OpponentView {
 

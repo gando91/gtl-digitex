@@ -4,8 +4,9 @@ import java.util.List;
 
 /**
  * A general purpose concrete implementation of IPacket.
- * This class will allow you to send a packet with a Java object attached.
+ * This class will allow you to send a packet with a Java object attached to it.
  * The attached object MUST implements Serializable interface.
+ * 
  * @author Alessio
  *
  */
