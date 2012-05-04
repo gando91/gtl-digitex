@@ -9,9 +9,9 @@ import tests.game.Status;
 
 public class ShipController implements MouseListener, MouseMotionListener {
 	
-	private static final int CELL_DIMENSION = 22;
-	private static final int DEFAULT_HEIGHT = 750;
-	private static final int DEFAULT_WIDTH = 780;
+	private static final int CELL_DIMENSION = 11;
+	private static final int DEFAULT_HEIGHT = 696;
+	private static final int DEFAULT_WIDTH = 727;
 	private MatrixModel model;
 	private ProxyShip proxyship;
 	
@@ -62,8 +62,6 @@ public class ShipController implements MouseListener, MouseMotionListener {
 		
 	}
 
-	
-	
 
 	@Override
 	public void mouseEntered(MouseEvent e) {

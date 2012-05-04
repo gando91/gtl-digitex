@@ -12,31 +12,54 @@ import tests.game.OpponentView;
 public class SettingsView extends OpponentView {
 
 	private static final long serialVersionUID = 1L;
+	private static final int CELL_WIDTH = 727/11-3;
+	private static final int CELL_HEIGHT = 696/11-6;
 	
-	/*private MatrixModel model=new MatrixModel();
-	private OpponentView grid=new OpponentView();*/
 	private ProxyShip proxyship;	
 	
 	public SettingsView(ProxyShip proxyship, MatrixModel model){
+		
 		super(model);
 		this.proxyship=proxyship;
-		
-		setBackground(Color.BLUE);
-		setLayout(new BorderLayout());
-		
-		/*grid.setWidth(1400);
-		grid.setHeight(1300);*/
 		getModel().addObserver(this);
 		addMouseMotionListener(new ShipController(getModel(), proxyship));
 		
-		JButton ready=new JButton("READY");
-		add(ready,BorderLayout.SOUTH);
 		setVisible(true);	
 	}
+		
+	
+	@Override
+	public void drawLetters(Graphics g, int i, int j) {
+		String[] lett=new String[10];
+		
+		lett[0]="A";
+		lett[1]="B";
+		lett[2]="C";
+		lett[3]="D";
+		lett[4]="E";
+		lett[5]="F";
+		lett[6]="G";
+		lett[7]="H";
+		lett[8]="I";
+		lett[9]="L";
+		
+		if(i==0 && j!=0)
+			g.drawString(lett[j-1], j*(CELL_WIDTH)+(CELL_WIDTH)-35,(CELL_HEIGHT/2)+5);		
+	}
+	
 
 	@Override
 	public void drawGrid(Integer i, Integer j, Graphics g) {
-		// TODO Auto-generated method stub
+		g.fillRect(CELL_WIDTH*j, CELL_HEIGHT*i, CELL_WIDTH, CELL_HEIGHT);
+		
+		g.setColor(Color.WHITE);
+		
+		g.drawRect(CELL_WIDTH*j, CELL_HEIGHT*i, CELL_WIDTH, CELL_HEIGHT);
+		
+		if(j==0 && i!=0)
+			g.drawString(i.toString(),(CELL_WIDTH/2)-5, (i*CELL_HEIGHT)+CELL_HEIGHT-20);
+		
+		drawLetters(g, i, j);		
 		
 	}
 }

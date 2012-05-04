@@ -23,10 +23,10 @@ public class OpponentView extends GenericView {
 		getModel().addObserver(this);
 		Color c = new Color (0, 0, 0, 0);
 		setBackground(c); 
-		setOpaque(true);		
+		setOpaque(true);	
 	}
 	
-	private void drawLetters(Graphics g,int i,int j){
+	public void drawLetters(Graphics g,int i,int j){
 		
 		lett=new String[10];
 		
