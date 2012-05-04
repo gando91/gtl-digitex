@@ -1,5 +1,9 @@
 package gamingthelan.netutils;
 
+/**
+ * this is the interface for a generic ConnectionHandler
+ */
+
 public interface ConnectionHandler {
 	/**
 	 * Called when a packet is received by a connection

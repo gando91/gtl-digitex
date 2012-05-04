@@ -5,6 +5,11 @@ import java.io.IOException;
 import gamingthelan.netutils.IConnection;
 import gamingthelan.netutils.IPacket;
 
+/**
+ * This is the interface of generic Client
+ * 
+ */
+
 public interface IClient {
 	
 	/**

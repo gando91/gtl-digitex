@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.net.Socket;
 
+/**
+ * This is the interface for a generic connection
+ */
+
 public interface IConnection extends Serializable{
 	
 	/**
@@ -28,7 +32,15 @@ public interface IConnection extends Serializable{
 	
 	public Socket getSocket();
 	
+	/**
+	 * Identify if a connection is running
+	 * 
+	 */
 	public boolean isAlive();
 	
+	/**
+	 * Disconnect the connection
+	 * 
+	 */
 	public void disconnect();
 }
