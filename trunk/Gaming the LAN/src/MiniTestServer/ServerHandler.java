@@ -19,7 +19,6 @@ public class ServerHandler implements ConnectionHandler {
 		try {
 			Server.getInstance().broadcastMessage(p);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
