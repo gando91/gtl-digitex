@@ -27,5 +27,7 @@ public interface IClient {
 	 * All incoming packets are passed to your handler.
 	 * @throws IOException 
 	 */
-	public void Connect() throws IOException;
+	public void connect() throws IOException;
+	
+	public void disconnect();
 }

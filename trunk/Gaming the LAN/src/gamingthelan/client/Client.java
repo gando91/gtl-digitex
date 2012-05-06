@@ -45,7 +45,7 @@ public class Client implements IClient{
 	
 	/* ---------------------------- */
 	@Override
-	public void Connect() throws IOException
+	public void connect() throws IOException
 	{
 		
 		Socket mySocket = new Socket();
@@ -75,6 +75,11 @@ public class Client implements IClient{
 
 	public void setHandler(ConnectionHandler handler) {
 		this.handler = handler;
+	}
+
+	@Override
+	public void disconnect() {
+		myConnection.disconnect();		
 	}
 	
 	

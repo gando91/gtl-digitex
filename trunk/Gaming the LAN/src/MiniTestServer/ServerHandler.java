@@ -14,7 +14,6 @@ public class ServerHandler implements ConnectionHandler {
 		ObjectPacket p = (ObjectPacket)packet;
 		
 		System.out.println(p.getContent().toString());
-		p.setContent("Risposta dal server");
 		
 		try {
 			Server.getInstance().broadcastMessage(p);
