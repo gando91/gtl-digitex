@@ -71,7 +71,6 @@ public class Connection implements IConnection, Runnable {
 				
 			} catch (IOException e) {
 				connected = false;
-				
 			} catch (ClassNotFoundException e) {
 				connected = false;
 				
@@ -81,6 +80,8 @@ public class Connection implements IConnection, Runnable {
 		}
 		
 		try {
+			
+			mediator.rmConnection(this);
 			
 			outStream.close();
 			inStream.close();
@@ -113,6 +114,5 @@ public class Connection implements IConnection, Runnable {
 	@Override
 	public void disconnect() {
 		this.connected = false;
-		
 	}
 }

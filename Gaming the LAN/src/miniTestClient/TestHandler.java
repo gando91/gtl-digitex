@@ -1,5 +1,7 @@
 package miniTestClient;
 
+import javax.swing.JOptionPane;
+
 import gamingthelan.client.ClientConnectionHandler;
 import gamingthelan.client.IClient;
 import gamingthelan.netutils.IPacket;
@@ -15,8 +17,14 @@ public class TestHandler extends ClientConnectionHandler {
 	public void onReceivedPacket(IPacket packet) {
 		ObjectPacket p  = (ObjectPacket)packet;
 		
-		String s = (String)p.getContent();
-		System.out.println("Ricevuto pacchetto " + s);
+		if ( p.getContent() instanceof java.lang.String) {
+			String s = (String)p.getContent();
+			JOptionPane.showMessageDialog(null, s, "Pacchetto stringa ricevuto", JOptionPane.INFORMATION_MESSAGE);
+		} else 
+		{
+			Integer s = (Integer)p.getContent();
+			JOptionPane.showMessageDialog(null, s.toString(), "Pacchetto 'Integer' ricevuto", JOptionPane.INFORMATION_MESSAGE);
+		}
 		
 	}
 

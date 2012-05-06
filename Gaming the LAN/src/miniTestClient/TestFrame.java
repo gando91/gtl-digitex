@@ -1,7 +1,5 @@
 package miniTestClient;
 
-import java.awt.Dimension;
-
 import javax.swing.JFrame;
 
 public class TestFrame extends JFrame{
@@ -14,7 +12,7 @@ public class TestFrame extends JFrame{
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setTitle("Client Test");
 		
-		this.setMinimumSize(new Dimension(200, 100));
+		this.pack();
 		
 		this.setVisible(true);
 	}
