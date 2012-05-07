@@ -13,6 +13,10 @@ public class TestHandler extends ClientConnectionHandler {
 		super(client);
 	}
 
+	
+	/*Implementiamo qui il metodo onReceivedPacket lasciato appositamente astratto all'interno della classe ClientConnectionHandler,
+	indicando all'oggetto client le azioni da eseguire quando riceve un pacchetto di dati */
+	
 	@Override
 	public void onReceivedPacket(IPacket packet) {
 		ObjectPacket p  = (ObjectPacket)packet;

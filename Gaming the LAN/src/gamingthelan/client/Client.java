@@ -16,6 +16,7 @@ public class Client implements IClient{
 	private int porta = 8080;
 	private int connectionTimeOut = 500;
 	
+	private Thread connectionThread;
 	private Connection myConnection;
 	private ConnectionHandler handler;
 	
@@ -55,7 +56,7 @@ public class Client implements IClient{
 
 		myConnection = new Connection(mySocket, handler);
 		
-		Thread connectionThread = new Thread(myConnection);
+		connectionThread = new Thread(myConnection);
 		connectionThread.start();
 	}
 
@@ -79,7 +80,9 @@ public class Client implements IClient{
 
 	@Override
 	public void disconnect() {
-		myConnection.disconnect();		
+		
+		myConnection.disconnect();
+		connectionThread.interrupt();
 	}
 	
 	
