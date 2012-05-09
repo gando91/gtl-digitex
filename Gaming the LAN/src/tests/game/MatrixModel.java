@@ -22,8 +22,8 @@ public class MatrixModel extends Observable{
 	
 	}
 	
-	public void setstatus(int i, int j, Status status){		
-		statusmatrix[i][j]=status;	
+	public void setstatus(int row, int col, Status status){		
+		statusmatrix[row][col]=status;	
 		setChanged();
 		notifyObservers();
 	}
