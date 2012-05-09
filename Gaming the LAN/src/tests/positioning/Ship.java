@@ -3,10 +3,22 @@ package tests.positioning;
 public class Ship implements IShip{
 	
 	private int shiplength;
+	private int xposition;
+	private int yposition;
+	
+	public Ship(int shiplength,int xposition,int yposition){
+		super();
+		this.shiplength=shiplength;
+		this.xposition=xposition;
+		this.yposition=yposition;
+		
+	}
 	
 	public Ship(int shiplength){
 		super();
 		this.shiplength=shiplength;
+		this.xposition=0;
+		this.yposition=0;
 		
 	}
 
@@ -20,6 +32,32 @@ public class Ship implements IShip{
 	public void setShipLength(int length) {
 		this.shiplength=length;
 		
+	}
+
+	@Override
+	public int getXPosition() {
+		
+		return xposition;
+	}
+
+	@Override
+	public int getYPosition() {
+		
+		
+		return yposition;
+	}
+
+	@Override
+	public void setXPosition(int x) {
+		
+		this.xposition=x;
+		
+	}
+
+	@Override
+	public void setYPosition(int y) {
+		
+		this.yposition=y;
 	}
 
 }

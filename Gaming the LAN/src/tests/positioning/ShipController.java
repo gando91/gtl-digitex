@@ -25,17 +25,8 @@ public class ShipController implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-	
-	}
-
-	@Override
-	public void mouseDragged(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public void mouseMoved(MouseEvent e) {
+	
 		
 		int xp=e.getX();
 		int yp=e.getY();
@@ -43,40 +34,52 @@ public class ShipController implements MouseListener, MouseMotionListener {
 		int ncol = ((xp)/(DEFAULT_WIDTH/CELL_DIMENSION));
 		int nrow = ((yp)/(DEFAULT_HEIGHT/CELL_DIMENSION));
 		
-		System.out.println(nrow);
-		System.out.println(ncol);
-		
-		Status mymatrix[][]=model.getStatusmatrix();
-		if(mymatrix[nrow][ncol]==Status.VIRGIN && ncol!=0 && nrow!=0){
-			System.out.println(mymatrix[ncol][nrow]);
-			model.setstatus(nrow, ncol, Status.SHIP);
-			
+		for (int i = 0; i < proxyship.getShipLength(); i++) {
+			model.setstatus(nrow + i, ncol, Status.SHIP);
 		}
+		
 		
 	}
 
+	@Override
+	public void mouseDragged(MouseEvent e) {
+	
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+			
+		
+			int xp=e.getX();
+			int yp=e.getY();
+			
+			int ncol = ((xp)/(DEFAULT_WIDTH/CELL_DIMENSION));
+			int nrow = ((yp)/(DEFAULT_HEIGHT/CELL_DIMENSION));
+			
+			proxyship.setXPosition(nrow);
+			proxyship.setYPosition(ncol);
+			
+			
+	}
+	
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
