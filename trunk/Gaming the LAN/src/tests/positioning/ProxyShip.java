@@ -19,18 +19,44 @@ public class ProxyShip extends Observable implements IShip{
 
 	public void setShip(IShip ship) {
 		this.ship = ship;
+		update();
 	}
 
 	@Override
 	public int getShipLength() {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return ship.getShipLength();
 	}
 
 	@Override
 	public void setShipLength(int length) {
-		// TODO Auto-generated method stub
+		ship.setShipLength(length);
+		update();
+	}
+
+	@Override
+	public int getXPosition() {
 		
+		return ship.getXPosition();
+	}
+
+	@Override
+	public int getYPosition() {
+		
+		return ship.getYPosition();
+	}
+
+	@Override
+	public void setXPosition(int x) {
+		ship.setXPosition(x);
+		update();
+		
+	}
+
+	@Override
+	public void setYPosition(int y) {
+		ship.setYPosition(y);
+		update();
 	}
 
 }

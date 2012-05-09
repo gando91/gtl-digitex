@@ -1,12 +1,11 @@
 package tests.positioning;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 
-import javax.swing.JButton;
 import tests.game.MatrixModel;
 import tests.game.OpponentView;
+import tests.game.Status;
 
 
 public class SettingsView extends OpponentView {
@@ -15,13 +14,18 @@ public class SettingsView extends OpponentView {
 	private static final int CELL_WIDTH = 880/11;
 	private static final int CELL_HEIGHT = 770/11; 
 	
-	private ProxyShip proxyship;	
+	private ProxyShip proxyship;
+	private boolean positioning=true;
 	
 	public SettingsView(ProxyShip proxyship, MatrixModel model){
 		
 		super(model);
 		this.proxyship=proxyship;
+		
 		getModel().addObserver(this);
+		this.proxyship.addObserver(this);
+		
+		addMouseListener(new ShipController(getModel(), proxyship));
 		addMouseMotionListener(new ShipController(getModel(), proxyship));
 		
 		setVisible(true);	
@@ -59,7 +63,24 @@ public class SettingsView extends OpponentView {
 		if(j==0 && i!=0)
 			g.drawString(i.toString(),(CELL_WIDTH/2)-5, (i*CELL_HEIGHT)+CELL_HEIGHT-20);
 		
-		drawLetters(g, i, j);		
+		drawLetters(g, i, j);	
+		
 		
 	}
+	
+	@Override
+	public void paint(Graphics g) {
+		super.paint(g);
+		
+		for (int i = 0; i < proxyship.getShipLength(); i++) {
+			if(super.getModel().getStatusmatrix()[proxyship.getXPosition() + i][proxyship.getYPosition()] == Status.SHIP)
+				g.setColor(Color.RED);
+			else{
+				g.setColor(Color.GREEN);
+			}
+			drawGrid(proxyship.getXPosition() + i, proxyship.getYPosition(), g);
+		}
+		
+	}
+	
 }

@@ -9,8 +9,8 @@ import javax.swing.JMenuItem;
 public class ShipMenu extends JMenu{
 	
 	private static final long serialVersionUID = 1L;
-	private ProxyShip proxyship;
 	
+	private ProxyShip proxyship;
 	private static AircraftCarrier aircraftcarrier=new AircraftCarrier();
 	private static Cruiser Cruiser=new Cruiser();
 	private static TorpedoBoat torpedoboat=new TorpedoBoat();
@@ -41,7 +41,7 @@ public class ShipMenu extends JMenu{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				ShipMenu.this.proxyship.setShip(Cruiser);
+				ShipMenu.this.proxyship.setShip(ShipMenu.Cruiser);
 				System.out.println(Cruiser.getShipLength());  
 				
 			}
@@ -55,7 +55,7 @@ public class ShipMenu extends JMenu{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				ShipMenu.this.proxyship.setShip(torpedoboat);
+				ShipMenu.this.proxyship.setShip(ShipMenu.torpedoboat);
 				System.out.println(torpedoboat.getShipLength());
 				
 			}
@@ -69,7 +69,7 @@ public class ShipMenu extends JMenu{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				ShipMenu.this.proxyship.setShip(Submarine);
+				ShipMenu.this.proxyship.setShip(ShipMenu.Submarine);
 				System.out.println(Submarine.getShipLength());
 				
 			}
