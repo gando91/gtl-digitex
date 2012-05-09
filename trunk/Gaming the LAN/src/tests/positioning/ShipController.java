@@ -10,8 +10,9 @@ import tests.game.Status;
 public class ShipController implements MouseListener, MouseMotionListener {
 	
 	private static final int CELL_DIMENSION = 11;
-	private static final int DEFAULT_HEIGHT = 696;
-	private static final int DEFAULT_WIDTH = 727;
+	private static final int DEFAULT_HEIGHT = 770;
+	private static final int DEFAULT_WIDTH = 880;
+	
 	private MatrixModel model;
 	private ProxyShip proxyship;
 	
@@ -24,16 +25,7 @@ public class ShipController implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
-		int posx = e.getX();
-		int posy = e.getY();
-		
-		int ncol = (posx/(DEFAULT_WIDTH/CELL_DIMENSION));
-		int nrow = (posy/(DEFAULT_HEIGHT/CELL_DIMENSION));
-		
-		if(ncol != 0 && nrow != 0){			
-			model.setstatus(nrow, ncol, Status.HIT);
-		}
+	
 	}
 
 	@Override
@@ -48,17 +40,18 @@ public class ShipController implements MouseListener, MouseMotionListener {
 		int xp=e.getX();
 		int yp=e.getY();
 		
-		int ncol = (xp/(DEFAULT_WIDTH/CELL_DIMENSION));
-		int nrow = (yp/(DEFAULT_HEIGHT/CELL_DIMENSION));
+		int ncol = ((xp)/(DEFAULT_WIDTH/CELL_DIMENSION));
+		int nrow = ((yp)/(DEFAULT_HEIGHT/CELL_DIMENSION));
+		
+		System.out.println(nrow);
+		System.out.println(ncol);
 		
 		Status mymatrix[][]=model.getStatusmatrix();
-		if(mymatrix[ncol][nrow]==Status.VIRGIN){
-			
+		if(mymatrix[nrow][ncol]==Status.VIRGIN && ncol!=0 && nrow!=0){
+			System.out.println(mymatrix[ncol][nrow]);
 			model.setstatus(nrow, ncol, Status.SHIP);
 			
 		}
-		
-		
 		
 	}
 
