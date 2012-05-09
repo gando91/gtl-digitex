@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 
 import tests.game.MatrixModel;
+import tests.game.Status;
 
 public class AppPositioning extends JFrame{
 
@@ -22,8 +23,8 @@ public class AppPositioning extends JFrame{
 	public static void main(String[] args) {
 		
 		ProxyShip ps = new ProxyShip(new AircraftCarrier());
-		
-		SettingsView mp = new SettingsView(ps, new MatrixModel());//FIXME devo usare sempre lo stesso modello
+		final MatrixModel matrixModel=new MatrixModel();
+		SettingsView mp = new SettingsView(ps,matrixModel);//FIXME devo usare sempre lo stesso modello
 		AppPositioning ap = new AppPositioning(mp);
 		
 		ap.setLayout(new BorderLayout());
@@ -44,6 +45,12 @@ public class AppPositioning extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("ho resettato la matrice");
+				for (int i = 0; i < matrixModel.getRows(); i++) {
+					for (int j = 0; j < matrixModel.getCols(); j++) {
+						
+						matrixModel.setstatus(i, j, Status.VIRGIN);
+					}
+				}
 				
 
 			}

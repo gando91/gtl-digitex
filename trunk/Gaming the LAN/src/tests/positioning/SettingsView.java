@@ -80,7 +80,7 @@ public class SettingsView extends OpponentView {
 			}
 			drawGrid(proxyship.getXPosition() + i, proxyship.getYPosition(), g);
 		}
-		
 	}
+	
 	
 }

@@ -7,6 +7,7 @@ public class MatrixModel extends Observable{
 	private static final int ROWS=11;
 	private static final int COLS=11;
 	
+	
 	private Status statusmatrix[][];
 	
 	public MatrixModel(){
@@ -31,5 +32,13 @@ public class MatrixModel extends Observable{
 	public Status[][] getStatusmatrix() {
 		return statusmatrix;
 	}
+	public static int getRows() {
+		return ROWS;
+	}
+
+	public static int getCols() {
+		return COLS;
+	}
+
 	
 }
