@@ -73,7 +73,7 @@ public class SettingsView extends OpponentView {
 		super.paint(g);
 		
 		for (int i = 0; i < proxyship.getShipLength(); i++) {
-			if(super.getModel().getStatusmatrix()[proxyship.getXPosition() + i][proxyship.getYPosition()] == Status.SHIP)
+			if(super.getModel().getStatusmatrix()[proxyship.getXPosition() + i][proxyship.getYPosition()] == Status.SHIP || proxyship.getXPosition() ==0 || proxyship.getYPosition() == 0 )
 				g.setColor(Color.RED);
 			else{
 				g.setColor(Color.GREEN);

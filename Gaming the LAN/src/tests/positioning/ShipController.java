@@ -1,5 +1,7 @@
 package tests.positioning;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -7,7 +9,7 @@ import java.awt.event.MouseMotionListener;
 import tests.game.MatrixModel;
 import tests.game.Status;
 
-public class ShipController implements MouseListener, MouseMotionListener {
+public class ShipController implements MouseListener, MouseMotionListener, KeyListener {
 	
 	private static final int CELL_DIMENSION = 11;
 	private static final int DEFAULT_HEIGHT = 770;
@@ -16,10 +18,15 @@ public class ShipController implements MouseListener, MouseMotionListener {
 	private MatrixModel model;
 	private ProxyShip proxyship;
 	
+	private IPosition position;
+	private VerticalPosition vp= new VerticalPosition();
+	private HorizontalPosition hp= new HorizontalPosition();
+	
 	public  ShipController(MatrixModel model, ProxyShip proxyship) {
 		super();
 		this.model=model;
 		this.proxyship=proxyship;
+		position = vp;
 	 
 	}
 
@@ -33,11 +40,17 @@ public class ShipController implements MouseListener, MouseMotionListener {
 		
 		int ncol = ((xp)/(DEFAULT_WIDTH/CELL_DIMENSION));
 		int nrow = ((yp)/(DEFAULT_HEIGHT/CELL_DIMENSION));
-		
+		int counter = 0;
 		for (int i = 0; i < proxyship.getShipLength(); i++) {
-			model.setstatus(nrow + i, ncol, Status.SHIP);
+			if(model.getStatusmatrix()[nrow + i][ncol] == Status.SHIP)
+				counter ++;
 		}
 		
+		if(counter == 0 && ncol != 0 && nrow != 0){
+			for (int i = 0; i < proxyship.getShipLength(); i++) {
+				model.setstatus(nrow + i, ncol, Status.SHIP);
+			}
+		}
 		
 	}
 
@@ -80,6 +93,29 @@ public class ShipController implements MouseListener, MouseMotionListener {
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		
+		if(e.getKeyChar() == ' ' ||e.getKeyChar() == 'r'){
+			if(position == vp)
+				position = hp;
+		else
+			position = vp;
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 
