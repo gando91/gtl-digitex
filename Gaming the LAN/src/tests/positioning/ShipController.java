@@ -12,8 +12,8 @@ import tests.game.Status;
 public class ShipController implements MouseListener, MouseMotionListener, KeyListener {
 	
 	private static final int CELL_DIMENSION = 11;
-	private static final int DEFAULT_HEIGHT = 770;
-	private static final int DEFAULT_WIDTH = 880;
+	private static final int DEFAULT_HEIGHT = 650;
+	private static final int DEFAULT_WIDTH = 750;
 	
 	private MatrixModel model;
 	private ProxyShip proxyship;
