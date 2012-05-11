@@ -16,8 +16,8 @@ import tests.game.Status;
 public class AppPositioning extends JFrame{
 
 	private static final long serialVersionUID = 1L;
-	private static final int DEFAULT_HEIGHT = 872;
-	private static final int DEFAULT_WIDTH=883;
+	private static final int DEFAULT_HEIGHT = 752;
+	private static final int DEFAULT_WIDTH=750;
 	
 	
 	public static void main(String[] args) {

@@ -11,8 +11,8 @@ import tests.game.Status;
 public class SettingsView extends OpponentView {
 
 	private static final long serialVersionUID = 1L;
-	private static final int CELL_WIDTH = 880/11;
-	private static final int CELL_HEIGHT = 770/11; 
+	private static final int CELL_WIDTH = 750/11;
+	private static final int CELL_HEIGHT = 650/11; 
 	
 	private ProxyShip proxyship;
 	private boolean positioning=true;
