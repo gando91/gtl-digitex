@@ -5,11 +5,16 @@ import java.util.Observable;
 public class ProxyShip extends Observable implements IShip{
 	
 	private IShip ship;
+	private boolean rotated;
 	
 	
 	public ProxyShip(IShip ship) {
 		super();
 		this.ship=ship;
+	}
+	
+	public void setShipAmount() {
+		ship.setShipAmount();
 	}
 	
 	public void update(){
@@ -58,5 +63,26 @@ public class ProxyShip extends Observable implements IShip{
 		ship.setYPosition(y);
 		update();
 	}
+	public void rotate(){
+		if(rotated == true)
+			rotated = false;
+		else
+			rotated = true;
+		update();
+	}
 
+	public boolean isRotated() {
+		return rotated;
+	}
+
+	@Override
+	public int getShipAmount() {
+		return ship.getShipAmount();
+	}
+
+	@Override
+	public int getMaxAmount() {
+		return ship.getMaxAmount();
+	}
+	
 }
