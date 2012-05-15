@@ -26,6 +26,7 @@ public class AppPositioning extends JFrame{
 		final MatrixModel matrixModel=new MatrixModel();
 		SettingsView mp = new SettingsView(ps,matrixModel);//FIXME devo usare sempre lo stesso modello
 		AppPositioning ap = new AppPositioning(mp);
+		ap.addKeyListener(new ShipController(matrixModel, ps));
 		
 		ap.setLayout(new BorderLayout());
 		
@@ -36,8 +37,10 @@ public class AppPositioning extends JFrame{
 		ap.add(mp);
 		
 		JButton ready=new JButton("READY");
+		ready.addKeyListener(new ShipController(matrixModel, ps));
 		ap.add(ready, BorderLayout.PAGE_END);
 		JButton reset=new JButton("RESET");
+		reset.addKeyListener(new ShipController(matrixModel, ps));
 		ap.add(reset, BorderLayout.PAGE_START);
 		
 		reset.addActionListener(new ActionListener() {

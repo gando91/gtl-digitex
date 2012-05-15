@@ -1,5 +1,6 @@
 package tests.positioning;
 
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -9,7 +10,7 @@ import java.awt.event.MouseMotionListener;
 import tests.game.MatrixModel;
 import tests.game.Status;
 
-public class ShipController implements MouseListener, MouseMotionListener, KeyListener {
+public class ShipController extends KeyAdapter implements MouseListener, MouseMotionListener {
 	
 	private static final int CELL_DIMENSION = 11;
 	private static final int DEFAULT_HEIGHT = 650;
@@ -41,15 +42,41 @@ public class ShipController implements MouseListener, MouseMotionListener, KeyLi
 		int ncol = ((xp)/(DEFAULT_WIDTH/CELL_DIMENSION));
 		int nrow = ((yp)/(DEFAULT_HEIGHT/CELL_DIMENSION));
 		int counter = 0;
-		for (int i = 0; i < proxyship.getShipLength(); i++) {
-			if(model.getStatusmatrix()[nrow + i][ncol] == Status.SHIP)
-				counter ++;
-		}
 		
-		if(counter == 0 && ncol != 0 && nrow != 0){
-			for (int i = 0; i < proxyship.getShipLength(); i++) {
-				model.setstatus(nrow + i, ncol, Status.SHIP);
+		if(proxyship.isRotated()==false){
+			if(proxyship.getShipAmount() < proxyship.getMaxAmount()){
+				proxyship.setShipAmount();
+				proxyship.setShipAmount();
+					for (int i = 0; i < proxyship.getShipLength(); i++) {
+						if(model.getStatusmatrix()[nrow + i][ncol] == Status.SHIP)
+							counter ++;
+					}
+			
+					if(counter == 0 && ncol != 0 && nrow != 0){
+					
+						for (int i = 0; i < proxyship.getShipLength(); i++) {
+							model.setstatus(nrow + i, ncol, Status.SHIP);
+						
+						}
+					}
 			}
+		}
+		else{	
+			if(proxyship.getShipAmount() < proxyship.getMaxAmount()){
+				proxyship.setShipAmount();
+				for (int i = 0; i < proxyship.getShipLength(); i++) {
+					if(model.getStatusmatrix()[nrow][ncol + i] == Status.SHIP)
+						counter ++;
+				}
+			
+				if(counter == 0 && ncol != 0 && nrow != 0){
+					
+					for (int i = 0; i < proxyship.getShipLength(); i++) {
+						model.setstatus(nrow, ncol + i, Status.SHIP);
+					}
+				}
+			
+		}
 		}
 		
 	}
@@ -98,13 +125,10 @@ public class ShipController implements MouseListener, MouseMotionListener, KeyLi
 
 	@Override
 	public void keyPressed(KeyEvent e) {
+		super.keyPressed(e);
 		
-		if(e.getKeyChar() == ' ' ||e.getKeyChar() == 'r'){
-			if(position == vp)
-				position = hp;
-		else
-			position = vp;
-		}
+		if(e.getKeyCode()==e.VK_R)
+			proxyship.rotate();
 	}
 
 	@Override

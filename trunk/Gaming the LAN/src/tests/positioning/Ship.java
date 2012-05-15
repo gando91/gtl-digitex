@@ -5,7 +5,17 @@ public class Ship implements IShip{
 	private int shiplength;
 	private int xposition;
 	private int yposition;
+	private int shipamount=0;
 	
+	@Override
+	public int getShipAmount() {
+		return shipamount;
+	}
+
+	public void setShipAmount() {
+		shipamount=shipamount+1;
+	}
+
 	public Ship(int shiplength,int xposition,int yposition){
 		super();
 		this.shiplength=shiplength;
@@ -58,6 +68,11 @@ public class Ship implements IShip{
 	public void setYPosition(int y) {
 		
 		this.yposition=y;
+	}
+
+	@Override
+	public int getMaxAmount() {
+		return 0;
 	}
 
 }

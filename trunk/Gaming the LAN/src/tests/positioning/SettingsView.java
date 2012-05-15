@@ -27,7 +27,7 @@ public class SettingsView extends OpponentView {
 		
 		addMouseListener(new ShipController(getModel(), proxyship));
 		addMouseMotionListener(new ShipController(getModel(), proxyship));
-		
+		addKeyListener(new ShipController(getModel(), proxyship));
 		setVisible(true);	
 	}
 		
@@ -71,16 +71,28 @@ public class SettingsView extends OpponentView {
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-		
-		for (int i = 0; i < proxyship.getShipLength(); i++) {
-			if(super.getModel().getStatusmatrix()[proxyship.getXPosition() + i][proxyship.getYPosition()] == Status.SHIP || proxyship.getXPosition() ==0 || proxyship.getYPosition() == 0 )
-				g.setColor(Color.RED);
-			else{
-				g.setColor(Color.GREEN);
+		if(proxyship.isRotated() == false){
+			for (int i = 0; i < proxyship.getShipLength(); i++) {
+				if(super.getModel().getStatusmatrix()[proxyship.getXPosition() + i][proxyship.getYPosition()] == Status.SHIP || proxyship.getXPosition() ==0 || proxyship.getYPosition() == 0 )
+					g.setColor(Color.RED);
+				else{
+					g.setColor(Color.GREEN);
+				}
+				drawGrid(proxyship.getXPosition() + i, proxyship.getYPosition(), g);
 			}
-			drawGrid(proxyship.getXPosition() + i, proxyship.getYPosition(), g);
+		}
+		else{
+			for (int i = 0; i < proxyship.getShipLength(); i++) {
+				if(super.getModel().getStatusmatrix()[proxyship.getXPosition()][proxyship.getYPosition() + i] == Status.SHIP || proxyship.getXPosition() ==0 || proxyship.getYPosition() == 0 )
+					g.setColor(Color.RED);
+				else{
+					g.setColor(Color.GREEN);
+				}
+				drawGrid(proxyship.getXPosition(), proxyship.getYPosition() + i, g);
+			}
 		}
 	}
+		
 	
 	
 }
