@@ -39,17 +39,14 @@ public class Server implements IServer {
 	public void addConnection(IConnection connection) {
 		if(banlist.contains(connection.getSocket().getInetAddress()))
 			return;
-	
-		clients.add(connection);
 		
-		
+		clients.add(connection);	
 	}
 
 	@Override
 	public void rmConnection(IConnection connection) {
 		
-		clients.remove(connection);
-		
+		clients.remove(connection);		
 	}
 
 	@Override
@@ -57,22 +54,22 @@ public class Server implements IServer {
 		
 		for (IConnection c : clients) {
 			c.sendPacket(packet);
-		}
-		
+		}		
 	}
 
 	@Override
 	public void sendMessage(IPacket pacchetto, IConnection connessione) {
+		
 		try {
 			connessione.sendPacket(pacchetto);
 		} catch (IOException e) {
 			System.err.println("Errore di I/O su " + connessione.toString());
-		}
-		
+		}		
 	}
 
 	@Override
 	public boolean ban(InetAddress address) {
+		
 		banlist.add(address);
 		for (IConnection c : clients) {
 			if(c.getSocket().getInetAddress() == address)
@@ -83,6 +80,7 @@ public class Server implements IServer {
 
 	@Override
 	public boolean unban(InetAddress address) {
+		
 		banlist.remove(address);
 		return true;
 	}
@@ -90,9 +88,7 @@ public class Server implements IServer {
 	@Override
 	public void createConnection(Socket socket, ConnectionHandler handler) {
 		
-		addConnection(ConnectionCreator.getInstance().createConnection(socket, handler));
-
-		
+		addConnection(ConnectionCreator.getInstance().createConnection(socket, handler));		
 	}
 	
 }

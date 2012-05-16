@@ -49,8 +49,7 @@ public class ServerListener implements IListener, Runnable {
 		
 		Thread listener = new Thread(this);
 		listening = true;
-		listener.start();
-		
+		listener.start();		
 	}
 
 	@Override
@@ -66,8 +65,7 @@ public class ServerListener implements IListener, Runnable {
 			System.err.println("Errore durante l'apertura della porta");
 		}
 		
-		while (listening) {
-			
+		while (listening) {			
 			
 			/*
 			 * Bisogna progettare qualcosa per lasciare al programmatore
@@ -77,8 +75,7 @@ public class ServerListener implements IListener, Runnable {
 			try {
 				
 				//TODO : Dare la possibilità al programmatore di decidere cosa fare della richiesta
-				Socket socket = s.accept();
-				
+				Socket socket = s.accept();				
 				
 				mediator.createConnection(socket, handler);
 				
@@ -86,9 +83,6 @@ public class ServerListener implements IListener, Runnable {
 				// TODO Gestione eccezione in ascolto
 				System.err.println("Errore durante la creazione della connessione per il client");
 			}
-
-
-
 
 		}
 		

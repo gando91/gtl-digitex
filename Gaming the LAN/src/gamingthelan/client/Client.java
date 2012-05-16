@@ -5,10 +5,10 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
 
-import gamingthelan.netutils.Connection;
 import gamingthelan.netutils.ConnectionHandler;
 import gamingthelan.netutils.IConnection;
 import gamingthelan.netutils.IPacket;
+import gamingthelan.netutils.NickPacket;
 
 public class Client implements IClient{
 	
@@ -17,7 +17,7 @@ public class Client implements IClient{
 	private int connectionTimeOut = 500;
 	
 	private Thread connectionThread;
-	private Connection myConnection;
+	private ClientConnection myConnection;
 	private ConnectionHandler handler;
 	
 	/* ALCUNI COSTRUTTORI, VEDEREMO SE TENERLI TUTTI I SE RIMUOVERNE QUALCUNO */
@@ -54,7 +54,12 @@ public class Client implements IClient{
 		
 		mySocket.connect(socketAddress, connectionTimeOut);
 
-		myConnection = new Connection(mySocket, handler);
+		myConnection = new ClientConnection(mySocket, handler);
+		
+		NickPacket np = new NickPacket(null,null);
+		//TODO: finestra inserimento nickname
+		np.setNickName(null);
+		myConnection.sendPacket(np);
 		
 		connectionThread = new Thread(myConnection);
 		connectionThread.start();
