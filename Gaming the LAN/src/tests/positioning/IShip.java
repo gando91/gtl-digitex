@@ -7,6 +7,7 @@ public interface IShip {
 	
 	public void setShipAmount();
 	public int getShipAmount();
+	public void resetShipAmount();
 	public int getMaxAmount();
 	
 	public int getXPosition();

@@ -84,5 +84,11 @@ public class ProxyShip extends Observable implements IShip{
 	public int getMaxAmount() {
 		return ship.getMaxAmount();
 	}
+
+	@Override
+	public void resetShipAmount() {
+		ship.resetShipAmount();
+		
+	}
 	
 }

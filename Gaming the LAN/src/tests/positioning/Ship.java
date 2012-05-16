@@ -75,4 +75,10 @@ public class Ship implements IShip{
 		return 0;
 	}
 
+	@Override
+	public void resetShipAmount() {
+		shipamount = 0;
+		
+	}
+
 }
