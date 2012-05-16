@@ -1,183 +1,139 @@
-<class-diagram version="1.0.5" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+<class-diagram version="1.0.4" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true">  
-  <interface id="1" corner="BOTTOM_RIGHT" language="java" name="gamingthelan.server.IListener" project="Gaming the LAN" 
-    file="/Gaming the LAN/src/gamingthelan/server/IListener.java" binary="false">    
-    <position height="65" width="208" x="1225" y="368"/>    
-    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true"/>      
-      <operations public="true" package="true" protected="true" private="true"/>    
-    </display>  
-  </interface>  
-  <interface id="2" corner="BOTTOM_RIGHT" language="java" name="gamingthelan.netutils.IPacket" project="Gaming the LAN" 
-    file="/Gaming the LAN/src/gamingthelan/netutils/IPacket.java" binary="false">    
-    <position height="97" width="176" x="306" y="368"/>    
-    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true"/>      
-      <operations public="true" package="true" protected="true" private="true"/>    
-    </display>  
-  </interface>  
-  <interface id="3" corner="BOTTOM_RIGHT" language="java" name="gamingthelan.server.IServer" project="Gaming the LAN" 
+  <interface id="1" corner="BOTTOM_RIGHT" language="java" name="gamingthelan.server.IServer" project="Gaming the LAN" 
     file="/Gaming the LAN/src/gamingthelan/server/IServer.java" binary="false">    
-    <position height="161" width="264" x="705" y="368"/>    
+    <position x="708" y="157" width="-1" height="-1"/>    
     <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </interface>  
-  <interface id="4" corner="BOTTOM_RIGHT" language="java" name="gamingthelan.netutils.ConnectionHandler" 
-    project="Gaming the LAN" file="/Gaming the LAN/src/gamingthelan/netutils/ConnectionHandler.java" binary="false">    
-    <position height="65" width="176" x="1009" y="368"/>    
-    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true"/>      
-      <operations public="true" package="true" protected="true" private="true"/>    
-    </display>  
-  </interface>  
-  <class id="5" corner="BOTTOM_RIGHT" language="java" name="gamingthelan.server.ServerListener" project="Gaming the LAN" 
-    file="/Gaming the LAN/src/gamingthelan/server/ServerListener.java" binary="false">    
-    <position height="177" width="208" x="1120" y="93"/>    
-    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true"/>      
-      <operations public="true" package="true" protected="true" private="true"/>    
-    </display>  
-  </class>  
-  <class id="6" corner="BOTTOM_RIGHT" language="java" name="gamingthelan.server.Server" project="Gaming the LAN" 
+  <class id="2" corner="BOTTOM_RIGHT" language="java" name="gamingthelan.server.Server" project="Gaming the LAN" 
     file="/Gaming the LAN/src/gamingthelan/server/Server.java" binary="false">    
-    <position height="-1" width="-1" x="644" y="151"/>    
+    <position x="706" y="458" width="-1" height="-1"/>    
     <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="7" corner="BOTTOM_RIGHT" language="java" name="gamingthelan.netutils.ObjectPacket" project="Gaming the LAN" 
-    file="/Gaming the LAN/src/gamingthelan/netutils/ObjectPacket.java" binary="false">    
-    <position height="-1" width="-1" x="350" y="148"/>    
+  <class id="3" corner="BOTTOM_RIGHT" language="java" name="gamingthelan.server.ServerListener" project="Gaming the LAN" 
+    file="/Gaming the LAN/src/gamingthelan/server/ServerListener.java" binary="false">    
+    <position x="319" y="480" width="-1" height="-1"/>    
     <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
-  <class id="8" corner="BOTTOM_RIGHT" language="java" name="gamingthelan.netutils.Connection" project="Gaming the LAN" 
-    file="/Gaming the LAN/src/gamingthelan/netutils/Connection.java" binary="false">    
-    <position height="177" width="212" x="868" y="93"/>    
+  <interface id="4" corner="BOTTOM_RIGHT" language="java" name="gamingthelan.server.IListener" project="Gaming the LAN" 
+    file="/Gaming the LAN/src/gamingthelan/server/IListener.java" binary="false">    
+    <position x="317" y="231" width="-1" height="-1"/>    
     <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
-  </class>  
-  <interface id="9" corner="BOTTOM_RIGHT" language="java" name="gamingthelan.server.IConnectionCreator" 
+  </interface>  
+  <interface id="5" corner="BOTTOM_RIGHT" language="java" name="gamingthelan.server.IConnectionCreator" 
     project="Gaming the LAN" file="/Gaming the LAN/src/gamingthelan/server/IConnectionCreator.java" binary="false">    
-    <position height="-1" width="-1" x="1462" y="615"/>    
+    <position x="1538" y="142" width="-1" height="-1"/>    
     <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </interface>  
-  <interface id="10" corner="BOTTOM_RIGHT" language="java" name="gamingthelan.netutils.IConnection" 
+  <interface id="6" corner="BOTTOM_RIGHT" language="java" name="gamingthelan.netutils.IConnection" 
     project="Gaming the LAN" file="/Gaming the LAN/src/gamingthelan/netutils/IConnection.java" binary="false">    
-    <position height="81" width="143" x="522" y="368"/>    
+    <position x="1161" y="144" width="-1" height="-1"/>    
     <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </interface>  
-  <class id="11" corner="BOTTOM_RIGHT" language="java" name="gamingthelan.server.ConnectionCreator" 
-    project="Gaming the LAN" file="/Gaming the LAN/src/gamingthelan/server/ConnectionCreator.java" binary="false">    
-    <position height="-1" width="-1" x="1105" y="621"/>    
+  <class id="7" corner="BOTTOM_RIGHT" language="java" name="gamingthelan.client.ClientConnection" 
+    project="Gaming the LAN" file="/Gaming the LAN/src/gamingthelan/netutils/ClientConnection.java" binary="false">    
+    <position x="1164" y="441" width="-1" height="-1"/>    
     <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true"/>      
       <operations public="true" package="true" protected="true" private="true"/>    
     </display>  
   </class>  
+  <class id="8" corner="BOTTOM_RIGHT" language="java" name="gamingthelan.server.ConnectionCreator" 
+    project="Gaming the LAN" file="/Gaming the LAN/src/gamingthelan/server/ConnectionCreator.java" binary="false">    
+    <position x="1539" y="443" width="-1" height="-1"/>    
+    <display autosize="true" package="true" initial-value="false" signature="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true"/>      
+      <operations public="true" package="true" protected="true" private="true"/>    
+    </display>  
+  </class>  
+  <realization>    
+    <end type="SOURCE" nodeId="3"/>    
+    <end type="TARGET" nodeId="4"/>  
+  </realization>  
   <association>    
-    <end type="SOURCE" navigable="false">      
-      <attribute id="13" name="handler"/>      
-      <multiplicity id="14" minimum="0" maximum="1"/>    
+    <end type="SOURCE" nodeId="7" navigable="false">      
+      <attribute name="mediator"/>      
+      <multiplicity minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" navigable="true"/>    
+    <end type="TARGET" nodeId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <realization>    
+    <end type="SOURCE" nodeId="8"/>    
+    <end type="TARGET" nodeId="5"/>  
+  </realization>  
+  <dependency>    
+    <end type="SOURCE" nodeId="5"/>    
+    <end type="TARGET" nodeId="6"/>  
+  </dependency>  
   <association>    
-    <end type="SOURCE" navigable="false">      
-      <attribute id="16" name="mediator"/>      
-      <multiplicity id="17" minimum="0" maximum="1"/>    
+    <end type="SOURCE" nodeId="2" navigable="false">      
+      <attribute name="instance"/>      
+      <multiplicity minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" navigable="true"/>    
+    <end type="TARGET" nodeId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
+  <realization>    
+    <end type="SOURCE" nodeId="2"/>    
+    <end type="TARGET" nodeId="1"/>  
+  </realization>  
   <association>    
-    <end type="SOURCE" navigable="false">      
-      <attribute id="19" name="clients"/>      
-      <multiplicity id="20" minimum="0" maximum="2147483647"/>    
+    <end type="SOURCE" nodeId="2" navigable="false">      
+      <attribute name="clients"/>      
+      <multiplicity minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" navigable="true"/>    
+    <end type="TARGET" nodeId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <dependency>    
-    <end type="SOURCE"/>    
-    <end type="TARGET"/>  
-  </dependency>  
-  <realization>    
-    <end type="SOURCE"/>    
-    <end type="TARGET"/>  
-  </realization>  
-  <association>    
-    <end type="SOURCE" navigable="false">      
-      <attribute id="24" name="handler"/>      
-      <multiplicity id="25" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization>    
-    <end type="SOURCE"/>    
-    <end type="TARGET"/>  
-  </realization>  
-  <association>    
-    <end type="SOURCE" navigable="false">      
-      <attribute id="28" name="instance"/>      
-      <multiplicity id="29" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization>    
-    <end type="SOURCE"/>    
-    <end type="TARGET"/>  
-  </realization>  
-  <realization>    
-    <end type="SOURCE"/>    
-    <end type="TARGET"/>  
-  </realization>  
-  <association>    
-    <end type="SOURCE" navigable="false">      
-      <attribute id="33" name="mediator"/>      
-      <multiplicity id="34" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization>    
-    <end type="SOURCE"/>    
-    <end type="TARGET"/>  
-  </realization>  
-  <dependency>    
-    <end type="SOURCE"/>    
-    <end type="TARGET"/>  
+    <end type="SOURCE" nodeId="8"/>    
+    <end type="TARGET" nodeId="7"/>  
   </dependency>  
   <association>    
-    <end type="SOURCE" navigable="false">      
-      <attribute id="38" name="instance"/>      
-      <multiplicity id="39" minimum="0" maximum="1"/>    
+    <end type="SOURCE" nodeId="8" navigable="false">      
+      <attribute name="instance"/>      
+      <multiplicity minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" navigable="true"/>    
+    <end type="TARGET" nodeId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization>    
+    <end type="SOURCE" nodeId="7"/>    
+    <end type="TARGET" nodeId="6"/>  
+  </realization>  
+  <association>    
+    <end type="SOURCE" nodeId="3" navigable="false">      
+      <attribute name="instance"/>      
+      <multiplicity minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" nodeId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association>    
-    <end type="SOURCE" navigable="false">      
-      <attribute id="41" name="instance"/>      
-      <multiplicity id="42" minimum="0" maximum="1"/>    
+    <end type="SOURCE" nodeId="3" navigable="false">      
+      <attribute name="mediator"/>      
+      <multiplicity minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" navigable="true"/>    
+    <end type="TARGET" nodeId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" package="true" initial-value="false" signature="true" visibility="true">    

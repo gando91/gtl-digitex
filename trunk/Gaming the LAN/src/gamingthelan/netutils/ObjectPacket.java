@@ -45,8 +45,6 @@ public class ObjectPacket implements IPacket {
 
 	public void setContent(Object content) {
 		this.content = content;
-	}
-
-	
+	}	
 	
 }
