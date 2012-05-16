@@ -31,7 +31,8 @@ public class AppPositioning extends JFrame{
 		ap.setLayout(new BorderLayout());
 		
 		JMenuBar bar = new JMenuBar();
-		bar.add(new ShipMenu(ps));
+		final ShipMenu menu = new ShipMenu(ps);
+		bar.add(menu);
 		ap.setJMenuBar(bar);
 		
 		ap.add(mp);
@@ -40,6 +41,8 @@ public class AppPositioning extends JFrame{
 		ready.addKeyListener(new ShipController(matrixModel, ps));
 		ap.add(ready, BorderLayout.PAGE_END);
 		JButton reset=new JButton("RESET");
+		
+		
 		reset.addKeyListener(new ShipController(matrixModel, ps));
 		ap.add(reset, BorderLayout.PAGE_START);
 		
@@ -48,10 +51,16 @@ public class AppPositioning extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				System.out.println("ho resettato la matrice");
+				for (int a = 0; a < menu.getShips().length; a++) {
+					System.out.println(menu.getShips()[a].getShipAmount());
+					menu.getShips()[a].resetShipAmount();
+				}
 				for (int i = 0; i < matrixModel.getRows(); i++) {
 					for (int j = 0; j < matrixModel.getCols(); j++) {
 						
 						matrixModel.setstatus(i, j, Status.VIRGIN);
+						
+						
 					}
 				}
 				

@@ -19,16 +19,11 @@ public class ShipController extends KeyAdapter implements MouseListener, MouseMo
 	private MatrixModel model;
 	private ProxyShip proxyship;
 	
-	private IPosition position;
-	private VerticalPosition vp= new VerticalPosition();
-	private HorizontalPosition hp= new HorizontalPosition();
-	
 	public  ShipController(MatrixModel model, ProxyShip proxyship) {
 		super();
 		this.model=model;
 		this.proxyship=proxyship;
-		position = vp;
-	 
+	
 	}
 
 	@Override
@@ -46,7 +41,7 @@ public class ShipController extends KeyAdapter implements MouseListener, MouseMo
 		if(proxyship.isRotated()==false){
 			if(proxyship.getShipAmount() < proxyship.getMaxAmount()){
 				proxyship.setShipAmount();
-				proxyship.setShipAmount();
+				
 					for (int i = 0; i < proxyship.getShipLength(); i++) {
 						if(model.getStatusmatrix()[nrow + i][ncol] == Status.SHIP)
 							counter ++;

@@ -11,14 +11,20 @@ public class ShipMenu extends JMenu{
 	private static final long serialVersionUID = 1L;
 	
 	private ProxyShip proxyship;
+	private IShip[] ships = new IShip[4];
 	private static AircraftCarrier aircraftcarrier=new AircraftCarrier();
 	private static Cruiser Cruiser=new Cruiser();
 	private static TorpedoBoat torpedoboat=new TorpedoBoat();
 	private static Submarine Submarine=new Submarine();
 	
+	
 	public ShipMenu(ProxyShip proxyship){
 		super("Ships available");
 		
+		ships[0] = this.aircraftcarrier;
+		ships[1] = this.Cruiser;
+		ships[2] = this.torpedoboat;
+		ships[3] = this.Submarine;
 		this.proxyship=proxyship;
 		
 		JMenuItem aircraft_carrier=new JMenuItem("aircraft_carrier");
@@ -79,6 +85,10 @@ public class ShipMenu extends JMenu{
 
 	public static AircraftCarrier getAircraftcarrier() {
 		return aircraftcarrier;
+	}
+	
+	public IShip[] getShips(){
+		return ships;
 	}
 
 	public static Cruiser getCruiser() {
