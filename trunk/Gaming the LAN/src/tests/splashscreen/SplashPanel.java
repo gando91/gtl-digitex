@@ -7,7 +7,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import tests.connection.AppConnection;
@@ -19,7 +18,11 @@ public class SplashPanel extends JPanel implements KeyListener{
 	private static final int StringX = 40;
 	private static final int StringY = 100;
 	private static final int StringStep = 50;
+	
+	//Immagini
 	private ImageIcon sfondo=new ImageIcon(getClass().getResource("BattleshipInitial.png"));
+	private ImageIcon missile=new ImageIcon(getClass().getResource("missile.png"));
+	
 	private String play="PLAY";
 	private String info="HOW TO PLAY";
 	private String credits="CREDITS";
@@ -52,17 +55,19 @@ public class SplashPanel extends JPanel implements KeyListener{
 		
 		for (int i = 0; i < vector.length; i++) {
 			if(focus == i){
-				tmp = "> "+vector[i];
+				tmp = "    " + vector[i];
 				
-				g.setFont(new Font("Homoarakhn", 0, 30));
-				g.setColor(Color.GRAY);
-				g.drawString(tmp, StringX-3, StringY - 3 + StringStep * i);
-				g.setColor(Color.CYAN);
+				g.setFont(new Font("Homoarakhn", Font.BOLD, 30));
+				g.setColor(Color.RED);
+				g.drawString(tmp, StringX-2, StringY - 2 + StringStep * i);
+				g.setColor(Color.ORANGE);
+				
+				g.drawImage(missile.getImage(), StringX, StringY + StringStep*i - 20, null);
 			}
 			else{
 				tmp = vector[i];
-				g.setColor(Color.WHITE);
-				g.setFont(new Font("Homoarakhn", 0, 25));
+				g.setColor(Color.CYAN);
+				g.setFont(new Font("Homoarakhn", Font.BOLD, 25));
 			}
 			g.drawString(tmp, StringX, StringY + StringStep*i);
 		}
