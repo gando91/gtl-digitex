@@ -34,6 +34,8 @@ public class TestPanel extends JPanel{
 		
 		final JTextField nickName = new JTextField("NickName Here");
 		
+		final JTextField receiver = new JTextField("Receiver Here");
+		
 		connect.setBackground(Color.GREEN);
 		JButton sendInt = new JButton("Send Int");
 		JButton sendString = new JButton("Send String");
@@ -112,6 +114,8 @@ public class TestPanel extends JPanel{
 				//Anche qui, istanziamo un pacchetto e successivamente gli assegnamo il contenuto, questa volta un numero intero
 				ObjectPacket packet = new ObjectPacket(nickName.getText(), new LinkedList<String>());
 				
+				packet.addReceiver(receiver.getText());
+				
 				Integer testo = 0;
 				
 				try {
@@ -134,11 +138,11 @@ public class TestPanel extends JPanel{
 		});
 		
 		
-		this.setLayout(new GridLayout(3,2));
+		this.setLayout(new GridLayout(2,3));
 		this.add(nickName);
-		this.add(new JLabel());
 		this.add(ipServer);
 		this.add(connect);
+		this.add(receiver);
 		this.add(sendInt);
 		this.add(sendString);
 	}
