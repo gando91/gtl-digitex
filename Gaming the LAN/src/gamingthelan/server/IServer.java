@@ -49,7 +49,7 @@ public interface IServer {
 	 * @param connessione target client connection
 	 * 
 	 * **/
-	public void sendMessage(IPacket pacchetto, IConnection connessione); //FIXME : Praticamente inutilizzabile dal momento che la singola connection che dovrebbe usarlo nono ha nessun riferimento alla connessione target. Bisogna inventare qualcosa (un ID magari) per identificare una connessione senza tirarci dierteo tutto l'oggetto (che tra parentesi ha poco senso trasmettere, e non è serializzabile)
+	public void sendMessage(IPacket pacchetto); //FIXME : Praticamente inutilizzabile dal momento che la singola connection che dovrebbe usarlo nono ha nessun riferimento alla connessione target. Bisogna inventare qualcosa (un ID magari) per identificare una connessione senza tirarci dierteo tutto l'oggetto (che tra parentesi ha poco senso trasmettere, e non è serializzabile)
 	
 	/**add to the bannned list target address and close his connection
 	 * 

@@ -17,5 +17,4 @@ public interface IPacket extends Serializable {
 	
 	public String getSender();
 	
-	
 }

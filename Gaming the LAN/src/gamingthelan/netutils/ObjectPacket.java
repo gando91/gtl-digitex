@@ -28,6 +28,10 @@ public class ObjectPacket implements IPacket {
 		this.receiver = receiver;
 		
 	}
+	
+	public void addReceiver(String r){
+		receiver.add(r);
+	}
 
 	@Override
 	public List<String> getReceiver() {

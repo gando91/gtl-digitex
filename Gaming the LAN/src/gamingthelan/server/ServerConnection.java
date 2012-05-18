@@ -92,6 +92,10 @@ public class ServerConnection implements IConnection, Runnable{
 			//TODO : E' poco carino sopprimere un'eccezione. Tuttavia, quando arrivo quì può essere successo di tutto. La connessione è persa. Forse non importa a nessuno di raccogliere questa eccezione.
 		}		
 	}
+	
+	public String getNickName(){
+		return nickname;
+	}
 
 	@Override
 	public void addToPacketQueue(IPacket packet) throws IOException {
