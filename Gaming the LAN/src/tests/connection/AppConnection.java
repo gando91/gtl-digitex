@@ -25,14 +25,5 @@ public class AppConnection extends JFrame {
 		
 	}
 	
-	public static void main(String[] args) {
-		
-		ConnectionPanel cp=new ConnectionPanel();
-		AppConnection ac=new AppConnection(cp);
-		
-		
-	}
-	
-	
 
 }

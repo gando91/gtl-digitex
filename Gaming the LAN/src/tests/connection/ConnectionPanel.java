@@ -1,5 +1,7 @@
 package tests.connection;
 
+import gamingthelan.client.NickPacket;
+
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -13,25 +15,26 @@ import javax.swing.JTextField;
 
 public class ConnectionPanel extends JPanel{
 
+
 	private static final long serialVersionUID = 1L;
 	
+	JTextField nickname=new JTextField();
+	JTextField ip_server=new JTextField();
+	JTextField port=new JTextField();
+	
 	public ConnectionPanel(){
-		JTextField nickname=new JTextField();
-		JTextField ip_server=new JTextField();
-		JTextField port=new JTextField();
+
 		
 		JButton connetti=new JButton("CONNECT");
-		JButton esci=new JButton("EXIT");
+		JButton esci=new JButton("RESET");
 		
 		esci.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.exit(1);
+				reset();
 			}
 		});
-		
-		
 		
 		port.setSize(10, 10);
 		
@@ -65,5 +68,10 @@ public class ConnectionPanel extends JPanel{
 		setVisible(true);
 		
 	}
-
+	
+	private void reset(){
+		nickname.setText(null);
+		ip_server.setText(null);
+		port.setText(null);
+	}
 }

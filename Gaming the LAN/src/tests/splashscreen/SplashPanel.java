@@ -3,20 +3,35 @@ package tests.splashscreen;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class SplashPanel extends JPanel {
+import tests.connection.AppConnection;
+import tests.connection.ConnectionPanel;
+
+public class SplashPanel extends JPanel implements KeyListener{
 
 	private static final long serialVersionUID = 1L;
+	private static final int StringX = 40;
+	private static final int StringY = 100;
+	private static final int StringStep = 50;
 	private ImageIcon sfondo=new ImageIcon(getClass().getResource("BattleshipInitial.png"));
 	private String play="PLAY";
 	private String info="HOW TO PLAY";
 	private String credits="CREDITS";
 	private String exit="EXIT";
+	private String[] vector=new String[4];
+	private int focus=0;
 	
 	public SplashPanel(){
+		vector[0]=play;
+		vector[1]=info;
+		vector[2]=credits;
+		vector[3]=exit;
 		
 		setBackground(Color.BLACK);
 		setVisible(true);
@@ -33,11 +48,57 @@ public class SplashPanel extends JPanel {
 		
 		super.paint(g);
 		
-		g.setColor(Color.WHITE);
-		g.setFont(new Font("Homoarakhn", 0, 30));
-		g.drawString(play, 40, 100);
-		g.drawString(info, 40, 150);
-		g.drawString(credits, 40, 200);
-		g.drawString(exit, 40, 250);
+		String tmp;
+		
+		for (int i = 0; i < vector.length; i++) {
+			if(focus == i){
+				tmp = "> "+vector[i];
+				
+				g.setFont(new Font("Homoarakhn", 0, 30));
+				g.setColor(Color.GRAY);
+				g.drawString(tmp, StringX-3, StringY - 3 + StringStep * i);
+				g.setColor(Color.CYAN);
+			}
+			else{
+				tmp = vector[i];
+				g.setColor(Color.WHITE);
+				g.setFont(new Font("Homoarakhn", 0, 25));
+			}
+			g.drawString(tmp, StringX, StringY + StringStep*i);
+		}
+
+	}
+	@Override
+	public void keyPressed(KeyEvent e) {
+		if(e.getKeyCode()==KeyEvent.VK_DOWN && focus < 3){
+			focus++;
+			repaint();
+		
+		}
+		if(e.getKeyCode()==KeyEvent.VK_UP && focus > 0){
+			focus--;
+			repaint();
+		}
+		if(e.getKeyCode()==KeyEvent.VK_ENTER){
+			
+			if(focus==0){
+				new AppConnection(new ConnectionPanel());
+			}
+			if(focus == 3){
+				System.exit(0);
+			}
+			
+		}
+		
+	}
+	@Override
+	public void keyReleased(KeyEvent e) {
+	
+		
+	}
+	@Override
+	public void keyTyped(KeyEvent e) {
+		
+		
 	}
 }
