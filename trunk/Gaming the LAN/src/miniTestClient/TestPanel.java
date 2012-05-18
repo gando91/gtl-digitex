@@ -92,6 +92,9 @@ public class TestPanel extends JPanel{
 				//Istanziamo un oggetto della classe ObjectPacket, un tipo di pacchetto contenente un generico oggetto
 				//Essendo un'applicazione di test, abbiamo scelto di mandare il pacchetto a tutti i client connessi, quindi non ci preoccupiamo del destinatario
 				ObjectPacket packet = new ObjectPacket(nickName.getText(), new LinkedList<String>());
+				
+				packet.addReceiver(receiver.getText());
+				
 				//Come contenuto scegliamo una stringa di caratteri, che quindi assegnamo al nostro pacchetto tramite l'apposito metodo
 				String testo = JOptionPane.showInputDialog("Inserisci una stringa : ", "Testo pacchetto");
 				packet.setContent( testo ); 
