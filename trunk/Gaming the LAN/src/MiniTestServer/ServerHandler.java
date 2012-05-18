@@ -1,10 +1,8 @@
 package MiniTestServer;
 
-import java.io.IOException;
-
 import gamingthelan.netutils.ConnectionHandler;
-import gamingthelan.netutils.ObjectPacket;
 import gamingthelan.netutils.IPacket;
+import gamingthelan.netutils.ObjectPacket;
 import gamingthelan.server.Server;
 
 public class ServerHandler implements ConnectionHandler {
@@ -17,12 +15,8 @@ public class ServerHandler implements ConnectionHandler {
 		
 		System.out.println(p.getContent().toString());
 		
-		try {
-			//Per semplicità, in questa applicazione di test, mandiamo il pacchetto ricevuto a tutti i client connessi
-			Server.getInstance().broadcastMessage(p);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		//Per semplicità, in questa applicazione di test, mandiamo il pacchetto ricevuto a tutti i client connessi
+		Server.getInstance().sendMessage(p);
 	}
 
 }
