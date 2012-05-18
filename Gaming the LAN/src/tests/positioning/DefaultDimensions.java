@@ -2,7 +2,7 @@ package tests.positioning;
 
 public enum DefaultDimensions {
 
-	DEFAULT_HEIGHT(752),
+	DEFAULT_HEIGHT(732),
 	DEFAULT_WIDTH(750),
 	AIRCRAFT_CARRIER_LENGTH(5),
 	AIRCRAFT_CARRIER_MAXNUM(1),
