@@ -1,4 +1,6 @@
-package gamingthelan.netutils;
+package gamingthelan.client;
+
+import gamingthelan.netutils.IPacket;
 
 import java.util.List;
 
@@ -10,9 +12,8 @@ public class NickPacket implements IPacket{
 	private List<String> receiver;	
 	private String nickname;
 	
-	public NickPacket(IConnection sender, List<String> receiver){
-		this.sender = sender.toString();
-		this.receiver = receiver;
+	public NickPacket(String nickName){
+		this.nickname = nickName;
 	}
 	
 	public void setNickName(String nickname){

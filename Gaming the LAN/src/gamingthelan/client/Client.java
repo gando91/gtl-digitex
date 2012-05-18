@@ -8,10 +8,10 @@ import java.net.SocketAddress;
 import gamingthelan.netutils.ConnectionHandler;
 import gamingthelan.netutils.IConnection;
 import gamingthelan.netutils.IPacket;
-import gamingthelan.netutils.NickPacket;
 
 public class Client implements IClient{
 	
+	private String nickName;
 	private String serverAddress;
 	private int porta = 8080;
 	private int connectionTimeOut = 500;
@@ -22,26 +22,30 @@ public class Client implements IClient{
 	
 	/* ALCUNI COSTRUTTORI, VEDEREMO SE TENERLI TUTTI I SE RIMUOVERNE QUALCUNO */
 	
-	public Client(String serverAddress, int porta, int connectionTimeOut, ConnectionHandler handler) {
+	public Client(String nickName, String serverAddress, int porta, int connectionTimeOut, ConnectionHandler handler) {
 		this.serverAddress = serverAddress;
 		this.handler = handler;
 		this.connectionTimeOut = connectionTimeOut;
 		this.porta = porta;
+		this.nickName = nickName;
 	}
 	
-	public Client(String serverAddress, ConnectionHandler handler) {
+	public Client(String nickName, String serverAddress, ConnectionHandler handler) {
 		this.serverAddress = serverAddress;
 		this.handler = handler;
+		this.nickName = nickName;
 	}
 	
-	public Client(String serverAddress) {
+	public Client(String nickName, String serverAddress) {
 		this.serverAddress = serverAddress;
+		this.nickName = nickName;
 	}
 	
-	public Client(String serverAddress,  int porta, int connectionTimeOut) {
+	public Client(String nickName, String serverAddress,  int porta, int connectionTimeOut) {
 		this.serverAddress = serverAddress;
 		this.connectionTimeOut = connectionTimeOut;
 		this.porta = porta;
+		this.nickName = nickName;
 	}
 	
 	/* ---------------------------- */
@@ -54,12 +58,7 @@ public class Client implements IClient{
 		
 		mySocket.connect(socketAddress, connectionTimeOut);
 
-		myConnection = new ClientConnection(mySocket, handler);
-		
-		NickPacket np = new NickPacket(null,null);
-		//TODO: finestra inserimento nickname
-		np.setNickName(null);
-		myConnection.sendPacket(np);
+		myConnection = new ClientConnection(mySocket, handler, nickName);
 		
 		connectionThread = new Thread(myConnection);
 		connectionThread.start();

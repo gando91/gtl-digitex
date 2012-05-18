@@ -23,8 +23,8 @@ public class ObjectPacket implements IPacket {
 	
 	private Object content;
 	
-	public ObjectPacket(IConnection sender, List<String> receiver){
-		this.sender = sender.toString();
+	public ObjectPacket(String sender, List<String> receiver){
+		this.sender = sender;
 		this.receiver = receiver;
 		
 	}

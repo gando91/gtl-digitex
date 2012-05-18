@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.LinkedList;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -29,9 +30,10 @@ public class TestPanel extends JPanel{
 	
 	public TestPanel(){
 		
-		final JTextField ipServer = new JTextField();
-		ipServer.setText("127.0.0.1");
-
+		final JTextField ipServer = new JTextField("127.0.0.1");
+		
+		final JTextField nickName = new JTextField("NickName Here");
+		
 		connect.setBackground(Color.GREEN);
 		JButton sendInt = new JButton("Send Int");
 		JButton sendString = new JButton("Send String");
@@ -45,7 +47,7 @@ public class TestPanel extends JPanel{
 				if(pressed == false){
 					
 					//Cominciamo creando un nuovo oggetto client, indicando l'ip del server, la porta di comunicazione e un tempo di timeout
-					myClient = new Client(ipServer.getText(), 8080, 200);
+					myClient = new Client(nickName.getText(), ipServer.getText(), 8080, 200);
 					//Creiamo l'oggetto che si occuperà di gestire i pacchetti che arrivano dal server e lo assegnamo al nostro client
 					TestHandler h = new TestHandler(myClient);
 					myClient.setHandler(h);
@@ -87,7 +89,7 @@ public class TestPanel extends JPanel{
 				
 				//Istanziamo un oggetto della classe ObjectPacket, un tipo di pacchetto contenente un generico oggetto
 				//Essendo un'applicazione di test, abbiamo scelto di mandare il pacchetto a tutti i client connessi, quindi non ci preoccupiamo del destinatario
-				ObjectPacket packet = new ObjectPacket(myClient.getConnection(), new LinkedList<String>());
+				ObjectPacket packet = new ObjectPacket(nickName.getText(), new LinkedList<String>());
 				//Come contenuto scegliamo una stringa di caratteri, che quindi assegnamo al nostro pacchetto tramite l'apposito metodo
 				String testo = JOptionPane.showInputDialog("Inserisci una stringa : ", "Testo pacchetto");
 				packet.setContent( testo ); 
@@ -108,7 +110,7 @@ public class TestPanel extends JPanel{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				//Anche qui, istanziamo un pacchetto e successivamente gli assegnamo il contenuto, questa volta un numero intero
-				ObjectPacket packet = new ObjectPacket(myClient.getConnection(), new LinkedList<String>());
+				ObjectPacket packet = new ObjectPacket(nickName.getText(), new LinkedList<String>());
 				
 				Integer testo = 0;
 				
@@ -132,7 +134,9 @@ public class TestPanel extends JPanel{
 		});
 		
 		
-		this.setLayout(new GridLayout(2,2));
+		this.setLayout(new GridLayout(3,2));
+		this.add(nickName);
+		this.add(new JLabel());
 		this.add(ipServer);
 		this.add(connect);
 		this.add(sendInt);
