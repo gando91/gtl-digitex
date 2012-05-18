@@ -15,7 +15,7 @@ public class SplashFrame extends JFrame {
 		setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
-		
+		this.addKeyListener(panel);
 		add(panel);
 		
 		setVisible(true);
