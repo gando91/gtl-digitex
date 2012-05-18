@@ -7,6 +7,7 @@ import gamingthelan.netutils.IPacket;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -58,13 +59,27 @@ public class Server implements IServer {
 	}
 
 	@Override
-	public void sendMessage(IPacket pacchetto, IConnection connessione) {
+	public void sendMessage(IPacket pacchetto) {
 		
-		try {
-			connessione.sendPacket(pacchetto);
-		} catch (IOException e) {
-			System.err.println("Errore di I/O su " + connessione.toString());
+		for (Iterator iterator = pacchetto.getReceiver().iterator(); iterator.hasNext();) {
+			
+			String nickName = (String) iterator.next();		
+			
+			for (Iterator iterator2 = Server.getInstance().clients.iterator(); iterator2.hasNext();) {
+				
+				ServerConnection c = (ServerConnection) iterator2.next();	
+				
+				if(c.getNickName().equals(nickName)){
+					try {
+						c.sendPacket(pacchetto);
+					} catch (IOException e) {
+						System.err.println("Errore di I/O su " + c.toString());
+					}
+				}
+				
+			}
 		}		
+				
 	}
 
 	@Override
