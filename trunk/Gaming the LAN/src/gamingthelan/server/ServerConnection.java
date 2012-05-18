@@ -5,10 +5,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import gamingthelan.client.NickPacket;
 import gamingthelan.netutils.ConnectionHandler;
 import gamingthelan.netutils.IConnection;
 import gamingthelan.netutils.IPacket;
-import gamingthelan.netutils.NickPacket;
 
 public class ServerConnection implements IConnection, Runnable{
 	
@@ -64,11 +64,6 @@ public class ServerConnection implements IConnection, Runnable{
 			
 			try {
 				
-				/* Qui potrei usufruire di un flag che se a 0 si aspetta il pacchetto dedicato al nickname. 
-				 * Il pacchetto potrebbe chiamarsi NickPacket. L'attributo del NickPacket potrebbe essere
-				 * semplicemente una stringa che identifica il nickname. Oppure potrei usare un ObjectPacket
-				 * avente come attributo una Stringa. */
-				
 				received = (IPacket) inStream.readObject();
 				
 				if(received instanceof NickPacket){
@@ -76,8 +71,6 @@ public class ServerConnection implements IConnection, Runnable{
 				}
 				else{
 					handler.onReceivedPacket(received);
-					/*TODO: nell'handler bisogna mettere un metodo che, quando arriva il pacchetto, controlla quale quale connessione ha lo stesso nickname 
-					  del destinatario del pacchetto */
 				}				
 				
 			} catch (IOException e) {

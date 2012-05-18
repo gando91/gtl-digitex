@@ -23,11 +23,11 @@ public class TestHandler extends ClientConnectionHandler {
 		
 		if ( p.getContent() instanceof java.lang.String) {
 			String s = (String)p.getContent();
-			JOptionPane.showMessageDialog(null, s, "Pacchetto stringa ricevuto", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, p.getSender() + " : " + s, "Pacchetto stringa ricevuto", JOptionPane.INFORMATION_MESSAGE);
 		} else 
 		{
 			Integer s = (Integer)p.getContent();
-			JOptionPane.showMessageDialog(null, s.toString(), "Pacchetto 'Integer' ricevuto", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null,  p.getSender() + " : " + s.toString(), "Pacchetto 'Integer' ricevuto", JOptionPane.INFORMATION_MESSAGE);
 		}
 		
 	}

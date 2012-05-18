@@ -8,8 +8,6 @@ import java.net.Socket;
 import gamingthelan.netutils.ConnectionHandler;
 import gamingthelan.netutils.IConnection;
 import gamingthelan.netutils.IPacket;
-import gamingthelan.server.IServer;
-import gamingthelan.server.Server;
 
 public class ClientConnection implements IConnection, Runnable {
 
@@ -20,8 +18,9 @@ public class ClientConnection implements IConnection, Runnable {
     private ObjectOutputStream outStream;    
     private ConnectionHandler handler;    
     private boolean connected = true;    
+	private String nickName;
 	
-	public ClientConnection(Socket socket, ConnectionHandler handler) {
+	public ClientConnection(Socket socket, ConnectionHandler handler, String nickName) {
 		
 		this.socket = socket;
 		
@@ -35,6 +34,7 @@ public class ClientConnection implements IConnection, Runnable {
 		}
 		
 		this.handler = handler;		
+		this.nickName = nickName;
 	}
 	
 	public Socket getSocket() {
@@ -55,6 +55,13 @@ public class ClientConnection implements IConnection, Runnable {
 	 */
 	@Override
 	public void run() {
+		
+		NickPacket nick = new NickPacket(nickName);
+		try {
+			sendPacket(nick);
+		} catch (IOException e1) {
+			//TODO : Gestire questa eccezione di libreria
+		}
 		
 		IPacket received = null;
 		
