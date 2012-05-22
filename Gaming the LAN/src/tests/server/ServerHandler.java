@@ -1,4 +1,4 @@
-package tests.connection;
+package tests.server;
 
 import gamingthelan.netutils.ConnectionHandler;
 import gamingthelan.netutils.IPacket;
@@ -12,7 +12,7 @@ public class ServerHandler implements ConnectionHandler {
 	 * server nel momento in cui arriva un pacchetto */
 	@Override
 	public void onReceivedPacket(IPacket packet) {
-		System.out.println("Ciao");
+		
 		ObjectPacket p = (ObjectPacket)packet;
 		
 		System.out.println(p.getContent().toString());
@@ -23,8 +23,7 @@ public class ServerHandler implements ConnectionHandler {
 
 	@Override
 	public void onDisconnectedClient(DisconnectionPacket packet) {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub		
 	}
 
 }

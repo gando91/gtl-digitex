@@ -9,8 +9,8 @@ import java.awt.event.KeyListener;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-import tests.connection.AppConnection;
-import tests.connection.ConnectionPanel;
+import tests.client.AppConnection;
+import tests.client.ConnectionPanel;
 
 public class SplashPanel extends JPanel implements KeyListener{
 
