@@ -23,19 +23,11 @@ public class SplashPanel extends JPanel implements KeyListener{
 	private ImageIcon sfondo=new ImageIcon(getClass().getResource("BattleshipInitial.png"));
 	private ImageIcon missile=new ImageIcon(getClass().getResource("missile.png"));
 	
-	private String play="PLAY";
-	private String info="HOW TO PLAY";
-	private String credits="CREDITS";
-	private String exit="EXIT";
-	private String[] vector=new String[4];
+	private String[] vector={new String("PLAY"), new String("HOW TO PLAY"), new String("CREDITS"), new String("EXIT")};
 	private int focus=0;
 	
 	public SplashPanel(){
-		vector[0]=play;
-		vector[1]=info;
-		vector[2]=credits;
-		vector[3]=exit;
-		
+
 		setBackground(Color.BLACK);
 		setVisible(true);
 	}
@@ -51,25 +43,26 @@ public class SplashPanel extends JPanel implements KeyListener{
 		
 		super.paint(g);
 		
-		String tmp;
+		int tmpOffset;
 		
 		for (int i = 0; i < vector.length; i++) {
 			if(focus == i){
-				tmp = "    " + vector[i];
+				
+				tmpOffset = StringX + missile.getIconWidth() + 4;
 				
 				g.setFont(new Font("Homoarakhn", Font.BOLD, 30));
 				g.setColor(Color.RED);
-				g.drawString(tmp, StringX-2, StringY - 2 + StringStep * i);
+				g.drawString(vector[i], tmpOffset-2, StringY - 2 + StringStep * i);
 				g.setColor(Color.ORANGE);
 				
 				g.drawImage(missile.getImage(), StringX, StringY + StringStep*i - 20, null);
 			}
 			else{
-				tmp = vector[i];
+				tmpOffset = StringX;
 				g.setColor(Color.CYAN);
 				g.setFont(new Font("Homoarakhn", Font.BOLD, 25));
 			}
-			g.drawString(tmp, StringX, StringY + StringStep*i);
+			g.drawString(vector[i], tmpOffset, StringY + StringStep*i);
 		}
 
 	}
