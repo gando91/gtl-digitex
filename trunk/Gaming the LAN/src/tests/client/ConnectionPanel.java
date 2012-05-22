@@ -1,16 +1,11 @@
-package tests.connection;
+package tests.client;
 
 import gamingthelan.client.Client;
-import gamingthelan.netutils.ObjectPacket;
-
 import java.awt.Color;
 import java.awt.GridLayout;
-import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.LinkedList;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -18,12 +13,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import miniTestClient.TestHandler;
-
 public class ConnectionPanel extends JPanel{
 
 
 	private static final long serialVersionUID = 1L;
+	
 	private Client myClient;
 	
 	JTextField nickname=new JTextField();
@@ -83,35 +77,43 @@ public class ConnectionPanel extends JPanel{
 	}
 	
 	private void connect(){
-		//Cominciamo creando un nuovo oggetto client, indicando l'ip del server, la porta di comunicazione e un tempo di timeout
-		myClient = new Client(nickname.getText(), ip_server.getText(), Integer.parseInt(port.getText()), 200);
-		//Creiamo l'oggetto che si occuperà di gestire i pacchetti che arrivano dal server e lo assegnamo al nostro client
-		TestHandler h = new TestHandler(myClient);
-		myClient.setHandler(h);
-	
+		
+		if(nickname.getText().equals("")||ip_server.getText().equals("")||port.getText().equals("")){
+			JOptionPane.showMessageDialog(null, "Errore nell'inserimento dei parametri.", "Info", JOptionPane.INFORMATION_MESSAGE);
+		}
+		
+		else{		
+			//Cominciamo creando un nuovo oggetto client, indicando l'ip del server, la porta di comunicazione e un tempo di timeout
+			myClient = new Client(nickname.getText(), ip_server.getText(), Integer.parseInt(port.getText()), 200);
 			
-		//Utilizziamo il metodo connect della classe client per connetterci al server
-		try {
-			myClient.connect();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//Creiamo l'oggetto che si occuperà di gestire i pacchetti che arrivano dal server e lo assegnamo al nostro client
+			PacketHandler h = new PacketHandler(myClient);
+			myClient.setHandler(h);	
+				
+			//Utilizziamo il metodo connect della classe client per connetterci al server
+			try {
+				myClient.connect();
+			} catch (IOException e) {
+				JOptionPane.showMessageDialog(null, "Errore: tentativo di connessione fallito.", "Info", JOptionPane.INFORMATION_MESSAGE);
+			}
+			
+			JOptionPane.showMessageDialog(null, "Connessione avvenuta con successo!", "Info", JOptionPane.INFORMATION_MESSAGE);
+			
+			WaitingRoomPanel wrp = new WaitingRoomPanel(h);
+			AppWaitingRoom awr = new AppWaitingRoom(wrp);			
+			
+			/*LinkedList<String> r = new LinkedList<String>();
+			ObjectPacket p = new ObjectPacket(nickname.getText(), r);
+			
+			p.setContent("messaggio mandato");
+			
+			try {
+				myClient.sendPacket(p);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}*/
 		}
-		
-		JOptionPane.showMessageDialog(null, "Connessione avvenuta con successo !", "Info", JOptionPane.INFORMATION_MESSAGE);
-		
-		LinkedList<String> r = new LinkedList<String>();
-		ObjectPacket p = new ObjectPacket(nickname.getText(), r);
-		
-		p.setContent("messaggio mandato");
-		
-		try {
-			myClient.sendPacket(p);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 	}
 	
 	private void reset(){

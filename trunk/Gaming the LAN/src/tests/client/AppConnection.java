@@ -1,12 +1,10 @@
-package tests.connection;
+package tests.client;
 
 import javax.swing.JFrame;
 
 public class AppConnection extends JFrame {
 
-	private static final long serialVersionUID = 1L;
-	
-	
+	private static final long serialVersionUID = 1L;	
 	
 	public AppConnection(ConnectionPanel cp){
 		
@@ -15,7 +13,6 @@ public class AppConnection extends JFrame {
 		setResizable(false);
 		add(cp);
 		setVisible(true);
-	}
-	
+	}	
 
 }

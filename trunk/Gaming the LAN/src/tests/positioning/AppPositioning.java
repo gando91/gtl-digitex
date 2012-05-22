@@ -74,6 +74,7 @@ public class AppPositioning extends JFrame{
 		setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 		setTitle("Ship Positioning");
 		setResizable(false);
+		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
 	
