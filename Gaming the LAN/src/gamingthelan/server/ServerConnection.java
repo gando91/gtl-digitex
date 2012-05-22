@@ -5,10 +5,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import gamingthelan.client.NickPacket;
 import gamingthelan.netutils.ConnectionHandler;
 import gamingthelan.netutils.IConnection;
 import gamingthelan.netutils.IPacket;
+import gamingthelan.netutils.servicepackets.CheckPacket;
+import gamingthelan.netutils.servicepackets.DisconnectionPacket;
+import gamingthelan.netutils.servicepackets.NickPacket;
 
 public class ServerConnection implements IConnection, Runnable{
 	
@@ -66,10 +68,14 @@ public class ServerConnection implements IConnection, Runnable{
 				
 				received = (IPacket) inStream.readObject();
 				
-				if(received instanceof NickPacket){
+				if ( received instanceof NickPacket ){
 					this.nickname = ((NickPacket) received).getNickName();
 				}
-				else{
+				else if (received instanceof CheckPacket)
+				{
+					mediator.wakeUp();
+				} 
+				else {
 					handler.onReceivedPacket(received);
 				}				
 				
@@ -80,13 +86,26 @@ public class ServerConnection implements IConnection, Runnable{
 			}			
 		}
 		
+		closeConnection();		
+	}
+
+	private void closeConnection() {
 		try {
 			
+			
 			mediator.rmConnection(this);
+			
+			try {
+				mediator.broadcastMessage(new DisconnectionPacket(nickname));
+			} catch (IOException e) {
+				// TODO : se quando mi disconnetto non riesco a dire agli altri che l'ho fatto, cosa succede?
+				e.printStackTrace();
+			}
 			
 			outStream.close();
 			inStream.close();
 			socket.close();
+			
 			
 		} catch (IOException e) {
 			//TODO : E' poco carino sopprimere un'eccezione. 
@@ -94,7 +113,7 @@ public class ServerConnection implements IConnection, Runnable{
 			 * Tuttavia, quando arrivo quì può essere successo di tutto. La connessione è persa. 
 			 * Forse non importa a nessuno di raccogliere questa eccezione.
 			 */
-		}		
+		}
 	}
 	
 	public String getNickName(){
@@ -117,8 +136,10 @@ public class ServerConnection implements IConnection, Runnable{
 	}
 	
 	@Override
-	public void disconnect() {
+	public void disconnect(){
+		
 		this.connected = false;
+		closeConnection();
 	}
 
 }
