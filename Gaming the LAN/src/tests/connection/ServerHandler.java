@@ -11,6 +11,7 @@ public class ServerHandler implements ConnectionHandler {
 	 * server nel momento in cui arriva un pacchetto */
 	@Override
 	public void onReceivedPacket(IPacket packet) {
+		System.out.println("Ciao");
 		ObjectPacket p = (ObjectPacket)packet;
 		
 		System.out.println(p.getContent().toString());

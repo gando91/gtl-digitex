@@ -15,6 +15,7 @@ import java.util.LinkedList;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -83,30 +84,35 @@ public class ConnectionPanel extends JPanel{
 	}
 	
 	private void connect(){
-		
-		myClient = new Client(nickname.getText(), ip_server.getText(), 8080, 200);
-		
+		//Cominciamo creando un nuovo oggetto client, indicando l'ip del server, la porta di comunicazione e un tempo di timeout
+		myClient = new Client(nickname.getText(), ip_server.getText(), Integer.parseInt(port.getText()), 200);
 		//Creiamo l'oggetto che si occuperà di gestire i pacchetti che arrivano dal server e lo assegnamo al nostro client
-		PacketHandler h = new PacketHandler();
+		TestHandler h = new TestHandler(myClient);
 		myClient.setHandler(h);
-		
+	
+			
+		//Utilizziamo il metodo connect della classe client per connetterci al server
 		try {
 			myClient.connect();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block			
-		}		
-		
-		LinkedList<String> receiver = new LinkedList<String>();
-		ObjectPacket packet = new ObjectPacket(nickname.getText(), receiver);	
-		packet.addReceiver("Eric");
-		packet.setContent(new String("CANTAMI O DIVA L'IRA DEL PORTO MORONIDE GUASCANE"));
-		
-		try {
-			myClient.sendPacket(packet);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		JOptionPane.showMessageDialog(null, "Connessione avvenuta con successo !", "Info", JOptionPane.INFORMATION_MESSAGE);
+		
+		LinkedList<String> r = new LinkedList<String>();
+		ObjectPacket p = new ObjectPacket(nickname.getText(), r);
+		
+		p.setContent("messaggio mandato");
+		
+		try {
+			myClient.sendPacket(p);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 	}
 	
 	private void reset(){
