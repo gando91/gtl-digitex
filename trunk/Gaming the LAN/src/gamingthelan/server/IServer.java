@@ -64,5 +64,5 @@ public interface IServer extends Runnable {
 	 * **/
 	public boolean unban(InetAddress address);
 	
-	
+	public void wakeUp();
 }

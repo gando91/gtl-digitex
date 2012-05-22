@@ -8,6 +8,8 @@ import java.net.Socket;
 import gamingthelan.netutils.ConnectionHandler;
 import gamingthelan.netutils.IConnection;
 import gamingthelan.netutils.IPacket;
+import gamingthelan.netutils.servicepackets.DisconnectionPacket;
+import gamingthelan.netutils.servicepackets.NickPacket;
 
 public class ClientConnection implements IConnection, Runnable {
 
@@ -70,7 +72,11 @@ public class ClientConnection implements IConnection, Runnable {
 			try {
 				
 				received = (IPacket) inStream.readObject();
-				handler.onReceivedPacket(received);
+				if(received instanceof DisconnectionPacket){
+					handler.onDisconnectedClient((DisconnectionPacket)received);
+				}
+				else
+					handler.onReceivedPacket(received);
 				
 			} catch (IOException e) {
 				connected = false;
@@ -79,9 +85,11 @@ public class ClientConnection implements IConnection, Runnable {
 			}			
 		}
 		
+		closeConnection();		
+	}
+
+	private void closeConnection() {
 		try {
-			
-			// Qui dovrei dire al server che mi sono disconnesso così lui mi rimuove dalla lista di connessioni.
 			
 			outStream.close();
 			inStream.close();
@@ -89,7 +97,7 @@ public class ClientConnection implements IConnection, Runnable {
 			
 		} catch (IOException e) {
 			//TODO : E' poco carino sopprimere un'eccezione. Tuttavia, quando arrivo quì può essere successo di tutto. La connessione è persa. Forse non importa a nessuno di raccogliere questa eccezione.
-		}		
+		}
 	}
 
 	@Override
@@ -110,6 +118,7 @@ public class ClientConnection implements IConnection, Runnable {
 	@Override
 	public void disconnect() {
 		this.connected = false;
+		closeConnection();
 	}
 
 	@Override

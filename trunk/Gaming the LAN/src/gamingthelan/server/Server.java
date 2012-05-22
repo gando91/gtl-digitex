@@ -1,9 +1,9 @@
 package gamingthelan.server;
 
-import gamingthelan.netutils.CheckPacket;
 import gamingthelan.netutils.ConnectionHandler;
 import gamingthelan.netutils.IConnection;
 import gamingthelan.netutils.IPacket;
+import gamingthelan.netutils.servicepackets.CheckPacket;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -17,11 +17,16 @@ public class Server implements IServer {
 
 	private List<IConnection> clients = new LinkedList<IConnection>();
 	private List<InetAddress> banlist = new LinkedList<InetAddress>();
+	private Thread serverThread;
+	
+	private boolean response = false;
+	
 	private static Server instance;
 	
 	private Server(){
-		
+		serverThread = new Thread(this);
 	}
+	
 	
 	public static Server getInstance() {
 		
@@ -109,27 +114,48 @@ public class Server implements IServer {
 
 	@Override
 	public void run() {
-		for (IConnection conn : clients) {
-			
-			try {
-				conn.sendPacket(new CheckPacket("Server", conn.getNickName()));
+		while(true){
+			for (IConnection conn : clients) {
+				
 				try {
-					this.wait(200);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					
+					response = false;
+					conn.sendPacket(new CheckPacket("Server", conn.getNickName()));
+					
+					try {
+						this.wait(200);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					//Se la connessione interpellata non risponde
+					if ( !response )
+					{
+						//TODO : Devo mandare un pacchetto a tutti che dice che tizio si è sconnesso
+						conn.disconnect();
+					}
+					
+				} catch (IOException e) {
+					//vuol dire che conn è certamente morta
+					//TODO : Mandare il famoso pacchetto a tutti
+					conn.disconnect();
 				}
 				
-			} catch (IOException e) {
-				//vuol dire che conn è certamente morta
-				//TODO : Mandare il famoso pacchetto a tutti
-				conn.disconnect();
 			}
-			
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		
 	}
 	
+	public void wakeUp(){
+		response = true;
+		serverThread.notify();
+	}
 	
 	
 }

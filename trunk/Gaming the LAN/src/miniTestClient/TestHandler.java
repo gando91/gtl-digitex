@@ -6,6 +6,7 @@ import gamingthelan.client.ClientConnectionHandler;
 import gamingthelan.client.IClient;
 import gamingthelan.netutils.IPacket;
 import gamingthelan.netutils.ObjectPacket;
+import gamingthelan.netutils.servicepackets.DisconnectionPacket;
 
 public class TestHandler extends ClientConnectionHandler {
 
@@ -29,6 +30,14 @@ public class TestHandler extends ClientConnectionHandler {
 			Integer s = (Integer)p.getContent();
 			JOptionPane.showMessageDialog(null,  p.getSender() + " : " + s.toString(), "Pacchetto 'Integer' ricevuto", JOptionPane.INFORMATION_MESSAGE);
 		}
+		
+	}
+
+
+	@Override
+	public void onDisconnectedClient(DisconnectionPacket packet) {
+		String s = packet.getSender();
+		JOptionPane.showMessageDialog(null,s + " si è disconnesso" , "Disconnessione", JOptionPane.INFORMATION_MESSAGE);
 		
 	}
 
