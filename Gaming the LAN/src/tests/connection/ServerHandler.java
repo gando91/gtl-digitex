@@ -3,6 +3,7 @@ package tests.connection;
 import gamingthelan.netutils.ConnectionHandler;
 import gamingthelan.netutils.IPacket;
 import gamingthelan.netutils.ObjectPacket;
+import gamingthelan.netutils.servicepackets.DisconnectionPacket;
 import gamingthelan.server.Server;
 
 public class ServerHandler implements ConnectionHandler {
@@ -18,6 +19,12 @@ public class ServerHandler implements ConnectionHandler {
 		
 		//Per semplicità, in questa applicazione di test, mandiamo il pacchetto ricevuto a tutti i client connessi
 		Server.getInstance().sendMessage(p);
+	}
+
+	@Override
+	public void onDisconnectedClient(DisconnectionPacket packet) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

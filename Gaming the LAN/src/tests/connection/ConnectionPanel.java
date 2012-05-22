@@ -1,7 +1,6 @@
 package tests.connection;
 
 import gamingthelan.client.Client;
-import gamingthelan.client.NickPacket;
 import gamingthelan.netutils.ObjectPacket;
 
 import java.awt.Color;
