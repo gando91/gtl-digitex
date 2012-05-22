@@ -111,4 +111,9 @@ public class ClientConnection implements IConnection, Runnable {
 	public void disconnect() {
 		this.connected = false;
 	}
+
+	@Override
+	public String getNickName() {
+		return nickName;
+	}
 }

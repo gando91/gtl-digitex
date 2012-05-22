@@ -89,7 +89,11 @@ public class ServerConnection implements IConnection, Runnable{
 			socket.close();
 			
 		} catch (IOException e) {
-			//TODO : E' poco carino sopprimere un'eccezione. Tuttavia, quando arrivo quì può essere successo di tutto. La connessione è persa. Forse non importa a nessuno di raccogliere questa eccezione.
+			//TODO : E' poco carino sopprimere un'eccezione. 
+			/*
+			 * Tuttavia, quando arrivo quì può essere successo di tutto. La connessione è persa. 
+			 * Forse non importa a nessuno di raccogliere questa eccezione.
+			 */
 		}		
 	}
 	
