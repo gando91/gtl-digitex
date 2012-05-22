@@ -16,14 +16,6 @@ public class AppConnection extends JFrame {
 		add(cp);
 		setVisible(true);
 	}
-
-
-
-	private void settings() {
-		
-		
-		
-	}
 	
 
 }
