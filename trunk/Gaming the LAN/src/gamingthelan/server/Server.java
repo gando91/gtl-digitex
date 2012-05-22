@@ -1,5 +1,6 @@
 package gamingthelan.server;
 
+import gamingthelan.netutils.CheckPacket;
 import gamingthelan.netutils.ConnectionHandler;
 import gamingthelan.netutils.IConnection;
 import gamingthelan.netutils.IPacket;
@@ -61,11 +62,11 @@ public class Server implements IServer {
 	@Override
 	public void sendMessage(IPacket pacchetto) {
 		
-		for (Iterator iterator = pacchetto.getReceiver().iterator(); iterator.hasNext();) {
+		for (Iterator<String> iterator = pacchetto.getReceiver().iterator(); iterator.hasNext();) {
 			
 			String nickName = (String) iterator.next();		
 			
-			for (Iterator iterator2 = Server.getInstance().clients.iterator(); iterator2.hasNext();) {
+			for (Iterator<IConnection> iterator2 = Server.getInstance().clients.iterator(); iterator2.hasNext();) {
 				
 				ServerConnection c = (ServerConnection) iterator2.next();	
 				
@@ -105,5 +106,30 @@ public class Server implements IServer {
 		
 		addConnection(ConnectionCreator.getInstance().createConnection(socket, handler));		
 	}
+
+	@Override
+	public void run() {
+		for (IConnection conn : clients) {
+			
+			try {
+				conn.sendPacket(new CheckPacket("Server", conn.getNickName()));
+				try {
+					this.wait(200);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			} catch (IOException e) {
+				//vuol dire che conn è certamente morta
+				//TODO : Mandare il famoso pacchetto a tutti
+				conn.disconnect();
+			}
+			
+		}
+		
+	}
+	
+	
 	
 }

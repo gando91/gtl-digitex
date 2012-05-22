@@ -43,4 +43,6 @@ public interface IConnection extends Serializable{
 	 * 
 	 */
 	public void disconnect();
+	
+	public String getNickName();
 }

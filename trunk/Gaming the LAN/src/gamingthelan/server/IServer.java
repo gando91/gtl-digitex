@@ -12,7 +12,7 @@ import gamingthelan.netutils.IPacket;
  * **/
 
 
-public interface IServer {
+public interface IServer extends Runnable {
 	
 	/**create a connection from a socket and a valid handler and then add it to Server's list 
 	 * 
