@@ -89,6 +89,9 @@ public class SplashPanel extends JPanel implements KeyListener{
 			if(focus == 3){
 				System.exit(0);
 			}
+			if(focus==2){
+				new CreditsFrame(new CreditsPanel());
+			}
 			
 		}
 		
