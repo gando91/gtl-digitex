@@ -18,7 +18,7 @@ public class ServerListener implements IListener, Runnable {
 	private static ServerListener instance;
 	
 	private ServerListener() {
-
+		super();
 	}
 	
 	public static ServerListener getInstance() {

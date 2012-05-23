@@ -125,13 +125,15 @@ public class Server implements IServer {
 					try {
 						this.wait(200);
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
+						// TODO che succede se il thread del server viene interrotto ?
 						e.printStackTrace();
 					}
 					
 					//Se la connessione interpellata non risponde
 					if ( !response )
+					{
 						conn.disconnect();
+					}
 					
 				} catch (IOException e) {
 					//vuol dire che conn è certamente morta

@@ -60,20 +60,13 @@ public class ClientConnection implements IConnection, Runnable {
 	public void run() {
 		
 		NickPacket nick = new NickPacket(nickName);
-		int retry = 0;
-		
-		while (retry < 3)
-		{
-			try {
-				sendPacket(nick);
-			} catch (IOException e1) {
-				retry++;
-			}
-		}
-		
-		if (retry >= 3)
+
+		try {
+			sendPacket(nick);
+		} catch (IOException e1) {
 			disconnect();
-		
+		}
+
 		IPacket received = null;
 		
 		while (connected) {
@@ -88,7 +81,9 @@ public class ClientConnection implements IConnection, Runnable {
 					//rispondo che ci sono
 					sendPacket(received);
 				} else
+				{
 					handler.onReceivedPacket(received);
+				}
 				
 			} catch (IOException e) {
 				connected = false;
