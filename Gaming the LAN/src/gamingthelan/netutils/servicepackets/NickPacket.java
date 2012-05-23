@@ -28,6 +28,7 @@ public class NickPacket implements IPacket{
         public List<String> getReceiver() {
                 return receiver;
         }
+        
         @Override
         public String getSender() {
                 return sender;

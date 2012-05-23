@@ -8,6 +8,7 @@ import java.net.Socket;
 import gamingthelan.netutils.ConnectionHandler;
 import gamingthelan.netutils.IConnection;
 import gamingthelan.netutils.IPacket;
+import gamingthelan.netutils.servicepackets.CheckPacket;
 import gamingthelan.netutils.servicepackets.DisconnectionPacket;
 import gamingthelan.netutils.servicepackets.NickPacket;
 
@@ -59,11 +60,19 @@ public class ClientConnection implements IConnection, Runnable {
 	public void run() {
 		
 		NickPacket nick = new NickPacket(nickName);
-		try {
-			sendPacket(nick);
-		} catch (IOException e1) {
-			//TODO : Gestire questa eccezione di libreria
+		int retry = 0;
+		
+		while (retry < 3)
+		{
+			try {
+				sendPacket(nick);
+			} catch (IOException e1) {
+				retry++;
+			}
 		}
+		
+		if (retry >= 3)
+			disconnect();
 		
 		IPacket received = null;
 		
@@ -74,8 +83,11 @@ public class ClientConnection implements IConnection, Runnable {
 				received = (IPacket) inStream.readObject();
 				if(received instanceof DisconnectionPacket){
 					handler.onDisconnectedClient((DisconnectionPacket)received);
-				}
-				else
+				} else if (received instanceof CheckPacket)
+				{
+					//rispondo che ci sono
+					sendPacket(received);
+				} else
 					handler.onReceivedPacket(received);
 				
 			} catch (IOException e) {
