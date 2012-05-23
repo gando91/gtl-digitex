@@ -1,4 +1,4 @@
-package battleship.client;
+package battleship.connection;
 
 import gamingthelan.client.Client;
 import java.awt.Color;
@@ -13,6 +13,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import battleship.client.PacketHandler;
+import battleship.waitingroom.AppWaitingRoom;
+import battleship.waitingroom.WaitingRoomPanel;
+
 public class ConnectionPanel extends JPanel{
 
 
@@ -25,10 +29,8 @@ public class ConnectionPanel extends JPanel{
 	JTextField port=new JTextField();
 	
 	public ConnectionPanel(){
-
 		
-		JButton connetti=new JButton("CONNECT");
-		
+		JButton connetti=new JButton("CONNECT");		
 		connetti.addActionListener(new ActionListener() {
 			
 			@Override
@@ -37,8 +39,7 @@ public class ConnectionPanel extends JPanel{
 			}
 		});
 		
-		JButton esci=new JButton("RESET");
-		
+		JButton esci=new JButton("RESET");		
 		esci.addActionListener(new ActionListener() {
 			
 			@Override
@@ -82,7 +83,7 @@ public class ConnectionPanel extends JPanel{
 			JOptionPane.showMessageDialog(null, "Errore nell'inserimento dei parametri.", "Info", JOptionPane.INFORMATION_MESSAGE);
 		}
 		
-		else{		
+		else{	
 			//Cominciamo creando un nuovo oggetto client, indicando l'ip del server, la porta di comunicazione e un tempo di timeout
 			myClient = new Client(nickname.getText(), ip_server.getText(), Integer.parseInt(port.getText()), 200);
 			
@@ -101,18 +102,6 @@ public class ConnectionPanel extends JPanel{
 			
 			WaitingRoomPanel wrp = new WaitingRoomPanel(h);
 			AppWaitingRoom awr = new AppWaitingRoom(wrp);			
-			
-			/*LinkedList<String> r = new LinkedList<String>();
-			ObjectPacket p = new ObjectPacket(nickname.getText(), r);
-			
-			p.setContent("messaggio mandato");
-			
-			try {
-				myClient.sendPacket(p);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}*/
 		}
 	}
 	

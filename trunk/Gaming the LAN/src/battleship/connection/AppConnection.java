@@ -1,6 +1,7 @@
-package battleship.client;
+package battleship.connection;
 
 import javax.swing.JFrame;
+
 
 public class AppConnection extends JFrame {
 

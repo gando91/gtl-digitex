@@ -16,7 +16,6 @@ import gamingthelan.netutils.servicepackets.DisconnectionPacket;
 
 public class PacketHandler extends ClientConnectionHandler{
 	
-	private boolean ready = false;
 	private boolean started = false;
 
 	public PacketHandler(IClient client) {
@@ -28,14 +27,8 @@ public class PacketHandler extends ClientConnectionHandler{
 	@Override
 	public void onReceivedPacket(IPacket packet) {
 		
-		if(ready && started == false){		
-			if(packet instanceof StartPacket){
-				started = true;
-				JOptionPane.showMessageDialog(null, "Partita iniziata!", "Info", JOptionPane.INFORMATION_MESSAGE);
-				
-				//TODO: qui è necessario aprire la finestra di gioco
-				AppPositioning ap = new AppPositioning(new MatrixModel());
-			}
+		if(started == false){		
+			//TODO
 		}
 		
 		if(started){
@@ -46,10 +39,6 @@ public class PacketHandler extends ClientConnectionHandler{
 	@Override
 	public void onDisconnectedClient(DisconnectionPacket packet) {
 		// TODO Auto-generated method stub		
-	}
-	
-	public void ready(){
-		this.ready = true;
 	}
 
 }
