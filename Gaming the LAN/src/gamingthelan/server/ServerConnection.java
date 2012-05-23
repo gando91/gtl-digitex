@@ -90,6 +90,11 @@ public class ServerConnection implements IConnection, Runnable{
 	}
 
 	private void closeConnection() {
+		
+		//Mando al mio handerl un pacchetto di disconnessione che lo informa della connessione che è stata terminata
+		DisconnectionPacket packet = new DisconnectionPacket(this.getNickName());
+		handler.onDisconnectedClient(packet);
+		
 		try {
 			
 			
@@ -140,6 +145,7 @@ public class ServerConnection implements IConnection, Runnable{
 		
 		this.connected = false;
 		closeConnection();
+
 	}
 
 }
