@@ -9,8 +9,8 @@ import java.awt.event.KeyListener;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-import battleship.client.AppConnection;
-import battleship.client.ConnectionPanel;
+import battleship.connection.AppConnection;
+import battleship.connection.ConnectionPanel;
 
 
 public class SplashPanel extends JPanel implements KeyListener{
@@ -83,6 +83,9 @@ public class SplashPanel extends JPanel implements KeyListener{
 			if(focus==0){
 				new AppConnection(new ConnectionPanel());
 			}
+			
+			//TODO: gestire gli altri focus
+			
 			if(focus == 3){
 				System.exit(0);
 			}

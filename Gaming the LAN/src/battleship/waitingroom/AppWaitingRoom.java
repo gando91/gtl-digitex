@@ -1,6 +1,7 @@
-package battleship.client;
+package battleship.waitingroom;
 
 import javax.swing.JFrame;
+
 
 public class AppWaitingRoom extends JFrame{
 

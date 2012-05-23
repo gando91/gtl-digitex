@@ -25,9 +25,7 @@ public class SplashFrame extends JFrame {
 	public static void main(String[] args) {
 		
 		SplashPanel panel=new SplashPanel();
-		new SplashFrame(panel);
-		
-		
+		new SplashFrame(panel);		
 	}
 
 }

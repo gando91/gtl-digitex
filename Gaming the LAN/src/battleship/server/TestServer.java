@@ -12,8 +12,6 @@ public class TestServer {
 		//Il metodo newGame mette il nostro ServerListener in "ascolto" di richieste di connessione in arrivo sulla porta specificata
 		l.newGame(8080, new ServerHandler());
 		
-		WaitingRoomPanel wrp = new WaitingRoomPanel();
-		AppWaitingRoom awr = new AppWaitingRoom(wrp);
 	}
 	
 }
