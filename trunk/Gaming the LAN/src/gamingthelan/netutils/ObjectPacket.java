@@ -1,5 +1,6 @@
 package gamingthelan.netutils;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -23,10 +24,27 @@ public class ObjectPacket implements IPacket {
 	
 	private Object content;
 	
+	
+	/**
+	 * Create a new object packet for multicasting purposes
+	 * @param sender Who is sending this package
+	 * @param receiver A list of receivers
+	 */
 	public ObjectPacket(String sender, List<String> receiver){
 		this.sender = sender;
 		this.receiver = receiver;
 		
+	}
+	
+	/**
+	 * Create a new object packet with a single receiver
+	 * @param sender Who is sending this packet
+	 * @param receiver the receiver of this packet
+	 */
+	public ObjectPacket(String sender, String receiver){
+		this.sender = sender;
+		this.receiver = new LinkedList<String>();
+		this.receiver.add(receiver);
 	}
 	
 	public void addReceiver(String r){

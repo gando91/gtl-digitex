@@ -131,14 +131,10 @@ public class Server implements IServer {
 					
 					//Se la connessione interpellata non risponde
 					if ( !response )
-					{
-						//TODO : Devo mandare un pacchetto a tutti che dice che tizio si è sconnesso
 						conn.disconnect();
-					}
 					
 				} catch (IOException e) {
 					//vuol dire che conn è certamente morta
-					//TODO : Mandare il famoso pacchetto a tutti
 					conn.disconnect();
 				}
 				
@@ -146,7 +142,6 @@ public class Server implements IServer {
 			try {
 				Thread.sleep(500);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
