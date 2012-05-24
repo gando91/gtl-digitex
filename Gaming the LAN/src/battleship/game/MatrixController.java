@@ -1,8 +1,12 @@
 package battleship.game;
 
+import gamingthelan.client.IClient;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.io.IOException;
+
+import battleship.client.MissilePacket;
 
 public class MatrixController implements MouseListener{
 	
@@ -10,9 +14,14 @@ public class MatrixController implements MouseListener{
 	private static final int DEFAULT_HEIGHT = 750;
 	private static final int DEFAULT_WIDTH = 780;
 	private MatrixModel model;
+	private IClient client;
+	private boolean myTurn = false;
 	
-	public MatrixController(MatrixModel model){
+	private int ncol, nrow;
+	
+	public MatrixController(MatrixModel model, IClient client){
 		this.model = model;
+		this.client = client;
 	}
 
 	@Override
@@ -21,12 +30,25 @@ public class MatrixController implements MouseListener{
 		int posx = e.getX();
 		int posy = e.getY();
 		
-		int ncol = (posx/(DEFAULT_WIDTH/CELL_DIMENSION));
-		int nrow = (posy/(DEFAULT_HEIGHT/CELL_DIMENSION));
+		ncol = (posx/(DEFAULT_WIDTH/CELL_DIMENSION));
+		nrow = (posy/(DEFAULT_HEIGHT/CELL_DIMENSION));
 		
-		if(ncol != 0 && nrow != 0){			
-			model.setstatus(nrow, ncol, Status.HIT);
+		if(ncol != 0 && nrow != 0){		
+			if(myTurn == true){
+				try {
+					client.sendPacket(new MissilePacket(client.getConnection().getNickName(), "other", nrow, ncol));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+				
+			//model.setstatus(nrow, ncol, Status.HIT);
 		}
+	}
+	
+	public void changeTurn(){
+		myTurn = !myTurn;
 	}
 		
 	
@@ -54,5 +76,21 @@ public class MatrixController implements MouseListener{
 		// TODO Auto-generated method stub
 		
 	}
+
+	/**
+	 * @return the ncol
+	 */
+	public int getNcol() {
+		return ncol;
+	}
+
+	/**
+	 * @return the nrow
+	 */
+	public int getNrow() {
+		return nrow;
+	}
+	
+	
 
 }

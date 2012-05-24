@@ -1,15 +1,19 @@
 package battleship.game;
 
+import gamingthelan.client.IClient;
+
 import javax.swing.JFrame;
 
 public class AppGame extends JFrame{
 
 	private static final int DEFAULT_SIZE = 780;
 	private static final long serialVersionUID = 1L;
+	private MatrixController controller;
+	private MatrixModel opponentModel;
 	
-	public AppGame(MatrixModel myModel){
+	public AppGame(MatrixModel myModel, IClient client){
 		
-		MatrixModel opponentModel=new MatrixModel();
+		opponentModel=new MatrixModel();
 		OpponentView view=new OpponentView(opponentModel);
 		MyView myview =new MyView(myModel);
 		
@@ -17,7 +21,7 @@ public class AppGame extends JFrame{
 		TimerPanel timerpanel=new TimerPanel(timermodel);
 		timermodel.addObserver(timerpanel);
 		
-		MatrixController controller=new MatrixController(opponentModel);
+		controller=new MatrixController(opponentModel, client);
 		view.addMouseListener(controller);
 		MainPanel main=new MainPanel(view,myview,timerpanel);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -27,6 +31,20 @@ public class AppGame extends JFrame{
 		
 		add(main);
 		setVisible(true);
+	}
+	
+	public void changeTurn(){
+		controller.changeTurn();
+	}
+	
+	public MatrixModel getOpponentModel(){
+		return opponentModel;
+	}
+	
+	public MatrixController getController()
+	{
+		return controller;
+		
 	}
 	
 //	public static void main(String[] args) {
@@ -50,7 +68,6 @@ public class AppGame extends JFrame{
 //		AppGame frame = new AppGame(main);
 //		*/
 //		
-//		new AppGame(main);
 //	}
 	
 }
