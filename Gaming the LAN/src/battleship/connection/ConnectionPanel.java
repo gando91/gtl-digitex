@@ -1,6 +1,8 @@
 package battleship.connection;
 
 import gamingthelan.client.Client;
+import gamingthelan.netutils.ObjectPacket;
+
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -14,8 +16,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import battleship.client.PacketHandler;
-import battleship.waitingroom.AppWaitingRoom;
-import battleship.waitingroom.WaitingRoomPanel;
+import battleship.game.MatrixModel;
+import battleship.positioning.AppPositioning;
 
 public class ConnectionPanel extends JPanel{
 
@@ -98,10 +100,18 @@ public class ConnectionPanel extends JPanel{
 				JOptionPane.showMessageDialog(null, "Errore: tentativo di connessione fallito.", "Info", JOptionPane.INFORMATION_MESSAGE);
 			}
 			
-			JOptionPane.showMessageDialog(null, "Connessione avvenuta con successo!", "Info", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Connessione avvenuta con successo!", "Info", JOptionPane.INFORMATION_MESSAGE);		
 			
-			WaitingRoomPanel wrp = new WaitingRoomPanel(h);
-			AppWaitingRoom awr = new AppWaitingRoom(wrp);			
+			try {
+				ObjectPacket p = new ObjectPacket(nickname.getText(), "server");
+				p.setContent(0);
+				
+				myClient.sendPacket( p  );
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		}
 	}
 	
