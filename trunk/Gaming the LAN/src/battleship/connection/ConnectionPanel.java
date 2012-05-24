@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import battleship.client.PacketHandler;
+import battleship.client.ResponsePacket;
 import battleship.game.MatrixModel;
 import battleship.positioning.AppPositioning;
 
@@ -23,7 +24,7 @@ public class ConnectionPanel extends JPanel{
 
 
 	private static final long serialVersionUID = 1L;
-	
+	private static final int HI = 0;
 	private Client myClient;
 	
 	JTextField nickname=new JTextField();
@@ -96,21 +97,19 @@ public class ConnectionPanel extends JPanel{
 			//Utilizziamo il metodo connect della classe client per connetterci al server
 			try {
 				myClient.connect();
+				JOptionPane.showMessageDialog(null, "Connessione avvenuta con successo!", "Info", JOptionPane.INFORMATION_MESSAGE);
+				
+				try {
+					ResponsePacket p = new ResponsePacket(nickname.getText(), "server", HI);
+					myClient.sendPacket(p);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			} catch (IOException e) {
 				JOptionPane.showMessageDialog(null, "Errore: tentativo di connessione fallito.", "Info", JOptionPane.INFORMATION_MESSAGE);
 			}
 			
-			JOptionPane.showMessageDialog(null, "Connessione avvenuta con successo!", "Info", JOptionPane.INFORMATION_MESSAGE);		
-			
-			try {
-				ObjectPacket p = new ObjectPacket(nickname.getText(), "server");
-				p.setContent(0);
-				
-				myClient.sendPacket( p  );
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+					
 
 		}
 	}
