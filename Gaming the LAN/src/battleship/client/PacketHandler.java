@@ -9,7 +9,6 @@ import battleship.positioning.AppPositioning;
 import gamingthelan.client.ClientConnectionHandler;
 import gamingthelan.client.IClient;
 import gamingthelan.netutils.IPacket;
-import gamingthelan.netutils.ObjectPacket;
 import gamingthelan.netutils.servicepackets.DisconnectionPacket;
 
 public class PacketHandler extends ClientConnectionHandler{
@@ -18,6 +17,7 @@ public class PacketHandler extends ClientConnectionHandler{
 	private AppPositioning positioning;
 	private AppGame game;
 	private MatrixModel model = new MatrixModel();
+	ResponsePacket p;
 	
 	public PacketHandler(IClient client) {
 		super(client);
@@ -39,6 +39,7 @@ public class PacketHandler extends ClientConnectionHandler{
 			
 		}else if (state == 1) {
 			if(((ResponsePacket)packet).getResponse() == 1000){
+				positioning.dispose();
 				game = new AppGame(model, super.client);
 				state = 2;
 			}
@@ -46,7 +47,7 @@ public class PacketHandler extends ClientConnectionHandler{
 		} else if (state == 2) {
 			
 			if(packet instanceof MissilePacket){
-				ResponsePacket p;
+				
 				
 				if(model.getStatusmatrix()[((MissilePacket)packet).getRow()][((MissilePacket)packet).getCol()] == Status.SHIP){
 					model.setstatus(((MissilePacket)packet).getRow(), ((MissilePacket)packet).getCol(), Status.HIT);
@@ -57,6 +58,7 @@ public class PacketHandler extends ClientConnectionHandler{
 					model.setstatus(((MissilePacket)packet).getRow(), ((MissilePacket)packet).getCol(), Status.MISSED);
 					p = new ResponsePacket(client.getConnection().getNickName(), null, Status.MISSED.getValue());
 				}
+				game.changeTurn();
 				try {
 					client.sendPacket(p);
 				} catch (IOException e) {
@@ -66,10 +68,18 @@ public class PacketHandler extends ClientConnectionHandler{
 			}
 			
 			if(packet instanceof ResponsePacket){
-				if (((ResponsePacket) packet).getResponse() == 3)
+				if(((ResponsePacket)packet).getResponse() == 1500){
+					
+				}
+				if (((ResponsePacket) packet).getResponse() == 1	){
 					game.getOpponentModel().setstatus(game.getController().getNrow(),game.getController().getNcol(),Status.HIT);
-				else
+					
+				}
+				if(((ResponsePacket) packet).getResponse() == 2	){
 					game.getOpponentModel().setstatus(game.getController().getNrow(),game.getController().getNcol(),Status.MISSED);
+					
+				}
+				game.changeTurn();
 			}
 		}
 		
