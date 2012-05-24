@@ -1,12 +1,20 @@
 package battleship.positioning;
 
+import gamingthelan.client.Client;
+import gamingthelan.client.ClientConnectionHandler;
+import gamingthelan.client.IClient;
+import gamingthelan.netutils.ConnectionHandler;
+
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 
+import battleship.client.ResponsePacket;
 import battleship.game.MatrixModel;
 import battleship.game.Status;
 
@@ -16,15 +24,17 @@ public class AppPositioning extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private static final int DEFAULT_HEIGHT = 732;
 	private static final int DEFAULT_WIDTH=750;
+	private static final int READY = 500;
 	
 	ProxyShip ps = new ProxyShip(new AircraftCarrier());
 	final ShipMenu menu = new ShipMenu(ps);
 	private MatrixModel myMatrixModel;
+	private IClient client;
 	
-	public AppPositioning(MatrixModel model){
+	public AppPositioning(MatrixModel model, IClient client){
 		
 		this.myMatrixModel = model;		
-		
+		this.client = client;
 		addKeyListener(new ShipController(myMatrixModel, ps));
 		
 		setLayout(new BorderLayout());
@@ -44,7 +54,7 @@ public class AppPositioning extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-				//TODO
+				ready(); 
 			}
 		});
 		
@@ -83,6 +93,13 @@ public class AppPositioning extends JFrame{
 			for (int j = 0; j < myMatrixModel.getCols(); j++) {				
 				myMatrixModel.setstatus(i, j, Status.VIRGIN);				
 			}
+		}
+	}
+	protected void ready(){
+		try {
+			client.sendPacket(new ResponsePacket(client.getConnection().getNickName(), null, READY));
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 	

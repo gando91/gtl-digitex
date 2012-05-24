@@ -7,7 +7,7 @@ import gamingthelan.netutils.IPacket;
 
 public abstract class ClientConnectionHandler implements ConnectionHandler {
 	
-	private IClient client;
+	protected IClient client;
 	
 	public ClientConnectionHandler(IClient client) {
 		this.client = client;
