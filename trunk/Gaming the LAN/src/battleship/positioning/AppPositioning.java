@@ -23,33 +23,41 @@ public class AppPositioning extends JFrame{
 	
 	public AppPositioning(MatrixModel model){
 		
-		this.myMatrixModel = model;
-		SettingsView mp = new SettingsView(ps,myMatrixModel);
+		this.myMatrixModel = model;		
 		
 		addKeyListener(new ShipController(myMatrixModel, ps));
+		
 		setLayout(new BorderLayout());
 		
 		JMenuBar bar = new JMenuBar();
 		bar.add(menu);
 		setJMenuBar(bar);
+		
+		SettingsView mp = new SettingsView(ps,myMatrixModel);
 		add(mp);
 		
 		JButton ready=new JButton("READY");
 		ready.addKeyListener(new ShipController(myMatrixModel, ps));
 		add(ready, BorderLayout.PAGE_END);
-		JButton reset=new JButton("RESET");
 		
+		ready.addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				//TODO
+			}
+		});
+		
+		JButton reset=new JButton("RESET");		
 		reset.addKeyListener(new ShipController(myMatrixModel, ps));
 		add(reset, BorderLayout.PAGE_START);
 		
-		reset.addActionListener(new ActionListener() {
-			
+		reset.addActionListener(new ActionListener() {			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				System.out.println("ho resettato la matrice");
 				
+				System.out.println("ho resettato la matrice");				
 				reset();
-
 			}
 		});
 		
@@ -58,8 +66,7 @@ public class AppPositioning extends JFrame{
 		setTitle("Ship Positioning");
 		setResizable(false);
 		setVisible(true);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		
+		setDefaultCloseOperation(EXIT_ON_CLOSE);		
 		
 		setVisible(true);
 	}
@@ -73,11 +80,8 @@ public class AppPositioning extends JFrame{
 		}
 		
 		for (int i = 0; i < myMatrixModel.getRows(); i++) {
-			for (int j = 0; j < myMatrixModel.getCols(); j++) {
-				
-				myMatrixModel.setstatus(i, j, Status.VIRGIN);
-				
-				
+			for (int j = 0; j < myMatrixModel.getCols(); j++) {				
+				myMatrixModel.setstatus(i, j, Status.VIRGIN);				
 			}
 		}
 	}
