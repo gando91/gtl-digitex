@@ -22,9 +22,8 @@ public class MainPanel extends JPanel {
 	private MyView myview;
 	*/
 	private ImageIcon sfondo=new ImageIcon(getClass().getResource("Plancia.png"));
-	private JLabel turn = new JLabel();
-	private String you = new String("It's your turn");
-	private String opp = new String("Waiting for opponent");
+	private TurnPanel turn;
+	
 	public MainPanel(OpponentView view,MyView myview, TimerPanel timerpanel){
 		
 		setLayout(new GridLayout(2, 2));	
@@ -35,7 +34,9 @@ public class MainPanel extends JPanel {
 		add(view);
 		
 		//prova pannelli successivi
-		turn.setText(opp);
+		
+		turn = new TurnPanel();
+		
 		add(turn);
 		add(myview);
 		add(timerpanel);
@@ -47,12 +48,12 @@ public class MainPanel extends JPanel {
 		
 		super.paintComponent(arg0);
 		arg0.drawImage(sfondo.getImage(),0,0,null);
+		
 	}
 	public void turn()
 	{
-		if(turn.getText()==opp)
-			turn.setText(you);
-		else
-			turn.setText(opp);
+		turn.turn();
 	}
+	
+
 }

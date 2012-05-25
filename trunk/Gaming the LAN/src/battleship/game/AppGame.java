@@ -38,7 +38,7 @@ public class AppGame extends JFrame{
 	public void changeTurn(){
 		controller.changeTurn();
 		main.turn();
-		timermodel.resetTimer();
+		timermodel.startTimer();
 	}
 	
 	public MatrixModel getOpponentModel(){
@@ -68,9 +68,8 @@ public class AppGame extends JFrame{
 //		MainPanel main=new MainPanel(view,myview,timerpanel);
 //		
 //		
-//		/* fino a che non ci serve l'oggetto, basta invocare new
-//		AppGame frame = new AppGame(main);
-//		*/
+//		/* fino a che non ci serve l'oggetto, basta invocare new */
+//		
 //		
 //	}
 	
