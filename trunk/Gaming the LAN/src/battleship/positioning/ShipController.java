@@ -38,35 +38,49 @@ public class ShipController extends KeyAdapter implements MouseListener, MouseMo
 		int ncol = ((xp)/(DEFAULT_WIDTH/CELL_DIMENSION));
 		int nrow = ((yp)/(DEFAULT_HEIGHT/CELL_DIMENSION));
 		int counter = 0;
+		int counter2 = 0;
 		
 		if(proxyship.isRotated()==false){
-			if(proxyship.getShipAmount() < proxyship.getMaxAmount()){
-				proxyship.setShipAmount();
+			
 				
 					for (int i = 0; i < proxyship.getShipLength(); i++) {
-						if(model.getStatusmatrix()[nrow + i][ncol] == Status.SHIP)
-							counter ++;
+						if(nrow+i > 10)
+							counter2 ++;
+						else
+							{
+								if(model.getStatusmatrix()[nrow + i][ncol] == Status.SHIP)
+									counter ++;
+							}
+						
 					}
-			
-					if(counter == 0 && ncol != 0 && nrow != 0){
-					
-						for (int i = 0; i < proxyship.getShipLength(); i++) {
-							model.setstatus(nrow + i, ncol, Status.SHIP);
+
+					if(counter == 0 && counter2 == 0 && ncol != 0 && nrow != 0){
+						if(proxyship.getShipAmount() < proxyship.getMaxAmount() && counter2 == 0){
+							proxyship.setShipAmount();
+
+							for (int i = 0; i < proxyship.getShipLength(); i++) {
+								model.setstatus(nrow + i, ncol, Status.SHIP);
 						
 						}
 					}
 			}
 		}
 		else{	
-			if(proxyship.getShipAmount() < proxyship.getMaxAmount()){
-				proxyship.setShipAmount();
+			
 				for (int i = 0; i < proxyship.getShipLength(); i++) {
-					if(model.getStatusmatrix()[nrow][ncol + i] == Status.SHIP)
-						counter ++;
+					if(ncol+i > 10)
+						counter2 ++;
+					else
+					{	
+						if(model.getStatusmatrix()[nrow][ncol + i] == Status.SHIP)
+							counter ++;
+					}
 				}
 			
-				if(counter == 0 && ncol != 0 && nrow != 0){
-					
+				if(counter == 0 && counter2 == 0 && ncol != 0 && nrow != 0){
+					if(proxyship.getShipAmount() < proxyship.getMaxAmount() && counter2 == 0){
+						proxyship.setShipAmount();
+						
 					for (int i = 0; i < proxyship.getShipLength(); i++) {
 						model.setstatus(nrow, ncol + i, Status.SHIP);
 					}

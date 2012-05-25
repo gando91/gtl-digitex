@@ -22,6 +22,7 @@ public static final int MAXPLAYERS = 2;
 	
 	/*Implementiamo qui il metodo onReceivedPacket della classe ConnectionHandler, scegliendo come deve comportarsi il nostro 
 	 * server nel momento in cui arriva un pacchetto */
+	
 	@Override
 	public void onReceivedPacket(IPacket packet) {
 		
