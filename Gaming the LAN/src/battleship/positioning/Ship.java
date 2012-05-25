@@ -1,6 +1,6 @@
 package battleship.positioning;
 
-public class Ship implements IShip{
+public abstract class Ship implements IShip{
 	
 	private int shiplength;
 	private int xposition;
@@ -68,11 +68,6 @@ public class Ship implements IShip{
 	public void setYPosition(int y) {
 		
 		this.yposition=y;
-	}
-
-	@Override
-	public int getMaxAmount() {
-		return 0;
 	}
 
 	@Override

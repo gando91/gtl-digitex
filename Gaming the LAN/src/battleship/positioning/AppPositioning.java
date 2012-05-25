@@ -31,6 +31,7 @@ public class AppPositioning extends JFrame{
 	private IClient client;
 	
 	private WaitingWindow waiting;
+	private JButton ready;
 	
 	public AppPositioning(MatrixModel model, IClient client){
 		
@@ -47,7 +48,7 @@ public class AppPositioning extends JFrame{
 		SettingsView mp = new SettingsView(ps,myMatrixModel);
 		add(mp);
 		
-		JButton ready=new JButton("READY");
+		ready=new JButton("READY");
 		ready.addKeyListener(new ShipController(myMatrixModel, ps));
 		add(ready, BorderLayout.PAGE_END);
 		
@@ -97,9 +98,11 @@ public class AppPositioning extends JFrame{
 	}
 	
 	protected void ready(){
+		
 		try {
 			client.sendPacket(new ResponsePacket(client.getConnection().getNickName(), null, READY));
 			waiting = new WaitingWindow();
+			ready.setEnabled(false);
 			
 		} catch (IOException e) {
 			e.printStackTrace();

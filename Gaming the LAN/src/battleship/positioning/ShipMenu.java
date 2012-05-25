@@ -21,11 +21,13 @@ public class ShipMenu extends JMenu{
 	public ShipMenu(ProxyShip proxyship){
 		super("Ships available");
 		
-		ships[0] = this.aircraftcarrier;
-		ships[1] = this.Cruiser;
-		ships[2] = this.torpedoboat;
-		ships[3] = this.Submarine;
+		ships[0] = ShipMenu.getAircraftcarrier();
+		ships[1] = ShipMenu.getCruiser();
+		ships[2] = ShipMenu.getTorpedoboat();
+		ships[3] = ShipMenu.getSubmarine();
 		this.proxyship=proxyship;
+		//Questo dovrebbe fixare il bug del primo posizionamento
+		proxyship.setShip(ships[0]);
 		
 		JMenuItem aircraft_carrier=new JMenuItem("aircraft_carrier");
 		
