@@ -42,7 +42,7 @@ public static final int MAXPLAYERS = 2;
 			
 			if(((ResponsePacket)packet).getResponse() == 500){
 				
-				System.out.println(packet.getSender());
+				System.out.println(packet.getSender() + "è pronto");
 				if(players.containsKey(packet.getSender()))
 				{
 					players.put(packet.getSender(), Boolean.TRUE);
@@ -65,6 +65,7 @@ public static final int MAXPLAYERS = 2;
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+					System.out.println("Partita Avviata !");
 					nready = 0;
 				}
 				
