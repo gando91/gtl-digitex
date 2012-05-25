@@ -10,6 +10,7 @@ public class AppGame extends JFrame{
 	private static final long serialVersionUID = 1L;
 	private MatrixController controller;
 	private MatrixModel opponentModel;
+	private MainPanel main;
 	
 	public AppGame(MatrixModel myModel, IClient client){
 		
@@ -23,7 +24,7 @@ public class AppGame extends JFrame{
 		
 		controller=new MatrixController(opponentModel, client);
 		view.addMouseListener(controller);
-		MainPanel main=new MainPanel(view,myview,timerpanel);
+		main=new MainPanel(view,myview,timerpanel);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
 		setSize(DEFAULT_SIZE, DEFAULT_SIZE);
@@ -35,6 +36,7 @@ public class AppGame extends JFrame{
 	
 	public void changeTurn(){
 		controller.changeTurn();
+		main.turn();
 	}
 	
 	public MatrixModel getOpponentModel(){
