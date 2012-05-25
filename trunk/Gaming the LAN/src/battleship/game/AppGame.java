@@ -11,6 +11,7 @@ public class AppGame extends JFrame{
 	private MatrixController controller;
 	private MatrixModel opponentModel;
 	private MainPanel main;
+	TimerModel timermodel;
 	
 	public AppGame(MatrixModel myModel, IClient client){
 		
@@ -18,7 +19,7 @@ public class AppGame extends JFrame{
 		OpponentView view=new OpponentView(opponentModel);
 		MyView myview =new MyView(myModel);
 		
-		TimerModel timermodel=new TimerModel();
+		timermodel=new TimerModel();
 		TimerPanel timerpanel=new TimerPanel(timermodel);
 		timermodel.addObserver(timerpanel);
 		
@@ -37,6 +38,7 @@ public class AppGame extends JFrame{
 	public void changeTurn(){
 		controller.changeTurn();
 		main.turn();
+		timermodel.resetTimer();
 	}
 	
 	public MatrixModel getOpponentModel(){
