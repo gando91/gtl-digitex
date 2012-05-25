@@ -3,11 +3,12 @@ package battleship.connection;
 import gamingthelan.client.Client;
 
 import java.awt.Color;
-import java.awt.GridLayout;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -19,9 +20,9 @@ import battleship.client.ResponsePacket;
 
 public class ConnectionPanel extends JPanel{
 
-
 	private static final long serialVersionUID = 1L;
 	private static final int HI = 0;
+	
 	private Client myClient;
 	
 	private JTextField nickname=new JTextField();
@@ -29,6 +30,9 @@ public class ConnectionPanel extends JPanel{
 	private JTextField port=new JTextField("8080");
 	
 	private JButton connetti;
+	
+	private ImageIcon sfondo=new ImageIcon(getClass().getResource("sfondo.jpg"));
+	
 	public ConnectionPanel(){
 		
 		connetti=new JButton("CONNECT");
@@ -54,26 +58,39 @@ public class ConnectionPanel extends JPanel{
 		
 		port.setSize(10, 10);
 		
-		setBackground(Color.BLUE);
-		setLayout(new GridLayout(4,2));
+		setBackground(Color.BLACK);
+		setLayout(null);
 		
 		setBorder(BorderFactory.createEtchedBorder());
 		
 		JLabel nk=new JLabel("NICKNAME");
-		nk.setForeground(Color.WHITE);
-		add(nk);
-		add(nickname);
+		nk.setForeground(Color.WHITE);		
+		nk.setBounds(10,10,100,50);
+		
+		nickname.setBounds(245, 25, 125, 25);
 		
 		JLabel is=new JLabel("IP SERVER");
 		is.setForeground(Color.WHITE);
-		add(is);
-		add(ip_server);
+		is.setBounds(10,70,100,50);
+		
+		ip_server.setBounds(245, 90, 125, 25);
 		
 		JLabel p=new JLabel("PORT");
 		p.setForeground(Color.WHITE);
+		p.setBounds(10,140,100,50);
+		
+		port.setBounds(245, 155, 125, 25);
+		
+		connetti.setBounds(10, 225, 175, 35);
+		
+        esci.setBounds(210, 225, 175, 35);
+		
+		add(nk);
+		add(nickname);
+		add(is);
+		add(ip_server);
 		add(p);
 		add(port);
-		
 		add(connetti);
 		add(esci);
 		
@@ -109,8 +126,7 @@ public class ConnectionPanel extends JPanel{
 				
 			} catch (IOException e) {
 				JOptionPane.showMessageDialog(null, "Errore: tentativo di connessione fallito.", "Info", JOptionPane.INFORMATION_MESSAGE);
-			}
-			
+			}		
 
 		}
 	}
@@ -124,4 +140,12 @@ public class ConnectionPanel extends JPanel{
 	public JButton getConnetti() {
 		return connetti;
 	}
+	
+	@Override
+	protected void paintComponent(Graphics arg0) {
+		
+		super.paintComponent(arg0);
+		arg0.drawImage(sfondo.getImage(),0,0,null);		
+	}
+	
 }
