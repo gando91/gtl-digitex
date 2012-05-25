@@ -12,6 +12,14 @@ import gamingthelan.netutils.servicepackets.CheckPacket;
 import gamingthelan.netutils.servicepackets.DisconnectionPacket;
 import gamingthelan.netutils.servicepackets.NickPacket;
 
+/**
+ * Creates a dedicated Thread to handle the connection to the server
+ * 
+ * @author Digitex Group
+ *
+ */
+
+
 public class ClientConnection implements IConnection, Runnable {
 
 	private static final long serialVersionUID = -7609843393259243743L;

@@ -3,7 +3,9 @@ package gamingthelan.netutils;
 import gamingthelan.netutils.servicepackets.DisconnectionPacket;
 
 /**
- * this is the interface for a generic ConnectionHandler
+ * Interface for a generic ConnectionHandler
+ * 
+ * @author Digitex Group
  */
 
 public interface ConnectionHandler {

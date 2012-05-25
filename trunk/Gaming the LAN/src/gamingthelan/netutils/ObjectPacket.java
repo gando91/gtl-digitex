@@ -8,7 +8,7 @@ import java.util.List;
  * This class will allow you to send a packet with a Java object attached to it.
  * The attached object MUST implements Serializable interface.
  * 
- * @author Alessio
+ * @author Digitex Group
  *
  */
 public class ObjectPacket implements IPacket {
