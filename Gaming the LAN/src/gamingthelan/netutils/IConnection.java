@@ -5,20 +5,22 @@ import java.io.Serializable;
 import java.net.Socket;
 
 /**
- * This is the interface for a generic connection
+ * Interface for a generic connection.
+ * 
+ * @author Digitex Group
  */
 
 public interface IConnection extends Serializable{
 	
 	/**
-	 * Send a single packet immediately, flushing the queue of packets
+	 * Send a single packet immediately, flushing the queue of packets.
 	 * @param packet The packet who need to be sent
 	 * @throws IOException
 	 */
 	public void sendPacket(IPacket packet) throws IOException;
 	
 	/**
-	 * This method allow you to use a buffered output adding the packets to a queue. You can queue several packet and then send them all using the sendQueue method.
+	 * This method allow you to use a buffered output adding the packets to a queue. You can set several queue packet and then send them all using the sendQueue method.
 	 * @param packet The packet to queue
 	 * @throws IOException
 	 */

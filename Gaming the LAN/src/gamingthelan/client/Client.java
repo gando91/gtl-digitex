@@ -9,6 +9,16 @@ import gamingthelan.netutils.ConnectionHandler;
 import gamingthelan.netutils.IConnection;
 import gamingthelan.netutils.IPacket;
 
+
+/**
+ *   
+ * Allows you to create Client's object and to connect it to the Server with a Nickname, a port and a ServerAddress 
+ * it also have a ConnectionHandler to manages every packet
+ * 
+ * @author Digitex Group
+ * 
+ */
+
 public class Client implements IClient{
 	
 	private String nickName;

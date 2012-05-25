@@ -4,6 +4,16 @@ import gamingthelan.netutils.IPacket;
 
 import java.util.List;
 
+
+/**
+ * 
+ * A Implementation of Ipacket used by ClientConnection to send client's nickname .
+ * Nickname makes server able to identify the connection to the client 
+ * 
+ * @author Digitex Group 
+ *
+ */
+
 public class NickPacket implements IPacket{
         
         private static final long serialVersionUID = -3646976227473707241L;
