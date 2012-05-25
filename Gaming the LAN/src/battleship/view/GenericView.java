@@ -28,7 +28,7 @@ public abstract class GenericView extends JPanel implements Observer{
 					g.setColor(Color.BLUE);
 				}
 				if(statusmatrix[i][j]==Status.HIT){
-					g.setColor(Color.DARK_GRAY);
+					g.setColor(Color.RED);
 				}
 				if(statusmatrix[i][j]==Status.MISSED){
 					g.setColor(Color.CYAN);

@@ -1,7 +1,6 @@
 package battleship.connection;
 
 import gamingthelan.client.Client;
-import gamingthelan.netutils.ObjectPacket;
 
 import java.awt.Color;
 import java.awt.GridLayout;
@@ -17,8 +16,6 @@ import javax.swing.JTextField;
 
 import battleship.client.PacketHandler;
 import battleship.client.ResponsePacket;
-import battleship.game.MatrixModel;
-import battleship.positioning.AppPositioning;
 
 public class ConnectionPanel extends JPanel{
 
@@ -27,13 +24,16 @@ public class ConnectionPanel extends JPanel{
 	private static final int HI = 0;
 	private Client myClient;
 	
-	JTextField nickname=new JTextField();
-	JTextField ip_server=new JTextField();
-	JTextField port=new JTextField();
+	private JTextField nickname=new JTextField();
+	private JTextField ip_server=new JTextField();
+	private JTextField port=new JTextField("8080");
 	
+	private JButton connetti;
 	public ConnectionPanel(){
 		
-		JButton connetti=new JButton("CONNECT");		
+		connetti=new JButton("CONNECT");
+		
+		/*
 		connetti.addActionListener(new ActionListener() {
 			
 			@Override
@@ -41,6 +41,7 @@ public class ConnectionPanel extends JPanel{
 				connect();
 			}
 		});
+		*/
 		
 		JButton esci=new JButton("RESET");		
 		esci.addActionListener(new ActionListener() {
@@ -80,7 +81,7 @@ public class ConnectionPanel extends JPanel{
 		
 	}
 	
-	private void connect(){
+	public void connect(){
 		
 		if(nickname.getText().equals("")||ip_server.getText().equals("")||port.getText().equals("")){
 			JOptionPane.showMessageDialog(null, "Errore nell'inserimento dei parametri.", "Info", JOptionPane.INFORMATION_MESSAGE);
@@ -105,11 +106,11 @@ public class ConnectionPanel extends JPanel{
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+				
 			} catch (IOException e) {
 				JOptionPane.showMessageDialog(null, "Errore: tentativo di connessione fallito.", "Info", JOptionPane.INFORMATION_MESSAGE);
 			}
 			
-					
 
 		}
 	}
@@ -118,5 +119,9 @@ public class ConnectionPanel extends JPanel{
 		nickname.setText(null);
 		ip_server.setText(null);
 		port.setText(null);
+	}
+	
+	public JButton getConnetti() {
+		return connetti;
 	}
 }

@@ -39,7 +39,9 @@ public class PacketHandler extends ClientConnectionHandler{
 			
 		}else if (state == 1) {
 			if(((ResponsePacket)packet).getResponse() == 1000){
-				positioning.dispose();
+				positioning.getWaitingWindow().closeFrame();
+				positioning.closeFrame();
+				
 				game = new AppGame(model, super.client);
 				state = 2;
 			}
