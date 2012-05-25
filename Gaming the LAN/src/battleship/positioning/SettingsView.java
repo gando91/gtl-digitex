@@ -12,8 +12,10 @@ import battleship.game.Status;
 public class SettingsView extends OpponentView {
 
 	private static final long serialVersionUID = 1L;
-	private static final int CELL_WIDTH = 750/11;
-	private static final int CELL_HEIGHT = 636/11; 
+	private static final int MAX_CELL = 11;
+	private static final int CELL_WIDTH = 750/MAX_CELL;
+	private static final int CELL_HEIGHT = 636/MAX_CELL;
+
 	
 	private ProxyShip proxyship;
 	
@@ -71,28 +73,33 @@ public class SettingsView extends OpponentView {
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-		if(proxyship.isRotated() == false){
-			for (int i = 0; i < proxyship.getShipLength(); i++) {
-				if(super.getModel().getStatusmatrix()[proxyship.getXPosition() + i][proxyship.getYPosition()] == Status.SHIP || proxyship.getXPosition() ==0 || proxyship.getYPosition() == 0 )
-					g.setColor(Color.RED);
-				else{
-					g.setColor(Color.GREEN);
+			if(proxyship.isRotated() == false){
+				for (int i = 0; i < proxyship.getShipLength(); i++) {
+					if(proxyship.getXPosition() + i < MAX_CELL){
+						if(super.getModel().getStatusmatrix()[proxyship.getXPosition() + i][proxyship.getYPosition()] == Status.SHIP || proxyship.getXPosition() ==0 || proxyship.getYPosition() == 0 )
+							g.setColor(Color.RED);
+						else{
+							g.setColor(Color.GREEN);
+						}
+						drawGrid(proxyship.getXPosition() + i, proxyship.getYPosition(), g);
+					}
 				}
-				drawGrid(proxyship.getXPosition() + i, proxyship.getYPosition(), g);
 			}
-		}
-		else{
-			for (int i = 0; i < proxyship.getShipLength(); i++) {
-				if(super.getModel().getStatusmatrix()[proxyship.getXPosition()][proxyship.getYPosition() + i] == Status.SHIP || proxyship.getXPosition() ==0 || proxyship.getYPosition() == 0 )
-					g.setColor(Color.RED);
-				else{
-					g.setColor(Color.GREEN);
+			else{
+				for (int i = 0; i < proxyship.getShipLength(); i++) {
+					if(proxyship.getYPosition() + i < MAX_CELL){
+						if(super.getModel().getStatusmatrix()[proxyship.getXPosition()][proxyship.getYPosition() + i] == Status.SHIP || proxyship.getXPosition() ==0 || proxyship.getYPosition() == 0 )
+							g.setColor(Color.RED);
+						else{
+							g.setColor(Color.GREEN);
+						}
+					drawGrid(proxyship.getXPosition(), proxyship.getYPosition() + i, g);
 				}
-				drawGrid(proxyship.getXPosition(), proxyship.getYPosition() + i, g);
 			}
 		}
 	}
+}
 		
 	
 	
-}
+
