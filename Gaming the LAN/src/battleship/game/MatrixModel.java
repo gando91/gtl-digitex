@@ -28,6 +28,20 @@ public class MatrixModel extends Observable{
 		setChanged();
 		notifyObservers();
 	}
+	
+	public boolean isOver()
+	{
+		
+		for (int i = 0; i < ROWS; i++) {
+			for (int j = 0; j < COLS; j++) {
+				if (statusmatrix[i][j]==Status.SHIP)
+					return false;
+			}			
+		}
+		
+		return true;
+		
+	}
 
 	public Status[][] getStatusmatrix() {
 		return statusmatrix;

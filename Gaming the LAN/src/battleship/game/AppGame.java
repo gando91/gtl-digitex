@@ -3,6 +3,7 @@ package battleship.game;
 import gamingthelan.client.IClient;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class AppGame extends JFrame{
 
@@ -43,6 +44,17 @@ public class AppGame extends JFrame{
 	
 	public MatrixModel getOpponentModel(){
 		return opponentModel;
+	}
+	
+	public void won()
+	{
+		JOptionPane.showMessageDialog(null, "Hai vinto la partita !", "Vittoria !", JOptionPane.INFORMATION_MESSAGE);
+		
+	}
+	
+	public void lost()
+	{
+		JOptionPane.showMessageDialog(null, "Hai perso la partita !", "Sconfitta !", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 	public MatrixController getController()
