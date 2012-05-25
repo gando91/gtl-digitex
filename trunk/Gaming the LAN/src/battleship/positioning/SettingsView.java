@@ -16,7 +16,6 @@ public class SettingsView extends OpponentView {
 	private static final int CELL_HEIGHT = 636/11; 
 	
 	private ProxyShip proxyship;
-	private boolean positioning=true;
 	
 	public SettingsView(ProxyShip proxyship, MatrixModel model){
 		

@@ -1,13 +1,12 @@
 package battleship.positioning;
 
-import gamingthelan.client.Client;
-import gamingthelan.client.ClientConnectionHandler;
 import gamingthelan.client.IClient;
-import gamingthelan.netutils.ConnectionHandler;
 
 import java.awt.BorderLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.io.IOException;
 
 import javax.swing.JButton;
@@ -30,6 +29,8 @@ public class AppPositioning extends JFrame{
 	final ShipMenu menu = new ShipMenu(ps);
 	private MatrixModel myMatrixModel;
 	private IClient client;
+	
+	private WaitingWindow waiting;
 	
 	public AppPositioning(MatrixModel model, IClient client){
 		
@@ -75,10 +76,9 @@ public class AppPositioning extends JFrame{
 		setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 		setTitle("Ship Positioning");
 		setResizable(false);
-		setVisible(true);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);		
 		
-		setVisible(true);
+		setVisible(true);		
+	
 	}
 	
 	
@@ -95,12 +95,23 @@ public class AppPositioning extends JFrame{
 			}
 		}
 	}
+	
 	protected void ready(){
 		try {
 			client.sendPacket(new ResponsePacket(client.getConnection().getNickName(), null, READY));
+			waiting = new WaitingWindow();
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
+    public void closeFrame() {
+        WindowEvent wev = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
+        Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(wev);
+    }
+    
+    public WaitingWindow getWaitingWindow() {
+    	return waiting;
+    }
 }
