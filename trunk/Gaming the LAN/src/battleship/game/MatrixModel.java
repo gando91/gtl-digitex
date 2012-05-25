@@ -43,6 +43,12 @@ public class MatrixModel extends Observable{
 		
 	}
 
+	public Status getCellStatus(int row, int col) {
+		if (col <= COLS && row <= ROWS)
+			return statusmatrix[row][col];
+		return Status.VIRGIN;
+	}
+	
 	public Status[][] getStatusmatrix() {
 		return statusmatrix;
 	}

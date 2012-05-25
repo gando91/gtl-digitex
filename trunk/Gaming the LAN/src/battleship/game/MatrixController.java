@@ -34,7 +34,7 @@ public class MatrixController implements MouseListener{
 		nrow = (posy/(DEFAULT_HEIGHT/CELL_DIMENSION));
 		
 		if(ncol != 0 && nrow != 0){		
-			if(myTurn == true){
+			if(myTurn == true && model.getCellStatus(nrow, ncol) == Status.VIRGIN){
 				try {
 					client.sendPacket(new MissilePacket(client.getConnection().getNickName(), "other", nrow, ncol));
 				} catch (IOException e1) {

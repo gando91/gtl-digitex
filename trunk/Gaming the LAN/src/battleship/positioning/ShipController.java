@@ -2,7 +2,6 @@ package battleship.positioning;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -137,7 +136,7 @@ public class ShipController extends KeyAdapter implements MouseListener, MouseMo
 	public void keyPressed(KeyEvent e) {
 		super.keyPressed(e);
 		
-		if(e.getKeyCode()==e.VK_R)
+		if(e.getKeyCode()==KeyEvent.VK_R)
 			proxyship.rotate();
 	}
 

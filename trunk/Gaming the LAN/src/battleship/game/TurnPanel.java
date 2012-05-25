@@ -4,13 +4,14 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import battleship.positioning.DefaultDimensions;
 
 public class TurnPanel extends JPanel{
-	private JLabel turn = new JLabel();
+
+	private static final long serialVersionUID = 1L;
+	
 	private final static String you = new String("It's your turn");
 	private final static String opp = new String("Waiting for opponent");
 	private String now = opp;
@@ -38,7 +39,10 @@ public class TurnPanel extends JPanel{
 			g.setColor(Color.RED);
 		}
 		
-		g.setFont(new Font("Homoarakhn", Font.BOLD, 16));
+		//g.setFont(new Font("Homoarakhn", Font.BOLD, 16));
+		//Ho messo verdana perchè con l'altro era poco leggibile... e diventava troppo grosso
+		g.setFont(new Font("Verdana", Font.BOLD, 16));
+		
 		g.drawString(now, DefaultDimensions.DEFAULT_WIDTH.getValue()/9 + 10, DefaultDimensions.DEFAULT_WIDTH.getValue()/6 + 45);
 	}
 	
