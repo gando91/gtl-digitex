@@ -30,8 +30,8 @@ public class TimerPanel extends JPanel implements Observer{
 	@Override
 	public void update(Observable o, Object arg) {
 		//Questo sembra risolvere il problema su windows. Da testare su altri OS
-		this.paintComponent(getGraphics());
-		
+		//this.paintComponent(getGraphics());
+		this.repaint();
 		//Dovrebbe essere repaint();
 	}
 	
