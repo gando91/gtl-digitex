@@ -92,6 +92,9 @@ public class SplashPanel extends JPanel implements KeyListener{
 			if(focus==2){
 				new CreditsFrame(new CreditsPanel());
 			}
+			if(focus==1){
+				new HowtoFrame(new HowtoPanel());
+			}
 			
 		}
 		

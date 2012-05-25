@@ -6,12 +6,12 @@ import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-public class CreditsPanel extends JPanel{
+public class HowtoPanel extends JPanel{
+
+	private static final long serialVersionUID = -7304543845124892791L;
+private ImageIcon sfondo=new ImageIcon(getClass().getResource("howto.jpg"));
 	
-	private static final long serialVersionUID = 1L;
-	private ImageIcon sfondo=new ImageIcon(getClass().getResource("credits.png"));
-	
-	public CreditsPanel(){
+	public HowtoPanel(){
 
 		setBackground(Color.BLACK);
 		setVisible(true);
@@ -22,5 +22,6 @@ public class CreditsPanel extends JPanel{
 		super.paintComponent(arg0);
 		arg0.drawImage(sfondo.getImage(),0,0,null);
 	}
+
 
 }
