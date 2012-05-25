@@ -15,8 +15,8 @@ public class AppConnection extends JFrame {
 	
 	public AppConnection(ConnectionPanel cp){
 		
-		setSize(400, 200);
-		setTitle("CONNESSIONE");
+		setSize(400, 300);
+		setTitle("Connessione");
 		setResizable(false);
 		this.cp = cp;
 		
@@ -41,6 +41,5 @@ public class AppConnection extends JFrame {
         WindowEvent wev = new WindowEvent(this, WindowEvent.WINDOW_CLOSING);
         Toolkit.getDefaultToolkit().getSystemEventQueue().postEvent(wev);
     }
-
 
 }
