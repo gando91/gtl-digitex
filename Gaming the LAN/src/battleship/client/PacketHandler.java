@@ -52,16 +52,9 @@ public class PacketHandler extends ClientConnectionHandler{
 				
 				
 				if(model.getStatusmatrix()[((MissilePacket)packet).getRow()][((MissilePacket)packet).getCol()] == Status.SHIP){
-					model.setstatus(((MissilePacket)packet).getRow(), ((MissilePacket)packet).getCol(), Status.HIT);
 					
-					if (model.isOver())
-					{
-						p = new ResponsePacket(client.getConnection().getNickName(), null, 2000);
-						game.lost();
-					}
-					else{
-						p = new ResponsePacket(client.getConnection().getNickName(), null, Status.HIT.getValue());
-					}
+					model.setstatus(((MissilePacket)packet).getRow(), ((MissilePacket)packet).getCol(), Status.HIT);
+					p = new ResponsePacket(client.getConnection().getNickName(), null, Status.HIT.getValue());
 					
 				}
 				else
@@ -70,8 +63,18 @@ public class PacketHandler extends ClientConnectionHandler{
 					p = new ResponsePacket(client.getConnection().getNickName(), null, Status.MISSED.getValue());
 				}
 				game.changeTurn();
+				
 				try {
+					
 					client.sendPacket(p);
+					
+					if (model.isOver())
+					{
+						p = new ResponsePacket(client.getConnection().getNickName(), null, 2000);
+						client.sendPacket(p);
+						game.lost();
+					}
+					
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
