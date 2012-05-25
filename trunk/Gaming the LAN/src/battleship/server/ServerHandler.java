@@ -70,7 +70,7 @@ public static final int MAXPLAYERS = 2;
 				
 			}
 			
-			if ( ((ResponsePacket)packet).getResponse() == 1 || ((ResponsePacket)packet).getResponse() == 2 ){
+			if ( ((ResponsePacket)packet).getResponse() == 1 || ((ResponsePacket)packet).getResponse() == 2 || ((ResponsePacket)packet).getResponse() == 2000){
 				
 				if(packet.getSender().equals(first)){
 					p = new ResponsePacket(null, second, ((ResponsePacket)packet).getResponse());
@@ -83,6 +83,7 @@ public static final int MAXPLAYERS = 2;
 				
 			}
 		}
+		
 		if(packet instanceof MissilePacket){
 			if(packet.getSender().equals(first)){
 				MissilePacket p = new MissilePacket(null, second, ((MissilePacket) packet).getRow(), ((MissilePacket) packet).getCol());
