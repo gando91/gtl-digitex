@@ -1,0 +1,14 @@
+MiniTestServer
+battleship.client
+battleship.connection
+battleship.game
+battleship.positioning
+battleship.server
+battleship.splashscreen
+battleship.view
+battleship.waitingroom
+gamingthelan.client
+gamingthelan.netutils
+gamingthelan.netutils.servicepackets
+gamingthelan.server
+miniTestClient

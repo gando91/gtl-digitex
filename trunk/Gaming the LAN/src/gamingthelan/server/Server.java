@@ -12,6 +12,17 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ *   
+ * Allows you to create Server's object as a Singleton.
+ * It's able to create a connection to a specific port.
+ * It's also able to manages every packet and to identify the client to ban,to unban and to send a massage.
+ * 
+ * @author Digitex Group
+ * 
+ */
+
+
 
 public class Server implements IServer {
 

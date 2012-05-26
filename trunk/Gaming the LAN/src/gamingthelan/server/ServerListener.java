@@ -6,7 +6,14 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-
+/**
+ * 
+ * Allows you to create ServerListener's object as a Singleton and creates a new Game with a new thread
+ * When the thread is created it check the port and create a new connection
+ * 
+ * @author Digitex Group
+ *
+ */
 public class ServerListener implements IListener, Runnable {
 	
 	private IServer mediator;
