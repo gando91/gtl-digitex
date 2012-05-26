@@ -2,7 +2,7 @@ package gamingthelan.server;
 
 import gamingthelan.netutils.ConnectionHandler;
 
-/**   Generic interface of ServerListener   **/
+/**   Generic interface for ServerListener   **/
 public interface IListener {
 	
 	/**

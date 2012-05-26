@@ -8,7 +8,7 @@ import gamingthelan.netutils.ConnectionHandler;
 import gamingthelan.netutils.IConnection;
 import gamingthelan.netutils.IPacket;
 
-/** This is the generic server interface
+/**  Generic server interface
  * **/
 
 
@@ -31,22 +31,22 @@ public interface IServer extends Runnable {
 	public void addConnection(IConnection connessione);
 	
 	/**remove a connection from the Server's List
-	 * @param connessione target client connection 
+	 * @param connection target client connection 
 	 * 
 	 * **/
 	
 	public void rmConnection(IConnection connessione); //FIXME : Funziona, ma chi lo chiama ? forse è il caso di introdurre anche per qusto metodo l'Id di cui parlavo.
 	
 	/**Send a packet to every connected client
-	 *@param pacchetto packet to send to every connected client 
+	 *@param packet packet to send to every connected client 
 	 *
 	 * **/
 	public void broadcastMessage(IPacket pacchetto) throws IOException;
 	
 	/**Send a packet to target connection
 	 * 
-	 * @param pacchetto packet to send to target connection
-	 * @param connessione target client connection
+	 * @param packet packet to send to target connection
+	 * @param connection target client connection
 	 * 
 	 * **/
 	public void sendMessage(IPacket pacchetto);

@@ -4,6 +4,13 @@ import java.util.List;
 
 import gamingthelan.netutils.IPacket;
 
+/**
+ * 
+ * @author Digitex Group
+ *
+ */
+
+
 public class DisconnectionPacket implements IPacket {
 	
 	private static final long serialVersionUID = 7946883340254632631L;
