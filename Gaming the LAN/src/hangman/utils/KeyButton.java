@@ -38,4 +38,7 @@ public class KeyButton extends JButton{
 	public JTextArea getWord() {
 		return word;
 	}	
+	public void setEnabled(boolean b){
+		this.setEnabled(b);
+	}
 }

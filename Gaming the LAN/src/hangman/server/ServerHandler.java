@@ -13,12 +13,11 @@ import gamingthelan.server.Server;
 
 public class ServerHandler implements ConnectionHandler {
 	
-public static final int MAXPLAYERS = 2;
+	public static final int MAXPLAYERS = 3;
 	
 	private HashMap<String, Boolean> players = new HashMap<String, Boolean>();
 	private int nready = 0;
-	private String first;
-	private String second;
+	private String[] player = new String[3];
 	ResponsePacket p;
 	
 	/*Implementiamo qui il metodo onReceivedPacket della classe ConnectionHandler, scegliendo come deve comportarsi il nostro 
@@ -47,10 +46,7 @@ public static final int MAXPLAYERS = 2;
 				if(players.containsKey(packet.getSender()))
 				{
 					players.put(packet.getSender(), Boolean.TRUE);
-					if(nready==0)
-						first = packet.getSender();
-					else
-						second = packet.getSender();
+					player[nready]=packet.getSender();
 					nready++;
 				}
 				
@@ -60,7 +56,7 @@ public static final int MAXPLAYERS = 2;
 					ResponsePacket p = new ResponsePacket(null, null, 1000);
 					try {
 						Server.getInstance().broadcastMessage(p);
-						ResponsePacket q = new ResponsePacket(null, first, 1500);
+						ResponsePacket q = new ResponsePacket(null, player[0], 1500);
 						Server.getInstance().sendMessage(q);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
@@ -70,33 +66,10 @@ public static final int MAXPLAYERS = 2;
 					nready = 0;
 				}
 				
-				
 			}
+		}
 			
-			if ( ((ResponsePacket)packet).getResponse() == 1 || ((ResponsePacket)packet).getResponse() == 2 || ((ResponsePacket)packet).getResponse() == 2000){
-				
-				if(packet.getSender().equals(first)){
-					p = new ResponsePacket(null, second, ((ResponsePacket)packet).getResponse());
-				}
-				else{
-					p = new ResponsePacket(null, first, ((ResponsePacket)packet).getResponse());
-				}
-				
-				Server.getInstance().sendMessage(p);
-				
-			}
-		}
-		
-		if(packet instanceof MissilePacket){
-			if(packet.getSender().equals(first)){
-				MissilePacket p = new MissilePacket(null, second, ((MissilePacket) packet).getRow(), ((MissilePacket) packet).getCol());
-				Server.getInstance().sendMessage(p);
-			}
-			else{
-				MissilePacket p = new MissilePacket(null, first, ((MissilePacket) packet).getRow(), ((MissilePacket) packet).getCol());
-				Server.getInstance().sendMessage(p);
-			}
-		}
+			
 		
 		
 			
