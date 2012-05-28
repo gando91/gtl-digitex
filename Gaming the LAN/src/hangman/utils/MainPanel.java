@@ -76,10 +76,10 @@ public class MainPanel extends JFrame{
 	public void hangUp(int state){
 		this.hmp.setState(state);
 	}
+	
 	public void setEnabled(boolean b){
 		lb.setEnabled(b);
 	}
-
 	
 }
 

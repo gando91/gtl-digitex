@@ -3,6 +3,7 @@ package hangman.utils;
 import gamingthelan.client.IClient;
 
 import java.awt.GridLayout;
+import java.util.Iterator;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -40,5 +41,8 @@ public class KeyBoardPanel extends JPanel{
 	}
 	public void setEnabled(boolean b){
 		
+		for (int j = 0; j < totalbuttons; j++) {
+			this.getComponent(j);
+		}		
 	}
 }
