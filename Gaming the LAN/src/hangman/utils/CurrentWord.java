@@ -110,4 +110,8 @@ public class CurrentWord {
 		
 		return String.copyValueOf(visible_string);
 	}
+	
+	public String getWord(){
+		return this.word;
+	}
 }

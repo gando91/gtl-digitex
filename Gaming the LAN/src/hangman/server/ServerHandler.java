@@ -107,24 +107,73 @@ public class ServerHandler implements ConnectionHandler {
 				hangmanstatus++;
 				if(hangmanstatus != HANGMANDEATH){
 					WrongPacket a = new WrongPacket(packet.getSender(), ((LetterPacket)packet).getLetter(), hangmanstatus);
+					
 					try {
 						Server.getInstance().broadcastMessage(a);
+						
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
 				}
 			}
+			if(answer == 1){
+				WordPacket wp = new WordPacket(null, null, CurrentWord.getInstance().getVisibleString());
+				try {
+					Server.getInstance().broadcastMessage(wp);
+					
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if(answer == 2){
+				WordPacket wp = new WordPacket(player[turn], null, CurrentWord.getInstance().getVisibleString());
+				try {
+					Server.getInstance().broadcastMessage(wp);
+					
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+			turnGoOn();
 		}
+		if(packet instanceof WordPacket){
+			WordPacket wp;
+			if(CurrentWord.getInstance().getWord() == ((WordPacket)packet).getWord()){
+				wp = new WordPacket(player[turn], null, CurrentWord.getInstance().getWord());
+				
+			}
+			else
+				wp = new WordPacket(null, null, CurrentWord.getInstance().getWord());
 			
-			
-		
-		
-			
+			try {
+				Server.getInstance().broadcastMessage(wp);
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+				
+		}
 	}
+			
 
 	@Override
 	public void onDisconnectedClient(DisconnectionPacket packet) {
 		// TODO 
+	}
+	
+	public void turnGoOn(){
+		if(turn < MAXPLAYERS){
+			turn++;
+		}
+		else
+			turn = 0;
+		
+		ProtocolPacket q = new ProtocolPacket(null, player[turn], 1500);
+		Server.getInstance().sendMessage(q);
 	}
 
 }
