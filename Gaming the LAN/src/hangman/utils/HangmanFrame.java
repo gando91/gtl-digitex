@@ -1,7 +1,5 @@
 package hangman.utils;
 
-import java.awt.Color;
-
 import javax.swing.JFrame;
 
 public class HangmanFrame extends JFrame {
@@ -16,6 +14,7 @@ public class HangmanFrame extends JFrame {
 		setTitle("Hangman!");
 		setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 		setResizable(false);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	
 		add(panel);
 		
