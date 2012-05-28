@@ -1,4 +1,5 @@
-package battleship.server;
+package hangman.server;
+
 
 import java.io.IOException;
 import java.util.HashMap;
