@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 
 import battleship.client.PacketHandler;
 import battleship.client.ResponsePacket;
+import battleship.positioning.WaitingWindow;
 
 public class ConnectionPanel extends JPanel{
 
@@ -120,6 +121,7 @@ public class ConnectionPanel extends JPanel{
 				try {
 					ResponsePacket p = new ResponsePacket(nickname.getText(), "server", HI);
 					myClient.sendPacket(p);
+					new WaitingWindow();
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
