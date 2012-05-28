@@ -15,6 +15,7 @@ public class HangmanPanel extends JPanel{
 
 	public void setState(int state) {
 		this.state = state;
+		repaint();
 	}
 
 	public HangmanPanel() {
@@ -37,17 +38,22 @@ public class HangmanPanel extends JPanel{
 	
 	
 	@Override
-	protected void paintComponent(Graphics g) {
+	public void paint(Graphics g) {
 		
 		// TODO: stasìra fuma un pont
-		
-		super.paintComponent(g);
 		g.setColor(Color.WHITE);
 		
-		if(state==1)
+		if(state == 0){
+		g.setColor(Color.BLUE);
+		g.fillRect(0, 0, 150, 150);
+		}
+		if(state==1){
+			
+			g.setColor(Color.WHITE);
 			g.drawLine(20, 100, 100, 100);
-		
+		}
 		if(state==2)
+			
 			g.drawLine(20, 100, 20, 20);
 			
 		if(state==3)

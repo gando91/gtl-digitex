@@ -1,11 +1,13 @@
 package hangman.utils;
 
+import gamingthelan.client.IClient;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JTextArea;
 
 public class KeyButton extends JButton{
 
@@ -13,9 +15,9 @@ public class KeyButton extends JButton{
 
 	private char letter;
 	private JLabel word;
-
-	public KeyButton(String letter, JLabel word){
-		
+	private IClient client;
+	public KeyButton(String letter, JLabel word, IClient client){
+		this.client = client;
 		this.letter = letter.charAt(0);
 		this.word = word;
 		
@@ -26,8 +28,13 @@ public class KeyButton extends JButton{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				CurrentWord.getInstance().letterCheck(getLetter());
-				getWord().setText(CurrentWord.getInstance().getVisibleString());
+				try {
+					getClient().sendPacket(new LetterPacket(getClient().getConnection().getNickName(), getLetter()));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
 			}			
 		});
 	}
@@ -41,5 +48,8 @@ public class KeyButton extends JButton{
 	}	
 	public void setEnabled(boolean b){
 		this.setEnabled(b);
+	}
+	public IClient getClient(){
+		return this.client;
 	}
 }
