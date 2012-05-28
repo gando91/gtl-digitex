@@ -20,7 +20,7 @@ import hangman.utils.WrongPacket;
 
 public class ServerHandler implements ConnectionHandler {
 	
-	public static final int MAXPLAYERS = 1;
+	public static final int MAXPLAYERS = 2;
 	public static final int HANGMANDEATH = 10;
 	
 	private HashMap<String, Boolean> players = new HashMap<String, Boolean>();
@@ -35,15 +35,13 @@ public class ServerHandler implements ConnectionHandler {
 	/*Implementiamo qui il metodo onReceivedPacket della classe ConnectionHandler, scegliendo come deve comportarsi il nostro 
 	 * server nel momento in cui arriva un pacchetto */
 	public ServerHandler(){
-		parole.add("Dagrada");
-		parole.add("Maiocchi");
-		parole.add("Villa");
-		parole.add("Guantanamo");
+		parole.add("dagrada");
+		parole.add("maiocchi");
+		parole.add("villa");
+		parole.add("guantanamo");
 		parole.add("asterisco");
 		parole.add("zuzzurellone");
-		parole.add("Dagrada");
-		parole.add("Maiocchi");
-		parole.add("Villa");
+		parole.add("maiocchiculo");
 		
 		words = new Words(parole);
 		CurrentWord.getInstance().setCurrentWord(words.getRndWord());
@@ -99,13 +97,14 @@ public class ServerHandler implements ConnectionHandler {
 					}
 					System.out.println("Partita Avviata !");
 					nready = 0;
-				}
-				
-			}
-			
+				}				
+			}			
 		}
+		
 		if(packet instanceof LetterPacket){
-			int answer = CurrentWord.getInstance().letterCheck(((LetterPacket)packet).getLetter());
+			
+			int answer = CurrentWord.getInstance().letterCheck(((LetterPacket)packet).getLetter());			
+			
 			if(answer == 0){
 				hangmanstatus++;
 				if(hangmanstatus != HANGMANDEATH){
@@ -118,7 +117,8 @@ public class ServerHandler implements ConnectionHandler {
 						e.printStackTrace();
 					}
 				}
-			}
+			}			
+			
 			if(answer == 1){
 				WordPacket wp = new WordPacket(null, null, CurrentWord.getInstance().getVisibleString());
 				try {
@@ -128,7 +128,8 @@ public class ServerHandler implements ConnectionHandler {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			}
+			}			
+			
 			if(answer == 2){
 				WordPacket wp = new WordPacket(player[turn], null, CurrentWord.getInstance().getVisibleString());
 				try {
@@ -137,13 +138,16 @@ public class ServerHandler implements ConnectionHandler {
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				}
-				
+				}				
 			}
+			
 			turnGoOn();
 		}
+		
 		if(packet instanceof WordPacket){
+			
 			WordPacket wp;
+			
 			if(CurrentWord.getInstance().getWord() == ((WordPacket)packet).getWord()){
 				wp = new WordPacket(player[turn], null, CurrentWord.getInstance().getWord());
 				
@@ -157,9 +161,9 @@ public class ServerHandler implements ConnectionHandler {
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-				
+			}				
 		}
+		
 		turnGoOn();
 	}
 			
