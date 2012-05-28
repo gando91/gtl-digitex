@@ -42,7 +42,10 @@ public class MainPanel extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
 				
+				// Set the current word using the getRndWord() method of words
+				// that returns a random word from the list of words.
 				CurrentWord.getInstance().setCurrentWord(getWords().getRndWord());
+				
 				word.setText(CurrentWord.getInstance().getVisibleString());				
 			}
 
@@ -78,13 +81,14 @@ public class MainPanel extends JFrame{
 		word.setFont(new Font("Arial", Font.BOLD, 20));
 		word.setEditable(false);
 		
+		// This is the panel that contains the text-area with the visible word.
 		p = new JPanel();
 		p.setLayout(null);
 		p.setBounds(0, 0, 350, 350 - 350/3-31);
 		p.setBackground(Color.ORANGE);
-		p.add(word);
+		p.add(word);		
 		
-		
+		// This is the panel that contains the keyboard.
 		lb = new KeyBoardPanel(word);
 		lb.setBounds(0, 350 - 350/3-31, 349, 350/3);
 		
