@@ -1,10 +1,15 @@
 package battleship.game;
 
+import gamingthelan.client.IClient;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.Observable;
 
 import javax.swing.Timer;
+
+import battleship.client.ResponsePacket;
 
 /**
  * This class rapresent the model of a Battleship timer.
@@ -19,14 +24,16 @@ public class TimerModel extends Observable implements ActionListener{
 	
 	private Integer timerCount;
 	private Timer myTimer;
+	private IClient client;
 	
-	public TimerModel() {
+	public TimerModel(IClient client) {
 		super();
 		
 		//Inizializzo il tempo del timer
 		timerCount = timeLimit;
 		
 		myTimer = new Timer(1000, this);
+		this.client=client;
 		
 	}
 	
@@ -59,7 +66,12 @@ public class TimerModel extends Observable implements ActionListener{
 			timerCount--;
 		
 		if (timerCount == 0) {
-			//TODO : Devo avvisare qualcuno che il timer sia arrivato a 0
+			try {
+				client.sendPacket(new ResponsePacket(client.getConnection().getNickName(), null, 1500));
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		
 		this.setChanged();

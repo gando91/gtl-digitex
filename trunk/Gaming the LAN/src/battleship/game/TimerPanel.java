@@ -14,7 +14,7 @@ public class TimerPanel extends JPanel implements Observer{
 	private static final long serialVersionUID = 1L;
 	
 	private TimerModel timermodel;
-	private ImageIcon crono=new ImageIcon(getClass().getResource("cronometro.png"));
+	//private ImageIcon crono=new ImageIcon(getClass().getResource("cronometro.png"));
 	
 	public TimerPanel(TimerModel timermodel){
 		this.timermodel=timermodel;
@@ -39,11 +39,13 @@ public class TimerPanel extends JPanel implements Observer{
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
-		g.drawImage(crono.getImage(),50,30,null);
+		//g.drawImage(crono.getImage(),50,30,null);
 		
-		g.setFont(new Font("Homoarakhn", 0, 70));
-		g.setColor(Color.DARK_GRAY);
-		g.drawString(timermodel.toString(), 103, 200);
+		g.setFont(new Font("Homoarakhn", 0, 100));
+		g.setColor(Color.BLACK);
+		g.fillRect(138, 130, 150, 130);
+		g.setColor(Color.RED);
+		g.drawString(timermodel.toString(), 138, 223);
 		
 	}
 

@@ -85,6 +85,9 @@ public class PacketHandler extends ClientConnectionHandler{
 				if(((ResponsePacket)packet).getResponse() == 2000){
 					game.won();
 				}
+				if(((ResponsePacket)packet).getResponse() == 1500){
+					p = new ResponsePacket(client.getConnection().getNickName(), null, 1200);
+				}
 				if (((ResponsePacket) packet).getResponse() == 1	){
 					game.getOpponentModel().setstatus(game.getController().getNrow(),game.getController().getNcol(),Status.HIT);
 					
@@ -102,7 +105,7 @@ public class PacketHandler extends ClientConnectionHandler{
 
 	@Override
 	public void onDisconnectedClient(DisconnectionPacket packet) {
-		// TODO Auto-generated method stub		
+		game.won();		
 	}
 
 }
