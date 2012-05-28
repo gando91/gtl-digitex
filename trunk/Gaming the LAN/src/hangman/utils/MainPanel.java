@@ -22,11 +22,8 @@ public class MainPanel extends JFrame{
 	private JMenu m;	
 	private JTextArea word;
 	private KeyBoardPanel lb;
-	private Words words;
 	
-	public MainPanel(Words words){
-		
-		this.words = words;
+	public MainPanel(String sword){
 		
 		setTitle("The Hangman");
 		setSize(350, 350);
@@ -34,73 +31,32 @@ public class MainPanel extends JFrame{
 		setLayout(null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);	
 		
-		mb = new JMenuBar();
-		mb.setBounds(0, 0, 350, 30);
-		m = new JMenu("New word");		
-		m.addMouseListener(new MouseListener(){
-
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				
-				// Set the current word using the getRndWord() method of words
-				// that returns a random word from the list of words.
-				CurrentWord.getInstance().setCurrentWord(getWords().getRndWord());
-				
-				word.setText(CurrentWord.getInstance().getVisibleString());				
-			}
-
-			@Override
-			public void mouseEntered(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseExited(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mousePressed(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
 			
-		});
-		mb.add(m);		
+				
 		
 		word = new JTextArea();
 		word.setBounds(100, 100, 150, 50);
 		word.setFont(new Font("Arial", Font.BOLD, 20));
+		word.setText(sword);
 		word.setEditable(false);
 		
-		// This is the panel that contains the text-area with the visible word.
 		p = new JPanel();
 		p.setLayout(null);
 		p.setBounds(0, 0, 350, 350 - 350/3-31);
 		p.setBackground(Color.ORANGE);
-		p.add(word);		
+		p.add(word);
 		
-		// This is the panel that contains the keyboard.
+		
 		lb = new KeyBoardPanel(word);
 		lb.setBounds(0, 350 - 350/3-31, 349, 350/3);
 		
-		add(mb);
 		add(p);		
 		add(lb);
 		
 		setVisible(true);
 	}
 
-	public Words getWords() {
-		return words;
-	}
+
 	
 }
+

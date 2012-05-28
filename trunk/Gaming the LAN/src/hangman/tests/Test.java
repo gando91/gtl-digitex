@@ -19,6 +19,6 @@ public class Test {
 		list.add("barabba");
 		
 		Words words = new Words(list);			
-		MainPanel i = new MainPanel(words);
+		MainPanel i = new MainPanel("PISELLO");
 	}
 }
