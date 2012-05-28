@@ -8,9 +8,11 @@ import javax.swing.JOptionPane;
 public class CurrentWord {
 
 	private String word;
-	private List<Boolean> visibility = new ArrayList(); // This array marks the position of the visible letters with true.
-							  							// If the letter in "x" position is not visible, then it is marked with
-	                          							// false.
+	
+	// This array marks the position of the visible letters with true.
+	// If the letter in "x" position is not visible, then it is marked with
+	// false.
+	private List<Boolean> visibility = new ArrayList(); 
 	
 	private static CurrentWord instance;
 	
@@ -83,7 +85,11 @@ public class CurrentWord {
 		if(flag==false){
 			// TODO: add element to the hangman.
 			JOptionPane.showMessageDialog(null,"Wrong letter!");
+		}else if(!visibility.contains(false)){
+			
+			JOptionPane.showMessageDialog(null,"You guessed right!");
 		}
+		
 	}
 	
 	public String getVisibleString(){
