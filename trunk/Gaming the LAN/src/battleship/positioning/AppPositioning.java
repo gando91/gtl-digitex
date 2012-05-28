@@ -22,7 +22,7 @@ public class AppPositioning extends JFrame{
 
 	private static final long serialVersionUID = 1L;
 	private static final int DEFAULT_HEIGHT = 732;
-	private static final int DEFAULT_WIDTH=750;
+	private static final int DEFAULT_WIDTH=752;
 	private static final int READY = 500;
 	
 	ProxyShip ps = new ProxyShip(new AircraftCarrier());

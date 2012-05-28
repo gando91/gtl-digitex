@@ -7,7 +7,7 @@ import javax.swing.JOptionPane;
 
 public class AppGame extends JFrame{
 
-	private static final int DEFAULT_SIZE = 780;
+	private static final int DEFAULT_SIZE = 782;
 	private static final long serialVersionUID = 1L;
 	private MatrixController controller;
 	private MatrixModel opponentModel;
