@@ -8,10 +8,9 @@ import gamingthelan.client.ClientConnectionHandler;
 import gamingthelan.client.IClient;
 import gamingthelan.netutils.IPacket;
 import gamingthelan.netutils.servicepackets.DisconnectionPacket;
-import hangman.utils.MainPanel;
-import hangman.utils.ProtocolPacket;
-import hangman.utils.WordPacket;
-import hangman.utils.WrongPacket;
+import hangman.packets.ProtocolPacket;
+import hangman.packets.WordPacket;
+import hangman.packets.WrongPacket;
 
 public class PacketHandler extends ClientConnectionHandler{
 	

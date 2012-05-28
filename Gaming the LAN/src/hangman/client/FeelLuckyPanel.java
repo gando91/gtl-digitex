@@ -1,4 +1,4 @@
-package hangman.utils;
+package hangman.client;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
