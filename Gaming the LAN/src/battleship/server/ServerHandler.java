@@ -72,7 +72,7 @@ public static final int MAXPLAYERS = 2;
 				
 			}
 			
-			if ( ((ResponsePacket)packet).getResponse() == 1 || ((ResponsePacket)packet).getResponse() == 2 || ((ResponsePacket)packet).getResponse() == 2000){
+			if ( ((ResponsePacket)packet).getResponse() == 1 || ((ResponsePacket)packet).getResponse() == 2 || ((ResponsePacket)packet).getResponse() == 2000 || ((ResponsePacket)packet).getResponse() == 1500 || ((ResponsePacket)packet).getResponse() == 1200){
 				
 				if(packet.getSender().equals(first)){
 					p = new ResponsePacket(null, second, ((ResponsePacket)packet).getResponse());

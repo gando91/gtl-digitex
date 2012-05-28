@@ -20,7 +20,7 @@ public class AppGame extends JFrame{
 		OpponentView view=new OpponentView(opponentModel);
 		MyView myview =new MyView(myModel);
 		
-		timermodel=new TimerModel();
+		timermodel=new TimerModel(client);
 		TimerPanel timerpanel=new TimerPanel(timermodel);
 		timermodel.addObserver(timerpanel);
 		

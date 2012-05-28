@@ -20,7 +20,7 @@ public class MainPanel extends JPanel {
 	private OpponentView view;
 	private MyView myview;
 	*/
-	private ImageIcon sfondo=new ImageIcon(getClass().getResource("Plancia.png"));
+	private ImageIcon sfondo=new ImageIcon(getClass().getResource("Planciagiusta.jpg"));
 	private TurnPanel turn;
 	
 	public MainPanel(OpponentView view,MyView myview, TimerPanel timerpanel){
