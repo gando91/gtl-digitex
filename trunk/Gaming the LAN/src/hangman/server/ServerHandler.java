@@ -11,12 +11,10 @@ import gamingthelan.netutils.ConnectionHandler;
 import gamingthelan.netutils.IPacket;
 import gamingthelan.netutils.servicepackets.DisconnectionPacket;
 import gamingthelan.server.Server;
-import hangman.utils.CurrentWord;
-import hangman.utils.LetterPacket;
-import hangman.utils.ProtocolPacket;
-import hangman.utils.WordPacket;
-import hangman.utils.Words;
-import hangman.utils.WrongPacket;
+import hangman.packets.LetterPacket;
+import hangman.packets.ProtocolPacket;
+import hangman.packets.WordPacket;
+import hangman.packets.WrongPacket;
 
 public class ServerHandler implements ConnectionHandler {
 	

@@ -1,9 +1,9 @@
 package hangman.tests;
 
+import hangman.client.MainPanel;
 import hangman.connection.AppConnection;
 import hangman.connection.ConnectionPanel;
-import hangman.utils.MainPanel;
-import hangman.utils.Words;
+import hangman.server.Words;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -2,7 +2,7 @@ package hangman.connection;
 
 import gamingthelan.client.Client;
 import hangman.client.PacketHandler;
-import hangman.utils.ProtocolPacket;
+import hangman.packets.ProtocolPacket;
 
 import java.awt.Color;
 import java.awt.Graphics;

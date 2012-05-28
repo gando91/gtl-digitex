@@ -1,6 +1,7 @@
-package hangman.utils;
+package hangman.client;
 
 import gamingthelan.client.IClient;
+import hangman.packets.LetterPacket;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

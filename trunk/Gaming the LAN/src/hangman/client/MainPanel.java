@@ -1,4 +1,4 @@
-package hangman.utils;
+package hangman.client;
 
 import gamingthelan.client.IClient;
 

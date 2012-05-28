@@ -1,4 +1,4 @@
-package hangman.utils;
+package hangman.packets;
 
 import java.util.LinkedList;
 import java.util.List;
