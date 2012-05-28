@@ -19,19 +19,18 @@ public class HangmanPanel extends JPanel{
 
 	public HangmanPanel() {
 		
-		setBackground(Color.BLUE);
-		
+		setBackground(Color.BLUE);		
 		setVisible(true);
 	}
 	
-	public void goOn()
-	{
+	public void goOn(){
+		
 		state++;
 		repaint();
 	}
 	
-	public void reset()
-	{
+	public void reset(){
+		
 		state=0;
 		repaint();
 	}
@@ -39,6 +38,8 @@ public class HangmanPanel extends JPanel{
 	
 	@Override
 	protected void paintComponent(Graphics g) {
+		
+		// TODO: stasìra fuma un pont
 		
 		super.paintComponent(g);
 		g.setColor(Color.WHITE);

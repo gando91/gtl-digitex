@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JTextArea;
 
 public class KeyButton extends JButton{
@@ -11,9 +12,9 @@ public class KeyButton extends JButton{
 	private static final long serialVersionUID = 1L;
 
 	private char letter;
-	private JTextArea word;
+	private JLabel word;
 
-	public KeyButton(String letter, JTextArea word){
+	public KeyButton(String letter, JLabel word){
 		
 		this.letter = letter.charAt(0);
 		this.word = word;
@@ -35,7 +36,7 @@ public class KeyButton extends JButton{
 		return letter;
 	}
 
-	public JTextArea getWord() {
+	public JLabel getWord() {
 		return word;
 	}	
 	public void setEnabled(boolean b){
