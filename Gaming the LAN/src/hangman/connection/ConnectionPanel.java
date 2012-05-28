@@ -31,21 +31,9 @@ public class ConnectionPanel extends JPanel{
 	
 	private JButton connetti;
 	
-
-	
 	public ConnectionPanel(){
 		
 		connetti=new JButton("CONNECT");
-		
-		/*
-		connetti.addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				connect();
-			}
-		});
-		*/
 		
 		JButton esci=new JButton("RESET");		
 		esci.addActionListener(new ActionListener() {
@@ -116,11 +104,12 @@ public class ConnectionPanel extends JPanel{
 			try {
 				myClient.connect();
 				JOptionPane.showMessageDialog(null, "Connessione avvenuta con successo!", "Info", JOptionPane.INFORMATION_MESSAGE);
+				h.openWaitingWindow();
 				
 				try {
 					ProtocolPacket p = new ProtocolPacket(nickname.getText(), "server", HI);
-					myClient.sendPacket(p);
-					new WaitingWindow();
+					myClient.sendPacket(p);					
+					
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -133,6 +122,7 @@ public class ConnectionPanel extends JPanel{
 	}
 	
 	private void reset(){
+		
 		nickname.setText(null);
 		ip_server.setText(null);
 		port.setText(null);
@@ -143,10 +133,8 @@ public class ConnectionPanel extends JPanel{
 	}
 	
 	@Override
-	protected void paintComponent(Graphics arg0) {
-		
+	protected void paintComponent(Graphics arg0) {		
 		super.paintComponent(arg0);
-
 	}
 	
 }
