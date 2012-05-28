@@ -12,24 +12,35 @@ import gamingthelan.netutils.IPacket;
 import gamingthelan.netutils.servicepackets.DisconnectionPacket;
 import gamingthelan.server.Server;
 import hangman.utils.CurrentWord;
+import hangman.utils.LetterPacket;
 import hangman.utils.ProtocolPacket;
 import hangman.utils.WordPacket;
 import hangman.utils.Words;
+import hangman.utils.WrongPacket;
 
 public class ServerHandler implements ConnectionHandler {
 	
 	public static final int MAXPLAYERS = 3;
+	public static final int HANGMANDEATH = 10;
 	
 	private HashMap<String, Boolean> players = new HashMap<String, Boolean>();
 	private int nready = 0;
 	private String[] player = new String[MAXPLAYERS];
-	ProtocolPacket p;
+	private ProtocolPacket p;
 	private List<String> parole = new LinkedList<String>();
-	Words words;
+	private Words words;
+	private int turn = 0;
+	private int hangmanstatus;
 	
 	/*Implementiamo qui il metodo onReceivedPacket della classe ConnectionHandler, scegliendo come deve comportarsi il nostro 
 	 * server nel momento in cui arriva un pacchetto */
 	public ServerHandler(){
+		parole.add("Dagrada");
+		parole.add("Maiocchi");
+		parole.add("Villa");
+		parole.add("Guantanamo");
+		parole.add("asterisco");
+		parole.add("zuzzurellone");
 		parole.add("Dagrada");
 		parole.add("Maiocchi");
 		parole.add("Villa");
@@ -71,7 +82,7 @@ public class ServerHandler implements ConnectionHandler {
 					ProtocolPacket p = new ProtocolPacket(null, null, 1000);
 					try {
 						Server.getInstance().broadcastMessage(p);
-						ProtocolPacket q = new ProtocolPacket(null, player[0], 1500);
+						ProtocolPacket q = new ProtocolPacket(null, player[turn], 1500);
 						Server.getInstance().sendMessage(q);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
@@ -87,6 +98,21 @@ public class ServerHandler implements ConnectionHandler {
 					nready = 0;
 				}
 				
+			}
+			
+		}
+		if(packet instanceof LetterPacket){
+			int answer = CurrentWord.getInstance().letterCheck(((LetterPacket)packet).getLetter());
+			if(answer == 0){
+				hangmanstatus++;
+				if(hangmanstatus != HANGMANDEATH){
+					WrongPacket a = new WrongPacket(packet.getSender(), ((LetterPacket)packet).getLetter(), hangmanstatus);
+					try {
+						Server.getInstance().broadcastMessage(a);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
 			}
 		}
 			

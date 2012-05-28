@@ -8,11 +8,13 @@ public class WrongPacket implements IPacket {
 	
 	private String delinquent;
 	private char letter;
+	private int status;
 	
-	public WrongPacket(String delinquent, char letter){
+	public WrongPacket(String delinquent, char letter, int status){
 		
 		this.delinquent = delinquent;
 		this.letter = letter;
+		this.status = status;
 	}
 
 	@Override
@@ -32,5 +34,8 @@ public class WrongPacket implements IPacket {
 	public char getLetter() {
 		return letter;
 	}
-
+	
+	public int getStatus(){
+		return status;
+	}
 }

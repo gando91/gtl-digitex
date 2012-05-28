@@ -8,11 +8,12 @@ import gamingthelan.netutils.IPacket;
 import gamingthelan.netutils.servicepackets.DisconnectionPacket;
 import hangman.utils.MainPanel;
 import hangman.utils.ProtocolPacket;
+import hangman.utils.WordPacket;
 
 public class PacketHandler extends ClientConnectionHandler{
 	
 	private int state = 0;
-
+	private MainPanel panel;
 	
 	public PacketHandler(IClient client) {
 		super(client);
@@ -40,12 +41,15 @@ public class PacketHandler extends ClientConnectionHandler{
 			
 		else if (state == 1) {
 			if ( ((ProtocolPacket)packet).getCode() == 1000 ){
-				new MainPanel(null);
+				panel = new MainPanel(null);
 				state = 2;
+				
 			}
-			
+					
 		 else if (state == 2) {
-			
+			if(packet instanceof WordPacket){
+				panel.setWord(((WordPacket)packet).getWord());
+			}
 			
 		}
 		}
