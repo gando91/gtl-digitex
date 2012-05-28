@@ -69,7 +69,7 @@ public class CurrentWord {
 		}
 	}
 	
-	public void letterCheck(char letter){
+	public int letterCheck(char letter){
 		
 		// If true, this variable signals that the checked letter appears in the current word.
 		boolean flag = false;
@@ -84,10 +84,14 @@ public class CurrentWord {
 		
 		if(flag==false){
 			// TODO: add element to the hangman.
-			JOptionPane.showMessageDialog(null,"Wrong letter!");
+			//0 means that it's wrong
+			return 0;
 		}else if(!visibility.contains(false)){
 			
-			JOptionPane.showMessageDialog(null,"You guessed right!");
+			return 2;
+		}
+		else {
+			return 1;
 		}
 		
 	}

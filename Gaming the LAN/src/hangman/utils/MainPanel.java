@@ -28,6 +28,7 @@ public class MainPanel extends JFrame{
 	private FeelLuckyPanel flp;
 	private KeyBoardPanel lb;
 	
+	
 	public MainPanel(String sword){
 		
 		setTitle("The Hangman");
@@ -63,11 +64,13 @@ public class MainPanel extends JFrame{
 		add(lb);
 		
 		setVisible(true);
+		
 	}
-	
+
 	public void setWord(String word){
 		this.word.setText(word);
 	}
+
 	
 }
 
