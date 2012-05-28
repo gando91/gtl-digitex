@@ -2,6 +2,7 @@ package hangman.utils;
 
 import java.awt.GridLayout;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
@@ -9,7 +10,7 @@ public class KeyBoardPanel extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 
-	public KeyBoardPanel(JTextArea word){
+	public KeyBoardPanel(JLabel word){
 		
 		setLayout(new GridLayout(3,7));
 		

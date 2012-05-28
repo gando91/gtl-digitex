@@ -8,14 +8,14 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class FellLuckyPanel extends JPanel implements ActionListener{
+public class FeelLuckyPanel extends JPanel implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	private JTextField insert=new JTextField();
-	private JButton button=new JButton("I'M FEEL LUCKY");
+	private JButton button=new JButton("I FEEL LUCKY");
 			
 	
-	public FellLuckyPanel() {
+	public FeelLuckyPanel() {
 		
 		setBackground(Color.BLUE);
 		setLayout(null);
@@ -26,17 +26,12 @@ public class FellLuckyPanel extends JPanel implements ActionListener{
 		button.addActionListener(this);
 		
 		add(insert);
-		add(button);
-		
+		add(button);		
 	}
-
-
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println("ho premuto");
 		
+		System.out.println("ho premuto");		
 	}
-	
-	
-
 }
