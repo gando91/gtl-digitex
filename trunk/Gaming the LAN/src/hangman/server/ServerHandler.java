@@ -20,7 +20,7 @@ import hangman.utils.WrongPacket;
 
 public class ServerHandler implements ConnectionHandler {
 	
-	public static final int MAXPLAYERS = 3;
+	public static final int MAXPLAYERS = 1;
 	public static final int HANGMANDEATH = 10;
 	
 	private HashMap<String, Boolean> players = new HashMap<String, Boolean>();
@@ -82,8 +82,10 @@ public class ServerHandler implements ConnectionHandler {
 					ProtocolPacket p = new ProtocolPacket(null, null, 1000);
 					try {
 						Server.getInstance().broadcastMessage(p);
+						System.out.println("CACCA");
 						ProtocolPacket q = new ProtocolPacket(null, player[turn], 1500);
 						Server.getInstance().sendMessage(q);
+						System.out.println(player[turn]);
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -91,6 +93,7 @@ public class ServerHandler implements ConnectionHandler {
 					WordPacket w = new WordPacket(null, null, CurrentWord.getInstance().getVisibleString());
 					try {
 						Server.getInstance().broadcastMessage(w);
+						System.out.println(CurrentWord.getInstance().getVisibleString());
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
@@ -157,6 +160,7 @@ public class ServerHandler implements ConnectionHandler {
 			}
 				
 		}
+		turnGoOn();
 	}
 			
 
@@ -166,7 +170,7 @@ public class ServerHandler implements ConnectionHandler {
 	}
 	
 	public void turnGoOn(){
-		if(turn < MAXPLAYERS){
+		if(turn == MAXPLAYERS){
 			turn++;
 		}
 		else

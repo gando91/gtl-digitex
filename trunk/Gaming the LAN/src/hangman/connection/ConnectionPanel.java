@@ -1,12 +1,15 @@
 package hangman.connection;
 
 import gamingthelan.client.Client;
+import hangman.client.PacketHandler;
+import hangman.utils.ProtocolPacket;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -14,10 +17,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
-import battleship.client.PacketHandler;
-import battleship.client.ResponsePacket;
-import battleship.positioning.WaitingWindow;
 
 public class ConnectionPanel extends JPanel{
 
@@ -32,7 +31,7 @@ public class ConnectionPanel extends JPanel{
 	
 	private JButton connetti;
 	
-	private ImageIcon sfondo=new ImageIcon(getClass().getResource("sfondo.jpg"));
+
 	
 	public ConnectionPanel(){
 		
@@ -119,7 +118,7 @@ public class ConnectionPanel extends JPanel{
 				JOptionPane.showMessageDialog(null, "Connessione avvenuta con successo!", "Info", JOptionPane.INFORMATION_MESSAGE);
 				
 				try {
-					ResponsePacket p = new ResponsePacket(nickname.getText(), "server", HI);
+					ProtocolPacket p = new ProtocolPacket(nickname.getText(), "server", HI);
 					myClient.sendPacket(p);
 					new WaitingWindow();
 				} catch (IOException e) {
@@ -147,7 +146,7 @@ public class ConnectionPanel extends JPanel{
 	protected void paintComponent(Graphics arg0) {
 		
 		super.paintComponent(arg0);
-		arg0.drawImage(sfondo.getImage(),0,0,null);		
+
 	}
 	
 }

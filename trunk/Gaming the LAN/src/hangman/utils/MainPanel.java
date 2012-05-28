@@ -1,5 +1,7 @@
 package hangman.utils;
 
+import gamingthelan.client.IClient;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -29,7 +31,7 @@ public class MainPanel extends JFrame{
 	private KeyBoardPanel lb;
 	
 	
-	public MainPanel(String sword){
+	public MainPanel(String sword, IClient client){
 		
 		setTitle("The Hangman");
 		setSize(WIDTH, HEIGHT);
@@ -57,7 +59,7 @@ public class MainPanel extends JFrame{
 		p.add(word);
 		p.add(flp);		
 		
-		lb = new KeyBoardPanel(word);
+		lb = new KeyBoardPanel(word, client);
 		lb.setBounds(0, HEIGHT - HEIGHT/3-31, WIDTH - 1, HEIGHT/3);
 		
 		add(p);		
@@ -69,6 +71,13 @@ public class MainPanel extends JFrame{
 
 	public void setWord(String word){
 		this.word.setText(word);
+	}
+	
+	public void hangUp(int state){
+		this.hmp.setState(state);
+	}
+	public void setEnabled(boolean b){
+		lb.setEnabled(b);
 	}
 
 	

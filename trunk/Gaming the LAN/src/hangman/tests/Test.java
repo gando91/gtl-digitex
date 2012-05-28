@@ -1,5 +1,7 @@
 package hangman.tests;
 
+import hangman.connection.AppConnection;
+import hangman.connection.ConnectionPanel;
 import hangman.utils.MainPanel;
 import hangman.utils.Words;
 
@@ -18,7 +20,6 @@ public class Test {
 		list.add("spirale");
 		list.add("barabba");
 		
-		Words words = new Words(list);			
-		MainPanel i = new MainPanel("PISELLO");
+		new AppConnection(new ConnectionPanel());
 	}
 }
