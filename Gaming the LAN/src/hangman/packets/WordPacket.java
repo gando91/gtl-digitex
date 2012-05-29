@@ -23,7 +23,7 @@ public class WordPacket implements IPacket{
 	}
 	@Override
 	public List<String> getReceiver() {
-		return null;
+		return receiver;
 	}
 
 	@Override

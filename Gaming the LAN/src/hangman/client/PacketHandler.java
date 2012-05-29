@@ -9,6 +9,7 @@ import gamingthelan.client.IClient;
 import gamingthelan.netutils.IPacket;
 import gamingthelan.netutils.servicepackets.DisconnectionPacket;
 import hangman.connection.WaitingWindow;
+import hangman.packets.DeadPacket;
 import hangman.packets.ProtocolPacket;
 import hangman.packets.WordPacket;
 import hangman.packets.WrongPacket;
@@ -59,13 +60,21 @@ public class PacketHandler extends ClientConnectionHandler{
 		}		
 		else if (state == 2) {
 			
-			if(packet instanceof WordPacket){
+			if(packet instanceof WordPacket){				
+				
 				panel.setWord(((WordPacket)packet).getWord());
 				
-				if(packet.getSender() != null){
-					JOptionPane.showMessageDialog(null, packet.getSender() + " ha indovinato la parola !");
+				if(packet.getSender() != null){					
 					
-					System.exit(1);
+					if(((WordPacket)packet).getReceiver().get(0).equalsIgnoreCase("9002")){						
+						JOptionPane.showMessageDialog(null, packet.getSender() + " ha indovinato la parola !");					
+						System.exit(1);
+					}
+					
+					if(((WordPacket)packet).getReceiver().get(0).equalsIgnoreCase("9003")){
+						JOptionPane.showMessageDialog(null, packet.getSender() + " ha pensato alla parola " +
+								((WordPacket)packet).getWord() + " ma non è quella giusta !");
+					}
 				}
 				
 				panel.setEnabled(false);
@@ -87,6 +96,10 @@ public class PacketHandler extends ClientConnectionHandler{
 				}
 			}
 			
+			if(packet instanceof DeadPacket){
+				panel.hangUp(((DeadPacket)packet).getHangmandeath());
+				System.exit(1);
+			}
 		}
 	}
 	

@@ -11,6 +11,7 @@ import gamingthelan.netutils.ConnectionHandler;
 import gamingthelan.netutils.IPacket;
 import gamingthelan.netutils.servicepackets.DisconnectionPacket;
 import gamingthelan.server.Server;
+import hangman.packets.DeadPacket;
 import hangman.packets.LetterPacket;
 import hangman.packets.ProtocolPacket;
 import hangman.packets.WordPacket;
@@ -132,7 +133,12 @@ public class ServerHandler implements ConnectionHandler {
 				
 				else{
 					
-					// TODO: dobbiamo dire ai client che la partita è terminata.
+					try {
+						Server.getInstance().broadcastMessage(new DeadPacket());
+						
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 				}
 			}			
 			
@@ -151,7 +157,7 @@ public class ServerHandler implements ConnectionHandler {
 			
 			// Se la lettera è corretta e ha vinto il giocatore di turno.
 			if(answer == 2){
-				WordPacket wp = new WordPacket(player[turn], null, CurrentWord.getInstance().getVisibleString());
+				WordPacket wp = new WordPacket(player[turn], "9002", CurrentWord.getInstance().getVisibleString());
 				
 				try {
 					Server.getInstance().broadcastMessage(wp);
@@ -171,10 +177,10 @@ public class ServerHandler implements ConnectionHandler {
 			WordPacket wp;
 			
 			// Se la parola corrente è uguale a quella inviata dal giocatore di turno
-			if(CurrentWord.getInstance().getWord() == ((WordPacket)packet).getWord())
-				wp = new WordPacket(player[turn], null, CurrentWord.getInstance().getWord());				
+			if(CurrentWord.getInstance().getWord().equalsIgnoreCase(((WordPacket)packet).getWord()))
+				wp = new WordPacket(player[turn], "9002", CurrentWord.getInstance().getWord());				
 			else
-				wp = new WordPacket(null, null, CurrentWord.getInstance().getWord());
+				wp = new WordPacket(player[turn], "9003", CurrentWord.getInstance().getWord());
 			
 			try {
 				Server.getInstance().broadcastMessage(wp);
