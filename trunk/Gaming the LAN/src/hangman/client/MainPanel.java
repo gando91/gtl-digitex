@@ -46,7 +46,7 @@ public class MainPanel extends JFrame{
 		word.setText(sword);
 		word.setBounds(10, 145, 150, 30);
 		
-		flp = new FeelLuckyPanel();
+		flp = new FeelLuckyPanel(client);
 		flp.setBounds(0, 184, WIDTH, 50);
 		
 		p = new JPanel();
@@ -78,6 +78,7 @@ public class MainPanel extends JFrame{
 	
 	public void setEnabled(boolean b){
 		lb.setEnabled(b);
+		flp.setEnabled(b);
 	}
 	
 }

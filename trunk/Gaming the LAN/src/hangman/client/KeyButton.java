@@ -42,7 +42,6 @@ public class KeyButton extends JButton{
 			}			
 		};
 		
-		//this.addActionListener(l);
 	}
 
 	public char getLetter() {
