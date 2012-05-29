@@ -28,8 +28,7 @@ public class MainPanel extends JFrame{
 	private JLabel word;
 	private HangmanPanel hmp;
 	private FeelLuckyPanel flp;
-	private KeyBoardPanel lb;
-	
+	private KeyBoardPanel lb;	
 	
 	public MainPanel(String sword, IClient client){
 		
@@ -52,7 +51,7 @@ public class MainPanel extends JFrame{
 		
 		p = new JPanel();
 		p.setLayout(null);
-		p.setBounds(0, 0, 350, HEIGHT - HEIGHT/3-31);
+		p.setBounds(0, 0, 350, HEIGHT - HEIGHT/3 - 31);
 		p.setBackground(Color.ORANGE);
 		
 		p.add(hmp);
@@ -60,7 +59,7 @@ public class MainPanel extends JFrame{
 		p.add(flp);		
 		
 		lb = new KeyBoardPanel(word, client);
-		lb.setBounds(0, HEIGHT - HEIGHT/3-31, WIDTH - 1, HEIGHT/3);
+		lb.setBounds(0, HEIGHT - HEIGHT/3 - 31, WIDTH - 1, HEIGHT/3);
 		
 		add(p);		
 		add(lb);

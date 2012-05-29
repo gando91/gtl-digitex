@@ -50,6 +50,7 @@ public class PacketHandler extends ClientConnectionHandler{
 				}
 			}
 			
+			// Se arriva il pacchetto con la parola da indovinare
 			if(packet instanceof WordPacket){
 				
 				panel.setWord(((WordPacket)packet).getWord());
@@ -62,18 +63,25 @@ public class PacketHandler extends ClientConnectionHandler{
 				panel.setWord(((WordPacket)packet).getWord());
 				
 				if(packet.getSender() != null){
-					JOptionPane.showMessageDialog(null, packet.getSender()+" ha indovinato la parola !");
-					panel.setEnabled(false);
+					JOptionPane.showMessageDialog(null, packet.getSender() + " ha indovinato la parola !");
+					
+					// Qui potrei addirittura uscire dal gioco
 				}
-			}
-			
-			if(packet instanceof WrongPacket){
-				panel.hangUp(((WrongPacket)packet).getStatus());
-				JOptionPane.showMessageDialog(null, "La lettera '"+((WrongPacket)packet).getLetter() +"' inserita da " + ((WrongPacket)packet).getDelinquent() + " non è presente");
+				
 				panel.setEnabled(false);
 			}
 			
+			if(packet instanceof WrongPacket){
+				
+				panel.hangUp(((WrongPacket)packet).getStatus());
+				JOptionPane.showMessageDialog(null, "La lettera '"+((WrongPacket)packet).getLetter() +"' inserita da " + ((WrongPacket)packet).getDelinquent() + " non è presente");
+				
+				panel.setEnabled(false);//?????
+			}
+			
 			if(packet instanceof ProtocolPacket){
+				
+				// Se è il mio turno 
 				if(((ProtocolPacket)packet).getCode() == 1500){
 					panel.setEnabled(true);
 				}

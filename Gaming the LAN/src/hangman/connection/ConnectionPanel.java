@@ -62,6 +62,7 @@ public class ConnectionPanel extends JPanel{
 		is.setBounds(10,70,100,50);
 		
 		ip_server.setBounds(245, 90, 125, 25);
+		ip_server.setText("localhost");
 		
 		JLabel p=new JLabel("PORT");
 		p.setForeground(Color.WHITE);
