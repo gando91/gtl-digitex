@@ -65,7 +65,7 @@ public class PacketHandler extends ClientConnectionHandler{
 				if(packet.getSender() != null){
 					JOptionPane.showMessageDialog(null, packet.getSender() + " ha indovinato la parola !");
 					
-					// Qui potrei addirittura uscire dal gioco
+					System.exit(1);
 				}
 				
 				panel.setEnabled(false);
@@ -76,7 +76,7 @@ public class PacketHandler extends ClientConnectionHandler{
 				panel.hangUp(((WrongPacket)packet).getStatus());
 				JOptionPane.showMessageDialog(null, "La lettera '"+((WrongPacket)packet).getLetter() +"' inserita da " + ((WrongPacket)packet).getDelinquent() + " non è presente");
 				
-				panel.setEnabled(false);//?????
+				panel.setEnabled(false);
 			}
 			
 			if(packet instanceof ProtocolPacket){
