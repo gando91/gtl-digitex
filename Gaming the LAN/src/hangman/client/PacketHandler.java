@@ -98,6 +98,8 @@ public class PacketHandler extends ClientConnectionHandler{
 			
 			if(packet instanceof DeadPacket){
 				panel.hangUp(((DeadPacket)packet).getHangmandeath());
+				JOptionPane.showMessageDialog(null, "Nessuno è riuscito a indovinare la parola!");
+				
 				System.exit(1);
 			}
 		}
