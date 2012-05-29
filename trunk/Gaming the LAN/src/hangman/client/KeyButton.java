@@ -17,6 +17,8 @@ public class KeyButton extends JButton{
 	private char letter;
 	private JLabel word;
 	private IClient client;
+	private ActionListener l;
+	
 	public KeyButton(String letter, JLabel word, IClient client){
 		this.client = client;
 		this.letter = letter.charAt(0);
@@ -24,20 +26,23 @@ public class KeyButton extends JButton{
 		
 		this.setText(letter);
 		
-		this.addActionListener(new ActionListener(){
+		l = new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
 				try {
 					getClient().sendPacket(new LetterPacket(getClient().getConnection().getNickName(), getLetter()));
+					
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				
 			}			
-		});
+		};
+		
+		//this.addActionListener(l);
 	}
 
 	public char getLetter() {
@@ -47,10 +52,16 @@ public class KeyButton extends JButton{
 	public JLabel getWord() {
 		return word;
 	}	
+	
 	public void setEnabled(boolean b){
-		this.setEnabled(b);
+		if(b)
+			this.addActionListener(l);
+		else
+			this.removeActionListener(l);
 	}
+	
 	public IClient getClient(){
 		return this.client;
 	}
+	
 }

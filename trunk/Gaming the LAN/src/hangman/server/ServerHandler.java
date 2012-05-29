@@ -81,16 +81,14 @@ public class ServerHandler implements ConnectionHandler {
 					
 					try {
 						// Dico a tutti che abbiamo raggiunto il tetto massimo di giocatori pronti
-						Server.getInstance().broadcastMessage(p);
-						
-						// Dico al primo giocatore che è il suo turno.
-						ProtocolPacket q = new ProtocolPacket(null, player[turn], 1500);
-						Server.getInstance().sendMessage(q);	
+						Server.getInstance().broadcastMessage(p);							
 						
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+					
+					System.out.println(player[turn]);
 					
 					WordPacket w = new WordPacket(null, null, CurrentWord.getInstance().getVisibleString());
 					
@@ -101,6 +99,10 @@ public class ServerHandler implements ConnectionHandler {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
+					
+					// Dico al primo giocatore che è il suo turno. 
+					ProtocolPacket q = new ProtocolPacket(null, player[turn], 1500);
+					Server.getInstance().sendMessage(q);									
 					
 					System.out.println("Partita Avviata !");
 					
@@ -180,10 +182,11 @@ public class ServerHandler implements ConnectionHandler {
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}				
-		}
+			}	
+			
+			turnGoOn();
+		}		
 		
-		turnGoOn();
 	}
 			
 
@@ -194,9 +197,9 @@ public class ServerHandler implements ConnectionHandler {
 	
 	public void turnGoOn(){
 		
+		turn++;
+		
 		if(turn == MAXPLAYERS)
-			turn++;
-		else
 			turn = 0;
 		
 		ProtocolPacket q = new ProtocolPacket(null, player[turn], 1500);
