@@ -1,13 +1,30 @@
 package hangman.client;
 
+import hangman.drawables.StateEight;
+import hangman.drawables.StateEleven;
+import hangman.drawables.StateFive;
+import hangman.drawables.StateFour;
+import hangman.drawables.StateNine;
+import hangman.drawables.StateOne;
+import hangman.drawables.StateSeven;
+import hangman.drawables.StateSix;
+import hangman.drawables.StateTen;
+import hangman.drawables.StateThree;
+import hangman.drawables.StateTwo;
+
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.LinkedList;
+import java.util.List;
+
 import javax.swing.JPanel;
 
 public class HangmanPanel extends JPanel{
 
 	private static final long serialVersionUID = -4235465505089593172L;
+	
 	private int state=0; 
+	private List<Drawable> drawables;
 	
 	public int getState() {
 		return state;
@@ -22,6 +39,20 @@ public class HangmanPanel extends JPanel{
 		
 		setBackground(Color.BLUE);		
 		setVisible(true);
+		
+		drawables = new LinkedList<Drawable>();
+		
+		drawables.add(new StateOne());
+		drawables.add(new StateTwo());
+		drawables.add(new StateThree());
+		drawables.add(new StateFour());
+		drawables.add(new StateFive());
+		drawables.add(new StateSix());
+		drawables.add(new StateSeven());
+		drawables.add(new StateEight());
+		drawables.add(new StateNine());
+		drawables.add(new StateTen());
+		drawables.add(new StateEleven());
 	}
 	
 	public void goOn(){
@@ -40,46 +71,7 @@ public class HangmanPanel extends JPanel{
 	@Override
 	public void paint(Graphics g) {
 		
-		// TODO: stasìra fuma un pont
-		g.setColor(Color.WHITE);
-		
-		if(state == 0){
-		g.setColor(Color.BLUE);
-		g.fillRect(0, 0, 150, 150);
-		}
-		if(state==1){
-			
-			g.setColor(Color.WHITE);
-			g.drawLine(20, 100, 100, 100);
-		}
-		if(state==2)
-			
-			g.drawLine(20, 100, 20, 20);
-			
-		if(state==3)
-			g.drawLine(20, 20, 70, 20);
-			
-		if(state==4)
-			g.drawLine(70, 20, 70, 30);
-			
-		if(state==5)
-			g.drawOval(63, 30, 15, 15);
-		
-		if(state==6)
-			g.drawLine(70, 45, 70, 75);
-			
-		if(state==7)
-			g.drawLine(70, 47, 80, 57);
-		
-		if(state==8)
-			g.drawLine(70, 47, 60, 57);
-		
-		if(state==9)
-			g.drawLine(70, 75, 80, 85);
-		
-		if(state==10)
-			g.drawLine(70, 75, 60, 85);
-			
+		drawables.get(state).draw(g);
 	}
 	
 
