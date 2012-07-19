@@ -12,6 +12,7 @@ import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
+import javax.swing.JPanel;
 
 import battleship.client.ResponsePacket;
 import battleship.game.MatrixModel;
@@ -65,9 +66,11 @@ public class AppPositioning extends JFrame{
 			}
 		});
 		
+		JPanel panel = new JPanel();
+		
 		JButton reset=new JButton("RESET");		
 		reset.addKeyListener(shipControl);
-		add(reset, BorderLayout.PAGE_START);
+		panel.add(reset);
 		
 		reset.addActionListener(new ActionListener() {			
 			@Override
@@ -81,7 +84,7 @@ public class AppPositioning extends JFrame{
 		
 		JButton undo=new JButton("UNDO");		
 		undo.addKeyListener(shipControl);
-		add(undo, BorderLayout.PAGE_START);
+		panel.add(undo);
 		
 		undo.addActionListener(new ActionListener() {			
 			@Override
@@ -90,6 +93,8 @@ public class AppPositioning extends JFrame{
 			}
 		});
 		
+		
+		add(panel, BorderLayout.PAGE_START);
 		//Boiate grafiche
 		setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 		setTitle("Ship Positioning");

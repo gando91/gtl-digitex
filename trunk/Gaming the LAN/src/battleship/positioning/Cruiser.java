@@ -6,9 +6,9 @@ public class Cruiser extends Ship {
 		super(DefaultDimensions.CRUISER_LENGTH.getValue());
 	}
 	@Override
-	public void setShipAmount() {
+	public void incrementShipAmount() {
 		if(super.getShipAmount() < DefaultDimensions.CRUISER_MAXNUM.getValue());
-			super.setShipAmount();
+			super.incrementShipAmount();
 	}
 	@Override
 	public int getMaxAmount(){

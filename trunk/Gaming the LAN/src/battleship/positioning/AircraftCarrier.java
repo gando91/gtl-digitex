@@ -7,9 +7,9 @@ public class AircraftCarrier extends Ship{
 	}
 	
 	@Override
-	public void setShipAmount() {
+	public void incrementShipAmount() {
 		if(super.getShipAmount() < DefaultDimensions.AIRCRAFT_CARRIER_MAXNUM.getValue());
-			super.setShipAmount();
+			super.incrementShipAmount();
 	}
 	@Override
 	public void resetShipAmount() {
@@ -19,4 +19,5 @@ public class AircraftCarrier extends Ship{
 	public int getMaxAmount(){
 		return DefaultDimensions.AIRCRAFT_CARRIER_MAXNUM.getValue();
 	}
+
 }

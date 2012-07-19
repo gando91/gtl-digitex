@@ -19,7 +19,8 @@ public class ShipController extends KeyAdapter implements MouseListener, MouseMo
 	
 	private MatrixModel model;
 	private ProxyShip proxyship;
-	private Memento ricordo;
+	private Memento ricordoModel;
+	private battleship.positioning.ProxyShip.Memento ricordoProxy;
 	
 	public  ShipController(MatrixModel model, ProxyShip proxyship) {
 		super();
@@ -29,8 +30,6 @@ public class ShipController extends KeyAdapter implements MouseListener, MouseMo
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
-	
 		
 		int xp=e.getX();
 		int yp=e.getY();
@@ -56,10 +55,11 @@ public class ShipController extends KeyAdapter implements MouseListener, MouseMo
 
 					if(counter == 0 && counter2 == 0 && ncol != 0 && nrow != 0){
 						if(proxyship.getShipAmount() < proxyship.getMaxAmount() && counter2 == 0){
-							proxyship.setShipAmount();
+							ricordoProxy = proxyship.generateMemento();
+							proxyship.incrementShipAmount();
 							
 							//Genero un ricordo del modello prima di modificarlo
-							ricordo = model.generateMemento();
+							ricordoModel = model.generateMemento();
 							
 							for (int i = 0; i < proxyship.getShipLength(); i++) {
 								model.setstatus(nrow + i, ncol, Status.SHIP);
@@ -82,10 +82,11 @@ public class ShipController extends KeyAdapter implements MouseListener, MouseMo
 			
 				if(counter == 0 && counter2 == 0 && ncol != 0 && nrow != 0){
 					if(proxyship.getShipAmount() < proxyship.getMaxAmount() && counter2 == 0){
-						proxyship.setShipAmount();
+						ricordoProxy = proxyship.generateMemento();
+						proxyship.incrementShipAmount();
 						
 					//Genero un ricordo del modello prima di modificarlo
-					ricordo = model.generateMemento();
+					ricordoModel = model.generateMemento();
 
 					for (int i = 0; i < proxyship.getShipLength(); i++) {
 						model.setstatus(nrow, ncol + i, Status.SHIP);
@@ -161,7 +162,8 @@ public class ShipController extends KeyAdapter implements MouseListener, MouseMo
 	}
 	
 	public void undo() {
-		ricordo.restore();
+		ricordoModel.restore();
+		ricordoProxy.restore();
 	}
 
 }

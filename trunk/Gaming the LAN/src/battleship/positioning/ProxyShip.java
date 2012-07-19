@@ -13,8 +13,8 @@ public class ProxyShip extends Observable implements IShip{
 		this.ship=ship;
 	}
 	
-	public void setShipAmount() {
-		ship.setShipAmount();
+	public void incrementShipAmount() {
+		ship.incrementShipAmount();
 	}
 	
 	public void update(){
@@ -89,6 +89,38 @@ public class ProxyShip extends Observable implements IShip{
 	public void resetShipAmount() {
 		ship.resetShipAmount();
 		
+	}
+
+	public IShip getShip() {
+		return ship;
+	}
+	public Memento generateMemento() {
+		return new Memento(ship, rotated);
+	}
+	
+	public class Memento
+	{
+		private IShip ship;
+		private boolean rotated;
+		private int amount;
+		
+		private Memento(IShip ship, boolean rotated){
+			this.ship = ship;
+			this.rotated = rotated;
+			this.amount = ship.getShipAmount();
+			
+		}
+		
+		public void restore() {
+			ProxyShip.this.ship = ship;
+			ProxyShip.this.rotated = rotated;
+			ship.setShipAmount(amount);
+		}
+	}
+
+	@Override
+	public void setShipAmount(int ShipAmount) {
+		this.ship.setShipAmount(ShipAmount);
 	}
 	
 }

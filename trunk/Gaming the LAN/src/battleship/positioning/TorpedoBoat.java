@@ -7,9 +7,9 @@ public class TorpedoBoat extends Ship{
 	}
 	
 	@Override
-	public void setShipAmount() {
+	public void incrementShipAmount() {
 		if(super.getShipAmount() < DefaultDimensions.TORPEDO_BOAT_MAXNUM.getValue());
-		super.setShipAmount();
+		super.incrementShipAmount();
 	}
 	@Override
 	public int getMaxAmount(){
