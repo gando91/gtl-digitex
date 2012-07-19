@@ -8,6 +8,7 @@ import java.awt.event.MouseMotionListener;
 
 import battleship.game.MatrixModel;
 import battleship.game.Status;
+import battleship.game.MatrixModel.Memento;
 
 
 public class ShipController extends KeyAdapter implements MouseListener, MouseMotionListener {
@@ -18,12 +19,12 @@ public class ShipController extends KeyAdapter implements MouseListener, MouseMo
 	
 	private MatrixModel model;
 	private ProxyShip proxyship;
+	private Memento ricordo;
 	
 	public  ShipController(MatrixModel model, ProxyShip proxyship) {
 		super();
 		this.model=model;
 		this.proxyship=proxyship;
-	
 	}
 
 	@Override
@@ -56,7 +57,10 @@ public class ShipController extends KeyAdapter implements MouseListener, MouseMo
 					if(counter == 0 && counter2 == 0 && ncol != 0 && nrow != 0){
 						if(proxyship.getShipAmount() < proxyship.getMaxAmount() && counter2 == 0){
 							proxyship.setShipAmount();
-
+							
+							//Genero un ricordo del modello prima di modificarlo
+							ricordo = model.generateMemento();
+							
 							for (int i = 0; i < proxyship.getShipLength(); i++) {
 								model.setstatus(nrow + i, ncol, Status.SHIP);
 						
@@ -80,6 +84,9 @@ public class ShipController extends KeyAdapter implements MouseListener, MouseMo
 					if(proxyship.getShipAmount() < proxyship.getMaxAmount() && counter2 == 0){
 						proxyship.setShipAmount();
 						
+					//Genero un ricordo del modello prima di modificarlo
+					ricordo = model.generateMemento();
+
 					for (int i = 0; i < proxyship.getShipLength(); i++) {
 						model.setstatus(nrow, ncol + i, Status.SHIP);
 					}
@@ -87,6 +94,7 @@ public class ShipController extends KeyAdapter implements MouseListener, MouseMo
 			
 		}
 		}
+		
 		
 	}
 
@@ -150,6 +158,10 @@ public class ShipController extends KeyAdapter implements MouseListener, MouseMo
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void undo() {
+		ricordo.restore();
 	}
 
 }

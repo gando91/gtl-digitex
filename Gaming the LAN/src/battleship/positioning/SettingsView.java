@@ -19,17 +19,18 @@ public class SettingsView extends OpponentView {
 	
 	private ProxyShip proxyship;
 	
-	public SettingsView(ProxyShip proxyship, MatrixModel model){
+	public SettingsView(ProxyShip proxyship, MatrixModel model, ShipController shipControl){
 		
 		super(model);
 		this.proxyship=proxyship;
 		
 		getModel().addObserver(this);
 		this.proxyship.addObserver(this);
+
 		
-		addMouseListener(new ShipController(getModel(), proxyship));
-		addMouseMotionListener(new ShipController(getModel(), proxyship));
-		addKeyListener(new ShipController(getModel(), proxyship));
+		addMouseListener(shipControl);
+		addMouseMotionListener(shipControl);
+		addKeyListener(shipControl);
 		setVisible(true);	
 	}
 		
