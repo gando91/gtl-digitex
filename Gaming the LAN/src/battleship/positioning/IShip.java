@@ -5,8 +5,9 @@ public interface IShip {
 	public int getShipLength();
 	public void setShipLength(int length);
 	
-	public void setShipAmount();
+	public void incrementShipAmount();
 	public int getShipAmount();
+	public void setShipAmount(int ShipAmount);
 	public void resetShipAmount();
 	public int getMaxAmount();
 	

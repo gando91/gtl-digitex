@@ -7,9 +7,9 @@ public class Submarine extends Ship{
 	}
 	
 	@Override
-	public void setShipAmount() {
+	public void incrementShipAmount() {
 		if(super.getShipAmount() < DefaultDimensions.SUBMARINE_MAXNUM.getValue());
-			super.setShipAmount();
+			super.incrementShipAmount();
 	}
 	
 	@Override

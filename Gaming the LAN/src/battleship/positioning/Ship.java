@@ -12,8 +12,14 @@ public abstract class Ship implements IShip{
 		return shipamount;
 	}
 
-	public void setShipAmount() {
+	public void incrementShipAmount() {
 		shipamount=shipamount+1;
+	}
+	
+	@Override
+	public void setShipAmount(int ShipAmount) {
+		this.shipamount = ShipAmount;
+		
 	}
 
 	public Ship(int shiplength,int xposition,int yposition){

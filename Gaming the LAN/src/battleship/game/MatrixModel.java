@@ -2,6 +2,7 @@ package battleship.game;
 
 import java.util.Observable;
 
+
 public class MatrixModel extends Observable{
 	
 	private static final int ROWS=11;
@@ -67,10 +68,15 @@ public class MatrixModel extends Observable{
 	
 	public class Memento
 	{
-		private Status[][] matrix;
+		private Status[][] matrix = new Status[11][11];
 		
 		private Memento(Status matrix[][]){
-			this.matrix = matrix;
+			
+			for (int x = 0; x < 11; x++) {
+				for (int y = 0; y < 11; y++) {
+					this.matrix[x][y] = matrix[x][y]; 
+				}
+			}
 		}
 		
 		public void restore() {
