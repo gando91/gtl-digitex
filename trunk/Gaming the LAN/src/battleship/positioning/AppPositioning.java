@@ -33,11 +33,16 @@ public class AppPositioning extends JFrame{
 	private WaitingWindow waiting;
 	private JButton ready;
 	
+	private ShipController shipControl;
+	
 	public AppPositioning(MatrixModel model, IClient client){
 		
 		this.myMatrixModel = model;		
 		this.client = client;
-		addKeyListener(new ShipController(myMatrixModel, ps));
+		
+		shipControl = new ShipController(myMatrixModel, ps);
+		
+		addKeyListener(shipControl);
 		
 		setLayout(new BorderLayout());
 		
@@ -45,11 +50,11 @@ public class AppPositioning extends JFrame{
 		bar.add(menu);
 		setJMenuBar(bar);
 		
-		SettingsView mp = new SettingsView(ps,myMatrixModel);
+		SettingsView mp = new SettingsView(ps,myMatrixModel, shipControl);
 		add(mp);
 		
 		ready=new JButton("READY");
-		ready.addKeyListener(new ShipController(myMatrixModel, ps));
+		ready.addKeyListener(shipControl);
 		add(ready, BorderLayout.PAGE_END);
 		
 		ready.addActionListener(new ActionListener() {			
@@ -61,7 +66,7 @@ public class AppPositioning extends JFrame{
 		});
 		
 		JButton reset=new JButton("RESET");		
-		reset.addKeyListener(new ShipController(myMatrixModel, ps));
+		reset.addKeyListener(shipControl);
 		add(reset, BorderLayout.PAGE_START);
 		
 		reset.addActionListener(new ActionListener() {			
@@ -70,6 +75,18 @@ public class AppPositioning extends JFrame{
 				
 				System.out.println("ho resettato la matrice");				
 				reset();
+			}
+		});
+		
+		
+		JButton undo=new JButton("UNDO");		
+		undo.addKeyListener(shipControl);
+		add(undo, BorderLayout.PAGE_START);
+		
+		undo.addActionListener(new ActionListener() {			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				shipControl.undo();
 			}
 		});
 		

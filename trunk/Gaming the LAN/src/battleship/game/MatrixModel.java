@@ -24,7 +24,7 @@ public class MatrixModel extends Observable{
 	}
 	
 	public void setstatus(int row, int col, Status status){		
-		statusmatrix[row][col]=status;	
+		statusmatrix[row][col]=status;
 		setChanged();
 		notifyObservers();
 	}
@@ -61,5 +61,23 @@ public class MatrixModel extends Observable{
 		return COLS;
 	}
 
+	public Memento generateMemento() {
+		return new Memento(statusmatrix);
+	}
+	
+	public class Memento
+	{
+		private Status[][] matrix;
+		
+		private Memento(Status matrix[][]){
+			this.matrix = matrix;
+		}
+		
+		public void restore() {
+			MatrixModel.this.statusmatrix = matrix;
+			MatrixModel.this.setChanged();
+			MatrixModel.this.notifyObservers();
+		}
+	}
 	
 }
