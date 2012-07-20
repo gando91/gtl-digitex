@@ -14,7 +14,7 @@ public class MatrixModel extends Observable{
 	
 	
 	private Status statusmatrix[][];
-	private ArrayList<IShip> list;
+	private ArrayList<IShip> list = new ArrayList<IShip>();
 	
 	public MatrixModel(){
 		
