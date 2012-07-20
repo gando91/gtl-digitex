@@ -5,7 +5,7 @@ import java.util.Observable;
 public class ProxyShip extends Observable implements IShip{
 	
 	private IShip ship;
-	private boolean rotated;
+
 	
 	
 	public ProxyShip(IShip ship) {
@@ -64,15 +64,15 @@ public class ProxyShip extends Observable implements IShip{
 		update();
 	}
 	public void rotate(){
-		if(rotated == true)
-			rotated = false;
+		if(ship.isRotated() == true)
+			ship.setRotated(false);
 		else
-			rotated = true;
+			ship.setRotated(true);
 		update();
 	}
 
 	public boolean isRotated() {
-		return rotated;
+		return ship.isRotated();
 	}
 
 	@Override
@@ -95,7 +95,7 @@ public class ProxyShip extends Observable implements IShip{
 		return ship;
 	}
 	public Memento generateMemento() {
-		return new Memento(ship, rotated);
+		return new Memento(ship, ship.isRotated());
 	}
 	
 	public class Memento
@@ -113,7 +113,7 @@ public class ProxyShip extends Observable implements IShip{
 		
 		public void restore() {
 			ProxyShip.this.ship = ship;
-			ProxyShip.this.rotated = rotated;
+			ProxyShip.this.ship.setRotated(rotated);
 			ship.setShipAmount(amount);
 		}
 	}
@@ -121,6 +121,12 @@ public class ProxyShip extends Observable implements IShip{
 	@Override
 	public void setShipAmount(int ShipAmount) {
 		this.ship.setShipAmount(ShipAmount);
+	}
+
+	@Override
+	public void setRotated(boolean rotated) {
+		ship.setRotated(rotated);
+		
 	}
 	
 }

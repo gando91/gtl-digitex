@@ -64,7 +64,8 @@ public class ShipController extends KeyAdapter implements MouseListener, MouseMo
 							for (int i = 0; i < proxyship.getShipLength(); i++) {
 								model.setstatus(nrow + i, ncol, Status.SHIP);
 						
-						}
+							}
+							model.addShip(proxyship.getShip());
 					}
 			}
 		}
@@ -91,6 +92,7 @@ public class ShipController extends KeyAdapter implements MouseListener, MouseMo
 					for (int i = 0; i < proxyship.getShipLength(); i++) {
 						model.setstatus(nrow, ncol + i, Status.SHIP);
 					}
+					model.addShip(proxyship.getShip());
 				}
 			
 		}
