@@ -17,4 +17,9 @@ public interface IShip {
 	public void setYPosition(int y);
 	
 
+	public boolean isRotated();
+	public void setRotated(boolean rotated);
+
+	
+
 }

@@ -2,6 +2,8 @@ package battleship.client;
 
 import java.io.IOException;
 
+import javax.swing.JOptionPane;
+
 import battleship.game.AppGame;
 import battleship.game.MatrixModel;
 import battleship.game.Status;
@@ -54,8 +56,12 @@ public class PacketHandler extends ClientConnectionHandler{
 				if(model.getStatusmatrix()[((MissilePacket)packet).getRow()][((MissilePacket)packet).getCol()] == Status.SHIP){
 					
 					model.setstatus(((MissilePacket)packet).getRow(), ((MissilePacket)packet).getCol(), Status.HIT);
-					p = new ResponsePacket(client.getConnection().getNickName(), null, Status.HIT.getValue());
-					
+					if(model.sunkCheck()){
+						p = new ResponsePacket(client.getConnection().getNickName(), null, 99);
+					}
+					else{
+						p = new ResponsePacket(client.getConnection().getNickName(), null, Status.HIT.getValue());
+					}
 				}
 				else
 				{
@@ -95,6 +101,10 @@ public class PacketHandler extends ClientConnectionHandler{
 				if(((ResponsePacket) packet).getResponse() == 2	){
 					game.getOpponentModel().setstatus(game.getController().getNrow(),game.getController().getNcol(),Status.MISSED);
 					
+				}
+				if(((ResponsePacket) packet).getResponse() == 99){
+					game.getOpponentModel().setstatus(game.getController().getNrow(),game.getController().getNcol(),Status.HIT);
+					JOptionPane.showMessageDialog(null, "Colpito e affondato!");
 				}
 				game.changeTurn();
 			}

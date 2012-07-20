@@ -6,6 +6,7 @@ public abstract class Ship implements IShip{
 	private int xposition;
 	private int yposition;
 	private int shipamount=0;
+	private boolean rotated = false;
 	
 	@Override
 	public int getShipAmount() {
@@ -30,6 +31,14 @@ public abstract class Ship implements IShip{
 		
 	}
 	
+	public boolean isRotated() {
+		return rotated;
+	}
+
+	public void setRotated(boolean rotated) {
+		this.rotated = rotated;
+	}
+
 	public Ship(int shiplength){
 		super();
 		this.shiplength=shiplength;
