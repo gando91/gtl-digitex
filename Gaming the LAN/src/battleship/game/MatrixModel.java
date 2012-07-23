@@ -48,7 +48,7 @@ public class MatrixModel extends Observable{
 				
 				for (int i = 0; i < ship.getShipLength(); i++) {
 					
-					if(statusmatrix[ship.getXPosition()+i][ship.getYPosition()] != Status.HIT){
+					if(statusmatrix[ship.getXPosition()][ship.getYPosition()+i] != Status.HIT){
 						alive = true;
 					}
 					
@@ -63,7 +63,7 @@ public class MatrixModel extends Observable{
 
 				for (int i = 0; i < ship.getShipLength(); i++) {
 					
-					if(statusmatrix[ship.getXPosition()][ship.getYPosition()+i] != Status.HIT){
+					if(statusmatrix[ship.getXPosition()+i][ship.getYPosition()] != Status.HIT){
 						alive = true;
 					}
 					

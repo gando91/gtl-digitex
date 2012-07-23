@@ -57,9 +57,11 @@ public class PacketHandler extends ClientConnectionHandler{
 					
 					model.setstatus(((MissilePacket)packet).getRow(), ((MissilePacket)packet).getCol(), Status.HIT);
 					if(model.sunkCheck()){
+						System.out.println("AFFONDATA");
 						p = new ResponsePacket(client.getConnection().getNickName(), null, 99);
 					}
 					else{
+						System.out.println("COLPITA");
 						p = new ResponsePacket(client.getConnection().getNickName(), null, Status.HIT.getValue());
 					}
 				}
