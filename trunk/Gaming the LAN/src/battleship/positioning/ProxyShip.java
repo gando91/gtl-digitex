@@ -128,5 +128,10 @@ public class ProxyShip extends Observable implements IShip{
 		ship.setRotated(rotated);
 		
 	}
+
+	@Override
+	public IShip copy() {
+		return ship.copy();
+	}
 	
 }

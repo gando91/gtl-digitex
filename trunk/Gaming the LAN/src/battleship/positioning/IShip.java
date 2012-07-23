@@ -19,7 +19,6 @@ public interface IShip {
 
 	public boolean isRotated();
 	public void setRotated(boolean rotated);
-
-	
+	public IShip copy();
 
 }
