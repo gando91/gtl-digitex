@@ -14,4 +14,9 @@ public class Cruiser extends Ship {
 	public int getMaxAmount(){
 		return DefaultDimensions.CRUISER_MAXNUM.getValue();
 	}
+	
+	@Override
+	public IShip copy() {
+		return new Cruiser();
+	}
 }

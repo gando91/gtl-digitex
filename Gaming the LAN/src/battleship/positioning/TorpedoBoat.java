@@ -15,4 +15,9 @@ public class TorpedoBoat extends Ship{
 	public int getMaxAmount(){
 		return DefaultDimensions.TORPEDO_BOAT_MAXNUM.getValue();
 	}
+	
+	public IShip copy(){
+		
+		return new TorpedoBoat();
+	}
 }
