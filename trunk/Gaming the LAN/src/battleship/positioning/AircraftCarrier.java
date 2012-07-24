@@ -19,11 +19,12 @@ public class AircraftCarrier extends Ship{
 	public int getMaxAmount(){
 		return DefaultDimensions.AIRCRAFT_CARRIER_MAXNUM.getValue();
 	}
-	
+
 	@Override
-	public IShip copy(){
-		
+	protected IShip MySelf() {
 		return new AircraftCarrier();
 	}
+	
+
 
 }

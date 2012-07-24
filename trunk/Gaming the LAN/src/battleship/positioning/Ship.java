@@ -90,5 +90,16 @@ public abstract class Ship implements IShip{
 		shipamount = 0;
 		
 	}
+	
+	@Override
+	public IShip copy() {
+		IShip ship = MySelf();
+		ship.setXPosition(getXPosition());
+		ship.setYPosition(getYPosition());
+		ship.setRotated(isRotated());
+		return ship;
+	}
+	
+	protected abstract IShip MySelf();
 
 }

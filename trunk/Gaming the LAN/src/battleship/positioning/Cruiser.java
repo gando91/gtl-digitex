@@ -16,7 +16,8 @@ public class Cruiser extends Ship {
 	}
 	
 	@Override
-	public IShip copy() {
+	protected IShip MySelf() {
+		
 		return new Cruiser();
 	}
 }
