@@ -16,11 +16,12 @@ public class Submarine extends Ship{
 	public int getMaxAmount(){
 		return DefaultDimensions.SUBMARINE_MAXNUM.getValue();
 	}
-	
+
 	@Override
-	public IShip copy() {
-		
+	protected IShip MySelf() {
 		return new Submarine();
 	}
+	
+
 
 }
