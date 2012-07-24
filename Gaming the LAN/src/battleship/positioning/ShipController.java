@@ -70,6 +70,7 @@ public class ShipController extends KeyAdapter implements MouseListener, MouseMo
 							shippa = proxyship.getShip().copy();
 							shippa.setXPosition(nrow);
 							shippa.setYPosition(ncol);
+							shippa.setRotated(proxyship.isRotated());
 							model.addShip(shippa);
 					}
 			}
@@ -100,6 +101,7 @@ public class ShipController extends KeyAdapter implements MouseListener, MouseMo
 					shippa = proxyship.getShip().copy();
 					shippa.setXPosition(nrow);
 					shippa.setYPosition(ncol);
+					shippa.setRotated(proxyship.isRotated());
 					model.addShip(shippa);
 				}
 			
