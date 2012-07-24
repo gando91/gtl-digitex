@@ -43,6 +43,10 @@ public class MatrixModel extends Observable{
 		for (Iterator<IShip> iterator = list.iterator(); iterator.hasNext();) {
 			IShip ship = (IShip) iterator.next();
 			
+			System.out.println(ship.getXPosition());
+			System.out.println(ship.getYPosition());
+			System.out.println("_________________");
+			
 			alive = false;
 			if(ship.isRotated()){
 				

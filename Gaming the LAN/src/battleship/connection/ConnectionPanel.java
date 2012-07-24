@@ -25,8 +25,8 @@ public class ConnectionPanel extends JPanel{
 	
 	private Client myClient;
 	
-	private JTextField nickname=new JTextField();
-	private JTextField ip_server=new JTextField();
+	private JTextField nickname=new JTextField("Diggy");
+	private JTextField ip_server=new JTextField("localhost");
 	private JTextField port=new JTextField("8080");
 	
 	private JButton connetti;
