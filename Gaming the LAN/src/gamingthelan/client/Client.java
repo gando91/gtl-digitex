@@ -64,6 +64,8 @@ public class Client implements IClient{
 	{
 		
 		Socket mySocket = new Socket();
+		mySocket.setTcpNoDelay(true);
+		
 		SocketAddress socketAddress = new InetSocketAddress(serverAddress,porta);
 		
 		mySocket.connect(socketAddress, connectionTimeOut);
