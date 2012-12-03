@@ -83,6 +83,7 @@ public class ServerListener implements IListener, Runnable {
 				
 				//TODO : Dare la possibilità al programmatore di decidere cosa fare della richiesta
 				Socket socket = s.accept();				
+				socket.setTcpNoDelay(true);
 				
 				mediator.createConnection(socket, handler);
 				
