@@ -65,7 +65,7 @@ public class ClientConnection implements IConnection, Runnable {
 				while(connected) {
 					now_mils = System.currentTimeMillis();
 					
-					if ((now_mils - lastCheck) > 2000) {
+					if ((now_mils - lastCheck) > 5000) {
 						//La connessione è probabilmente caduta
 						closeConnection();
 					}

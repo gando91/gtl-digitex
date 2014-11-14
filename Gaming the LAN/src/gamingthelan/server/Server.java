@@ -136,16 +136,22 @@ public class Server implements IServer {
 					response = false;
 					conn.sendPacket(new CheckPacket("Server", conn.getNickName()));
 					
-					try {
-						Thread.sleep(1000);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
+					for (int i = 0; i < 10; i++) {
+						
+						try {
+							Thread.sleep(50);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						
+						if (response) break; //Esco dalle prove se funziona
 					}
 					
 					//Se la connessione interpellata non risponde
 					if ( !response ) {
 						conn.disconnect();
 					}
+
 					
 				} catch (IOException e) {
 					//vuol dire che conn è certamente morta
