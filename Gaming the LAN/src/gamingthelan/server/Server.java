@@ -137,9 +137,8 @@ public class Server implements IServer {
 					conn.sendPacket(new CheckPacket("Server", conn.getNickName()));
 					
 					try {
-						this.wait(1000);
+						Thread.sleep(1000);
 					} catch (InterruptedException e) {
-						// TODO che succede se il thread del server viene interrotto ?
 						e.printStackTrace();
 					}
 					
@@ -164,7 +163,6 @@ public class Server implements IServer {
 	
 	public void wakeUp(){
 		response = true;
-		serverThread.notify();
 	}
 	
 	
