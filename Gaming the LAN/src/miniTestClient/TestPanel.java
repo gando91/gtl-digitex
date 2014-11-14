@@ -48,7 +48,7 @@ public class TestPanel extends JPanel{
 				if(pressed == false){
 					
 					//Cominciamo creando un nuovo oggetto client, indicando l'ip del server, la porta di comunicazione e un tempo di timeout
-					myClient = new Client(nickName.getText(), ipServer.getText(), 8080, 200);
+					myClient = new Client(nickName.getText(), ipServer.getText(), 6060, 200);
 					//Creiamo l'oggetto che si occuperà di gestire i pacchetti che arrivano dal server e lo assegnamo al nostro client
 					TestHandler h = new TestHandler(myClient);
 					myClient.setHandler(h);

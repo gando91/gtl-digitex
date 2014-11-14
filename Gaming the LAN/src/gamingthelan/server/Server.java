@@ -35,7 +35,10 @@ public class Server implements IServer {
 	private static Server instance;
 	
 	private Server(){
+		
 		serverThread = new Thread(this);
+		serverThread.start();
+		
 	}
 	
 	
@@ -86,7 +89,7 @@ public class Server implements IServer {
 				
 				ServerConnection c = (ServerConnection) iterator2.next();	
 				
-				if(c.getNickName().equals(nickName)){
+				if(c.getNickName().equals(nickName) && c.isAlive()){
 					try {
 						c.sendPacket(pacchetto);
 					} catch (IOException e) {
@@ -134,7 +137,7 @@ public class Server implements IServer {
 					conn.sendPacket(new CheckPacket("Server", conn.getNickName()));
 					
 					try {
-						this.wait(200);
+						this.wait(1000);
 					} catch (InterruptedException e) {
 						// TODO che succede se il thread del server viene interrotto ?
 						e.printStackTrace();
