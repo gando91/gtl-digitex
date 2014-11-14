@@ -119,4 +119,10 @@ public class PacketHandler extends ClientConnectionHandler{
 		this.waitingwindow.closeFrame();
 	}
 
+	@Override
+	public void onClosedConnection(String nickname) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

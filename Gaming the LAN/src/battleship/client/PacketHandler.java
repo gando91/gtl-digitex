@@ -120,4 +120,10 @@ public class PacketHandler extends ClientConnectionHandler{
 		game.won();		
 	}
 
+	@Override
+	public void onClosedConnection(String nickname) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -212,4 +212,10 @@ public class ServerHandler implements ConnectionHandler {
 		Server.getInstance().sendMessage(q);
 	}
 
+	@Override
+	public void onClosedConnection(String nickname) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
