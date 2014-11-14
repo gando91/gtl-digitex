@@ -41,4 +41,11 @@ public class TestHandler extends ClientConnectionHandler {
 		
 	}
 
+
+	@Override
+	public void onClosedConnection(String nickname) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -31,6 +31,9 @@ public class ClientConnection implements IConnection, Runnable {
     private boolean connected = true;    
 	private String nickName;
 	
+	//Attributo per monitorare l'ultimo checkpacket ricevuto
+	private long lastCheck;
+	
 	public ClientConnection(Socket socket, ConnectionHandler handler, String nickName) {
 		
 		this.socket = socket;
@@ -46,6 +49,34 @@ public class ClientConnection implements IConnection, Runnable {
 		
 		this.handler = handler;		
 		this.nickName = nickName;
+		
+		this.lastCheck = System.currentTimeMillis();
+		
+		
+		//Un thread per controllare la connessione
+		Thread checkTh = new Thread() {
+			
+			@Override
+			public void run() {
+				super.run();
+				
+				long now_mils;
+				
+				while(connected) {
+					now_mils = System.currentTimeMillis();
+					
+					if ((now_mils - lastCheck) > 2000) {
+						//La connessione è probabilmente caduta
+						closeConnection();
+					}
+				}
+				
+			}
+			
+		};
+		
+		checkTh.start();
+		
 	}
 	
 	public Socket getSocket() {
@@ -88,8 +119,9 @@ public class ClientConnection implements IConnection, Runnable {
 				{
 					//rispondo che ci sono
 					sendPacket(received);
-				} else
-				{
+					this.lastCheck = System.currentTimeMillis(); //Aggiorno l'ora dell' l'ultimo check
+					
+				} else {
 					handler.onReceivedPacket(received);
 				}
 				
@@ -104,6 +136,9 @@ public class ClientConnection implements IConnection, Runnable {
 	}
 
 	private void closeConnection() {
+		
+		connected = false;
+		
 		try {
 			
 			outStream.close();

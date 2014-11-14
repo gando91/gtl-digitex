@@ -106,4 +106,10 @@ public static final int MAXPLAYERS = 2;
 		// TODO 
 	}
 
+	@Override
+	public void onClosedConnection(String nickname) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
