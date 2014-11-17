@@ -23,7 +23,6 @@ import java.util.List;
  */
 
 
-
 public class Server implements IServer {
 
 	private List<IConnection> clients = new LinkedList<IConnection>();
@@ -139,7 +138,7 @@ public class Server implements IServer {
 					for (int i = 0; i < 10; i++) {
 						
 						try {
-							Thread.sleep(50);
+							Thread.sleep(100);
 						} catch (InterruptedException e) {
 							e.printStackTrace();
 						}
