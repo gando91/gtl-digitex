@@ -118,8 +118,8 @@ public class ClientConnection implements IConnection, Runnable {
 				} else if (received instanceof CheckPacket)
 				{
 					//rispondo che ci sono
-					sendPacket(received);
 					this.lastCheck = System.currentTimeMillis(); //Aggiorno l'ora dell' l'ultimo check
+					sendPacket(received);
 					
 				} else {
 					handler.onReceivedPacket(received);
@@ -128,7 +128,7 @@ public class ClientConnection implements IConnection, Runnable {
 			} catch (IOException e) {
 				connected = false;
 			} catch (ClassNotFoundException e) {
-				connected = false;				
+				connected = false;	
 			}			
 		}
 		
@@ -138,6 +138,8 @@ public class ClientConnection implements IConnection, Runnable {
 	private void closeConnection() {
 		
 		connected = false;
+		
+		handler.onClosedConnection(nickName);
 		
 		try {
 			

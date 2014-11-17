@@ -71,13 +71,12 @@ public class ServerConnection implements IConnection, Runnable{
 				if ( received instanceof NickPacket ){
 					this.nickname = ((NickPacket) received).getNickName();
 				}
-				else if (received instanceof CheckPacket)
-				{
+				else if (received instanceof CheckPacket) {
 					mediator.wakeUp();
 				} 
 				else {
 					handler.onReceivedPacket(received);
-				}				
+				}
 				
 			} catch (IOException e) {
 				connected = false;
