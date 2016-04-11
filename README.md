@@ -11,6 +11,7 @@ Eric Villa<br>
 Simone Guasconi<br>
 Luca Zuffada<br>
 Alessandro Gatti<br>
+Marcello Spiaggi<br>
 <br>
 The project is not active anymore, but it is still be usable, tested with Java 8.<br>
 Full Javadoc is included.<br>
